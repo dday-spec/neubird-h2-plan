@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuBird AI — H2 2026 Marketing Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  /* ─── TOKENS ─────────────────────────────────────── */
+  :root {
+    --orange:      #FA551E;
+    --orange-dark: #D93E0A;
+    --navy:        #003A51;
+    --forest:      #008C61;
+    --coral:       #F3755F;
+    --ink:         #242321;
+    --ink-mid:     #4A4845;
+    --ink-light:   #7A7875;
+    --cream:       #F7F5F2;
+    --panel:       #F4F4F2;
+    --rule:        #E2E2DE;
+    --white:       #FFFFFF;
+    --serif:  'Fraunces', Georgia, serif;
+    --sans:   'IBM Plex Sans', system-ui, sans-serif;
+    --mono:   'IBM Plex Mono', 'Courier New', monospace;
+    --max-w: 1060px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 15px;
+    color: var(--ink);
+    background: var(--white);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ─── NAV ────────────────────────────────────────── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    padding: 0 2.5rem;
+    height: 52px;
+    gap: 0;
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 15px;
+    color: var(--ink);
+    margin-right: 2.5rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .nav-logo em { font-style: italic; color: var(--orange); }
+  .nav-divider { width: 1px; height: 18px; background: var(--rule); margin-right: 2rem; flex-shrink: 0; }
+  nav a {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ink-light);
+    padding: 0 0.9rem;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid transparent;
+    transition: all 0.15s;
+    white-space: nowrap;
+    margin-bottom: -1px;
+  }
+  nav a:hover { color: var(--ink); border-bottom-color: var(--orange); }
+  .nav-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .nav-badge {
+    font-family: var(--sans);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--orange);
+    border: 1px solid rgba(250,85,30,0.3);
+    background: rgba(250,85,30,0.05);
+    padding: 0.2rem 0.65rem;
+    border-radius: 3px;
+  }
+
+  /* ─── OVERLINE PATTERN ───────────────────────────── */
+  .overline {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .overline-rule { width: 32px; height: 2px; background: var(--orange); flex-shrink: 0; }
+  .overline-text {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+
+  /* ─── LAYOUT ─────────────────────────────────────── */
+  .page-wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 2.5rem; }
+
+  section {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 4.5rem 2.5rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  /* ─── TYPOGRAPHY ─────────────────────────────────── */
+  h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2.8rem, 5vw, 4rem);
+    line-height: 1.08;
+    letter-spacing: -1px;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+  }
+  h1 em { font-style: italic; color: var(--orange); }
+
+  h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 2.4rem;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+  }
+  h2 em { font-style: italic; color: var(--orange); }
+
+  h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 1.4rem;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+  h3 em { font-style: italic; color: var(--orange); }
+
+  .section-body {
+    font-size: 15.5px;
+    font-weight: 300;
+    color: var(--ink-mid);
+    max-width: 640px;
+    margin-bottom: 2.75rem;
+    line-height: 1.72;
+  }
+
+  /* ─── HERO ───────────────────────────────────────── */
+  .hero {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 5rem 2.5rem 4rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero-sub {
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--ink-mid);
+    max-width: 560px;
+    line-height: 1.72;
+    margin-bottom: 2.5rem;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    font-size: 12.5px;
+    font-weight: 400;
+    color: var(--ink-light);
+    letter-spacing: 0.3px;
+  }
+  .hero-meta strong { color: var(--ink); font-weight: 500; }
+
+  /* ─── STATS BAR ──────────────────────────────────── */
+  .stats-bar {
+    background: var(--panel);
+    border-radius: 4px;
+    display: grid;
+    gap: 0;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--rule);
+  }
+  .stats-bar-5 { grid-template-columns: repeat(5, 1fr); }
+  .stats-bar-4 { grid-template-columns: repeat(4, 1fr); }
+  .stats-bar-3 { grid-template-columns: repeat(3, 1fr); }
+  .stat-item { padding: 1.5rem 1.25rem 1.25rem; }
+  .stat-item + .stat-item { border-left: 1px solid var(--rule); }
+  .stat-number {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 2.25rem;
+    color: var(--orange);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.5px;
+  }
+  .stat-sup { font-size: 0.6em; }
+  .stat-label {
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    line-height: 1.5;
+  }
+
+  /* ─── ROCKS GRID ─────────────────────────────────── */
+  .rocks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 0;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .rock-card {
+    background: var(--white);
+    padding: 2rem;
+    transition: background 0.15s;
+    position: relative;
+  }
+  .rock-card:hover { background: var(--panel); }
+  .rock-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.75rem;
+  }
+  .rock-head {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.35rem;
+    color: var(--orange);
+    margin-bottom: 0.4rem;
+    line-height: 1.25;
+  }
+  .rock-title {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+  }
+  .rock-desc {
+    font-size: 13.5px;
+    font-weight: 300;
+    color: var(--ink-mid);
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+  }
+  .rock-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid var(--rule);
+    padding-top: 1rem;
+  }
+  .rock-action {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ink-mid);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    line-height: 1.45;
+  }
+  .rock-action:last-child { border-bottom: none; padding-bottom: 0; }
+  .rock-action::before { content: '—'; color: var(--orange); flex-shrink: 0; }
+
+  /* ─── DUAL MODE ──────────────────────────────────── */
+  .dual-mode {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  /* Light Mode panel — on-brand cream/white */
+  .mode-light-panel {
+    background: var(--white);
+    padding: 2.5rem;
+    border-right: 1px solid var(--rule);
+  }
+  /* Dark Mode panel — navy per brand */
+  .mode-dark-panel {
+    background: var(--navy);
+    padding: 2.5rem;
+  }
+  .mode-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    padding: 0.25rem 0.65rem;
+    border-radius: 3px;
+    margin-bottom: 1.25rem;
+    font-family: var(--sans);
+  }
+  .badge-light {
+    background: rgba(250,85,30,0.08);
+    color: var(--orange);
+    border: 1px solid rgba(250,85,30,0.2);
+  }
+  .badge-dark {
+    background: rgba(247,245,242,0.1);
+    color: rgba(247,245,242,0.7);
+    border: 1px solid rgba(247,245,242,0.15);
+  }
+
+  /* Light panel typography */
+  .mode-light-panel .mode-eyebrow {
+    font-size: 10px; font-weight: 500; letter-spacing: 1.8px;
+    text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.5rem;
+  }
+  .mode-light-panel h3 { font-size: 1.3rem; margin-bottom: 0.35rem; }
+  .mode-light-panel .mode-lead {
+    font-size: 13.5px; font-style: italic; font-weight: 300;
+    color: var(--ink); border-left: 2px solid var(--orange);
+    padding-left: 0.75rem; margin-bottom: 1.25rem; line-height: 1.65;
+  }
+  .mode-light-panel .mode-pillars { list-style: none; }
+  .mode-light-panel .mode-pillars li {
+    font-size: 13px; font-weight: 300; color: var(--ink-mid);
+    padding: 0.55rem 0; border-bottom: 1px solid var(--rule);
+    line-height: 1.5; display: flex; gap: 0.5rem;
+  }
+  .mode-light-panel .mode-pillars li:last-child { border-bottom: none; padding-bottom: 0; }
+  .mode-light-panel .mode-pillars li::before { content: '—'; color: var(--orange); flex-shrink: 0; }
+  .mode-light-panel .mode-channels-label {
+    font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--ink-light); margin-bottom: 0.5rem; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--rule);
+  }
+  .mode-light-panel .channel-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .mode-light-panel .channel-tag {
+    font-size: 12px; font-weight: 300;
+    background: var(--panel); color: var(--ink-mid);
+    border: 1px solid var(--rule); padding: 0.2rem 0.6rem; border-radius: 3px;
+  }
+
+  /* Dark panel typography (navy) */
+  .mode-dark-panel .mode-eyebrow {
+    font-size: 10px; font-weight: 500; letter-spacing: 1.8px;
+    text-transform: uppercase; color: rgba(247,245,242,0.4); margin-bottom: 0.5rem;
+  }
+  .mode-dark-panel h3 { font-size: 1.3rem; margin-bottom: 0.35rem; color: var(--cream); }
+  .mode-dark-panel h3 em { color: var(--orange); }
+  .mode-dark-panel .mode-lead {
+    font-size: 13.5px; font-style: italic; font-weight: 300;
+    color: rgba(247,245,242,0.8); border-left: 2px solid var(--orange);
+    padding-left: 0.75rem; margin-bottom: 1.25rem; line-height: 1.65;
+  }
+  .mode-dark-panel .mode-pillars { list-style: none; }
+  .mode-dark-panel .mode-pillars li {
+    font-size: 13px; font-weight: 300; color: rgba(247,245,242,0.5);
+    padding: 0.55rem 0; border-bottom: 1px solid rgba(247,245,242,0.08);
+    line-height: 1.5; display: flex; gap: 0.5rem;
+  }
+  .mode-dark-panel .mode-pillars li:last-child { border-bottom: none; padding-bottom: 0; }
+  .mode-dark-panel .mode-pillars li::before { content: '—'; color: var(--orange); flex-shrink: 0; }
+  .mode-dark-panel .mode-channels-label {
+    font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase;
+    color: rgba(247,245,242,0.3); margin-bottom: 0.5rem; margin-top: 1.25rem;
+    padding-top: 1.25rem; border-top: 1px solid rgba(247,245,242,0.1);
+  }
+  .mode-dark-panel .channel-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .mode-dark-panel .channel-tag {
+    font-size: 12px; font-weight: 300;
+    background: rgba(247,245,242,0.06); color: rgba(247,245,242,0.5);
+    border: 1px solid rgba(247,245,242,0.1); padding: 0.2rem 0.6rem; border-radius: 3px;
+  }
+
+  /* ─── EVENTS TABLE ───────────────────────────────── */
+  .events-wrap {
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .month-header {
+    background: var(--panel);
+    padding: 0.55rem 1.5rem;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .month-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--orange); flex-shrink: 0; }
+  .event-row {
+    display: grid;
+    grid-template-columns: 130px 1fr auto;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1rem 1.5rem;
+    background: var(--white);
+    border-bottom: 1px solid var(--rule);
+    transition: background 0.12s;
+  }
+  .event-row:hover { background: var(--cream); }
+  .event-row:last-child { border-bottom: none; }
+  .event-date { font-size: 12.5px; color: var(--ink-light); font-weight: 400; }
+  .event-name { font-size: 14px; font-weight: 400; color: var(--ink); margin-bottom: 0.2rem; }
+  .event-name.flagship { font-family: var(--serif); font-weight: 400; font-style: italic; color: var(--orange); }
+  .event-detail { font-size: 12.5px; font-weight: 300; color: var(--ink-light); line-height: 1.45; }
+  .event-meta { text-align: right; }
+  .event-cost { font-size: 13.5px; font-weight: 500; color: var(--ink); margin-bottom: 0.25rem; }
+  .event-badge {
+    display: inline-block;
+    font-size: 9.5px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    font-family: var(--sans);
+  }
+  .b-gold { background: rgba(250,85,30,0.08); color: var(--orange); border: 1px solid rgba(250,85,30,0.2); }
+  .b-silver { background: rgba(0,58,81,0.07); color: var(--navy); border: 1px solid rgba(0,58,81,0.15); }
+  .b-bronze { background: var(--panel); color: var(--ink-mid); border: 1px solid var(--rule); }
+  .b-gameday { background: rgba(0,140,97,0.08); color: var(--forest); border: 1px solid rgba(0,140,97,0.2); }
+  .b-waitlist { background: var(--panel); color: var(--ink-light); border: 1px solid var(--rule); }
+  .b-analyst { background: rgba(0,58,81,0.07); color: var(--navy); border: 1px solid rgba(0,58,81,0.2); }
+
+  .events-summary-bar {
+    margin-top: 1.5rem;
+    background: var(--navy);
+    border-radius: 4px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    overflow: hidden;
+  }
+  .ev-stat { padding: 1.25rem 1.5rem; }
+  .ev-stat + .ev-stat { border-left: 1px solid rgba(255,255,255,0.08); }
+  .ev-stat .ev-num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--orange);
+    line-height: 1;
+    margin-bottom: 0.35rem;
+  }
+  .ev-stat .ev-lbl {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .demand-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 1.5rem;
+  }
+  .demand-card { background: var(--white); padding: 1.5rem; }
+  .demand-card:hover { background: var(--cream); }
+  .demand-card h4 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 1.05rem;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+  .demand-card h4 em { font-style: italic; color: var(--orange); }
+  .demand-card p { font-size: 13px; font-weight: 300; color: var(--ink-mid); line-height: 1.65; }
+
+  /* ─── PULL QUOTE ─────────────────────────────────── */
+  .pull-quote {
+    border-left: 3px solid var(--orange);
+    padding: 4px 0 4px 1.5rem;
+    margin: 2rem 0;
+  }
+  .pull-quote-text {
+    font-weight: 300;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.65;
+    margin-bottom: 0.5rem;
+  }
+  .pull-quote-attr {
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+
+  /* ─── SEO ────────────────────────────────────────── */
+  .seo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .seo-panel {
+    background: var(--white);
+    padding: 2rem;
+  }
+  .seo-panel + .seo-panel { border-left: 1px solid var(--rule); }
+  .seo-panel h3 { font-size: 1.1rem; margin-bottom: 0.3rem; }
+  .seo-panel .seo-sub { font-size: 13px; font-weight: 300; color: var(--ink-mid); margin-bottom: 1.25rem; line-height: 1.6; }
+  .seo-items { display: flex; flex-direction: column; gap: 0; }
+  .seo-item {
+    display: flex; gap: 0.5rem; align-items: flex-start;
+    font-size: 13px; font-weight: 300; color: var(--ink-mid);
+    padding: 0.55rem 0; border-bottom: 1px solid var(--rule); line-height: 1.5;
+  }
+  .seo-item:last-child { border-bottom: none; }
+  .seo-item::before { content: '—'; color: var(--orange); flex-shrink: 0; }
+
+  .kw-table-wrap {
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 1.5rem;
+  }
+  .kw-table-head {
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid var(--rule);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+  table.kw-table { width: 100%; border-collapse: collapse; background: var(--white); }
+  .kw-table th {
+    font-size: 10.5px; font-weight: 500; letter-spacing: 1.2px;
+    text-transform: uppercase; color: var(--ink-light);
+    padding: 0.65rem 1.25rem; text-align: left; border-bottom: 1px solid var(--rule);
+    background: var(--panel);
+  }
+  .kw-table td {
+    padding: 0.75rem 1.25rem; font-size: 13.5px; font-weight: 300;
+    color: var(--ink-mid); border-bottom: 1px solid var(--rule); vertical-align: top; line-height: 1.5;
+  }
+  .kw-table tr:last-child td { border-bottom: none; }
+  .kw-table td:first-child { color: var(--ink); font-weight: 400; }
+  .kw-type {
+    display: inline-block; font-size: 10px; font-weight: 500;
+    letter-spacing: 0.8px; text-transform: uppercase; padding: 0.15rem 0.45rem; border-radius: 3px;
+  }
+  .kw-cat { background: rgba(250,85,30,0.08); color: var(--orange); border: 1px solid rgba(250,85,30,0.2); }
+  .kw-comp { background: rgba(0,58,81,0.07); color: var(--navy); border: 1px solid rgba(0,58,81,0.15); }
+  .kw-geo { background: rgba(0,140,97,0.08); color: var(--forest); border: 1px solid rgba(0,140,97,0.2); }
+
+  /* ─── KPIs ───────────────────────────────────────── */
+  .kpi-group { margin-bottom: 2.5rem; }
+  .kpi-group-label {
+    font-size: 10px; font-weight: 500; letter-spacing: 1.8px; text-transform: uppercase;
+    color: var(--ink-light); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;
+  }
+  .kpi-group-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+  .kpi-cards {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 0; background: var(--rule); border: 1px solid var(--rule); border-radius: 4px; overflow: hidden;
+  }
+  .kpi-card { background: var(--white); padding: 1.25rem 1.5rem; transition: background 0.12s; }
+  .kpi-card:hover { background: var(--panel); }
+  .kpi-num {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: 2rem; color: var(--orange); line-height: 1; letter-spacing: -0.5px; margin-bottom: 0.3rem;
+  }
+  .kpi-name { font-size: 13.5px; font-weight: 500; color: var(--ink); margin-bottom: 0.25rem; }
+  .kpi-desc { font-size: 12.5px; font-weight: 300; color: var(--ink-mid); line-height: 1.5; }
+  .kpi-tag {
+    display: inline-block; font-size: 9.5px; font-weight: 500; letter-spacing: 1px;
+    text-transform: uppercase; margin-top: 0.5rem; padding: 0.15rem 0.45rem; border-radius: 3px;
+    background: rgba(250,85,30,0.07); color: var(--orange); border: 1px solid rgba(250,85,30,0.15);
+  }
+
+  /* ─── TIMELINE ───────────────────────────────────── */
+  .timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .tl-col { background: var(--white); min-height: 300px; }
+  .tl-col-head {
+    background: var(--panel);
+    padding: 0.75rem 1rem;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 1rem;
+    color: var(--ink);
+    border-bottom: 1px solid var(--rule);
+    border-right: 1px solid var(--rule);
+  }
+  .tl-col-head em { font-style: italic; color: var(--orange); }
+  .tl-items { padding: 0.75rem; display: flex; flex-direction: column; gap: 0.4rem; border-right: 1px solid var(--rule); min-height: 260px; }
+  .tl-col:last-child .tl-col-head,
+  .tl-col:last-child .tl-items { border-right: none; }
+  .tl-item {
+    font-size: 11.5px; font-weight: 300; padding: 0.45rem 0.55rem;
+    border-radius: 3px; line-height: 1.35;
+  }
+  .tl-brand { background: rgba(250,85,30,0.07); color: #C04010; border-left: 2px solid var(--orange); }
+  .tl-category { background: rgba(0,58,81,0.07); color: var(--navy); border-left: 2px solid var(--navy); }
+  .tl-event { background: rgba(0,140,97,0.07); color: #006044; border-left: 2px solid var(--forest); }
+  .tl-seo { background: var(--panel); color: var(--ink-mid); border-left: 2px solid var(--ink-light); }
+  .tl-content { background: rgba(250,85,30,0.04); color: var(--ink-mid); border-left: 2px solid var(--coral); }
+  .tl-event-flag { background: rgba(0,58,81,0.12); color: var(--navy); border-left: 2px solid var(--navy); font-weight: 500; }
+  .tl-partner { background: rgba(0,140,97,0.05); color: #005A40; border-left: 2px solid var(--forest); font-style: italic; }
+
+  .tl-legend {
+    display: flex; gap: 1.25rem; flex-wrap: wrap; margin-top: 0.85rem;
+  }
+  .tl-leg {
+    display: flex; align-items: center; gap: 0.35rem;
+    font-size: 11.5px; font-weight: 300; color: var(--ink-light);
+  }
+  .tl-leg-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+  /* ─── FOOTER ─────────────────────────────────────── */
+  footer {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 2rem 2.5rem;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  .footer-tagline { font-size: 13.5px; font-weight: 300; color: var(--ink-mid); }
+  .footer-tagline strong { font-weight: 400; color: var(--ink); }
+  .footer-doc { font-size: 11px; color: var(--ink-light); margin-top: 0.2rem; }
+  .cta-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--ink); color: var(--white); font-family: var(--sans);
+    font-size: 13.5px; font-weight: 400; padding: 0.65rem 1.25rem;
+    border-radius: 3px; transition: background 0.15s; white-space: nowrap;
+  }
+  .cta-btn:hover { background: var(--navy); }
+
+  /* ─── PARTNER CARDS ─────────────────────────────── */
+  .partner-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+  .partner-card { background: var(--white); padding: 2rem; transition: background 0.15s; }
+  .partner-card:hover { background: var(--panel); }
+  .partner-logo-area {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .partner-logo-box {
+    width: 36px; height: 36px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .pl-aws { background: #FF9900; }
+  .pl-azure { background: #0078D4; }
+  .pl-rh { background: #EE0000; }
+  .partner-name {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 1.1rem;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .partner-name em { font-style: italic; color: var(--orange); }
+  .partner-tier {
+    font-size: 10px; font-weight: 500; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.6rem;
+  }
+  .partner-desc {
+    font-size: 13px; font-weight: 300; color: var(--ink-mid);
+    line-height: 1.65; margin-bottom: 1.25rem;
+  }
+  .partner-actions { display: flex; flex-direction: column; gap: 0; }
+  .partner-action {
+    display: flex; gap: 0.5rem; align-items: flex-start;
+    font-size: 12.5px; font-weight: 300; color: var(--ink-mid);
+    padding: 0.5rem 0; border-bottom: 1px solid var(--rule); line-height: 1.45;
+  }
+  .partner-action:last-child { border-bottom: none; padding-bottom: 0; }
+  .partner-action::before { content: '—'; color: var(--orange); flex-shrink: 0; }
+
+  .partner-principles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .pp-card { background: var(--navy); padding: 1.75rem; }
+  .pp-card + .pp-card { border-left: 1px solid rgba(255,255,255,0.08); }
+  .pp-head {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: 1.2rem; color: var(--orange); margin-bottom: 0.5rem; line-height: 1.2;
+  }
+  .pp-body {
+    font-size: 13px; font-weight: 300;
+    color: rgba(247,245,242,0.55); line-height: 1.6;
+  }
+
+  @media (max-width: 860px) {
+    .dual-mode, .seo-grid, .partner-grid, .partner-principles { grid-template-columns: 1fr; }
+    .timeline-grid { grid-template-columns: repeat(3, 1fr); }
+    .events-summary-bar { grid-template-columns: repeat(2, 1fr); }
+    .event-row { grid-template-columns: 1fr; }
+    .stats-bar-5, .stats-bar-4 { grid-template-columns: repeat(2, 1fr); }
+    nav a { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">NeuBird <em>AI</em></div>
+  <div class="nav-divider"></div>
+  <a href="#rocks">Large Rocks</a>
+  <a href="#category">Category</a>
+  <a href="#messaging">Messaging</a>
+  <a href="#partners">Partners</a>
+  <a href="#brand">Brand & Site</a>
+  <a href="#events">Events</a>
+  <a href="#seo">SEO / GEO</a>
+  <a href="#kpis">KPIs</a>
+  <a href="#timeline">Timeline</a>
+  <div class="nav-right">
+    <div class="nav-badge">H2 2026</div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="overline">
+    <div class="overline-rule"></div>
+    <div class="overline-text">Autonomous Production Ops Agent · neubird.ai</div>
+  </div>
+  <h1>H2 2026 Marketing Plan.<br><em>Building the category.</em></h1>
+  <p class="hero-sub">Six months to launch a refreshed brand, own the Prod Ops Agent category, land dual-mode messaging that resonates with CIOs and SREs alike, and show up at the events that matter. Here's what matters — and how we measure it.</p>
+  <div class="hero-meta">
+    <span><strong>Period</strong> July – December 2026</span>
+    <span><strong>Large Rocks</strong> 6</span>
+    <span><strong>Major Events</strong> 7</span>
+    <span><strong>H2 Event Investment</strong> $717K</span>
+    <span><strong>Status</strong> Active</span>
+  </div>
+</div>
+
+<!-- WHAT MATTERS -->
+<section id="rocks">
+  <div class="overline"><div class="overline-rule"></div><div class="overline-text">What Matters</div></div>
+  <h2>The six large <em>rocks.</em></h2>
+  <p class="section-body">These are the six initiatives that define success in H2. Everything else — content, campaigns, channels — serves one of these. If we move all six, we win the half.</p>
+
+  <div class="rocks-grid">
+
+    <div class="rock-card">
+      <div class="rock-num">Rock 01</div>
+      <div class="rock-head">Define the category.</div>
+      <div class="rock-title">Category Creation — The Prod Ops Agent</div>
+      <div class="rock-desc">We don't want to win a crowded market. We want to define a new one. "The Prod Ops Agent" is the category NeuBird AI invents, leads, and owns. This half is about planting the flag — with analysts, media, prospects, and the ecosystem.</div>
+      <div class="rock-actions">
+        <div class="rock-action">Publish the definitive Prod Ops Agent category POV</div>
+        <div class="rock-action">Analyst briefings — Gartner, Forrester, IDC</div>
+        <div class="rock-action">Thought leadership establishing the category vocabulary</div>
+        <div class="rock-action">Category landing page + SEO footprint</div>
+        <div class="rock-action">PR narrative: NeuBird AI as category inventor, not fast-follower</div>
+      </div>
+    </div>
+
+    <div class="rock-card">
+      <div class="rock-num">Rock 02</div>
+      <div class="rock-head">Two audiences. Two voices.</div>
+      <div class="rock-title">Dual-Mode Positioning & Messaging</div>
+      <div class="rock-desc">One product. Two audiences. Two completely different conversations. CIOs care about revenue, risk, and roadmap. SREs care about not getting paged at 3am. We need messaging, content, and assets that speak to each — and never mix them up.</div>
+      <div class="rock-actions">
+        <div class="rock-action">Finalize C-suite messaging playbook (Light Mode)</div>
+        <div class="rock-action">Finalize practitioner messaging playbook (Dark Mode)</div>
+        <div class="rock-action">Train all customer-facing teams on both modes</div>
+        <div class="rock-action">Build mode-specific collateral: decks, one-pagers, demos</div>
+        <div class="rock-action">Messaging audit of all existing assets</div>
+      </div>
+    </div>
+
+    <div class="rock-card">
+      <div class="rock-num">Rock 03</div>
+      <div class="rock-head">Win through the clouds.</div>
+      <div class="rock-title">Partnership GTM — AWS, Azure & Red Hat OpenShift</div>
+      <div class="rock-desc">The three platforms our prospects already run on. Co-sell through AWS Marketplace, Azure Marketplace, and Red Hat's ecosystem — reaching buyers inside their existing procurement motions, with NeuBird AI positioned as the native Prod Ops Agent for each platform.</div>
+      <div class="rock-actions">
+        <div class="rock-action">Activate AWS co-sell: Marketplace listing, ISV Accelerate, and joint GTM with APN partners</div>
+        <div class="rock-action">Activate Azure co-sell: Marketplace + CSP channel + Microsoft Ignite joint presence</div>
+        <div class="rock-action">Red Hat OpenShift: certified operator, partner showcase at KubeCon, joint one-pagers</div>
+        <div class="rock-action">Partner-specific messaging and landing pages for each cloud buyer persona</div>
+        <div class="rock-action">Pipeline attribution and co-sell tracking across all three partner motions</div>
+      </div>
+    </div>
+
+    <div class="rock-card">
+      <div class="rock-num">Rock 04</div>
+      <div class="rock-head">Refreshed brand & site.</div>
+      <div class="rock-title">Brand Identity & Website Launch</div>
+      <div class="rock-desc">The updated NeuBird AI identity and website need to reflect where we're going. The site is our always-on sales rep — it must work for both audiences, tell the Prod Ops Agent story, and convert.</div>
+      <div class="rock-actions">
+        <div class="rock-action">Ship the refreshed visual identity across all surfaces</div>
+        <div class="rock-action">Launch new site with dual-mode messaging architecture</div>
+        <div class="rock-action">Update all sales and marketing collateral to new brand</div>
+        <div class="rock-action">Key proof points front and center on every page</div>
+      </div>
+    </div>
+
+    <div class="rock-card">
+      <div class="rock-num">Rock 05</div>
+      <div class="rock-head">Pipeline from the field.</div>
+      <div class="rock-title">Events & Demand Generation</div>
+      <div class="rock-desc">$717K invested in H2 events — from AWS GameDay in July through re:Invent and Gartner IOCS in December. Every event needs a clear objective, the right audience mode, and pipeline targets. Events feed content, not just badge scans.</div>
+      <div class="rock-actions">
+        <div class="rock-action">Execute H2 strategy across 7 major events</div>
+        <div class="rock-action">Set pipeline targets per event with pre/post nurture</div>
+        <div class="rock-action">Build flagship presence at AWS re:Invent (Gold: $508K)</div>
+        <div class="rock-action">Capture and repurpose event content for demand gen</div>
+        <div class="rock-action">Targeted ancillary events around flagship conferences</div>
+      </div>
+    </div>
+
+    <div class="rock-card">
+      <div class="rock-num">Rock 06</div>
+      <div class="rock-head">Organic reach. Compounding.</div>
+      <div class="rock-title">SEO & Generative Engine Optimization</div>
+      <div class="rock-desc">Paid gets us in rooms. Organic builds the moat. H2 is about planting content that keeps working after the event ends — ranking for the terms that matter, getting cited by AI tools (GEO), and owning the conversation our prospects are already having.</div>
+      <div class="rock-actions">
+        <div class="rock-action">Rank #1 for "Prod Ops Agent" — we defined it, we own it</div>
+        <div class="rock-action">Build GEO presence so AI tools cite NeuBird AI correctly</div>
+        <div class="rock-action">Monthly deep technical content for practitioners</div>
+        <div class="rock-action">Competitive comparison pages (vs. Datadog, Resolve, Traversal)</div>
+        <div class="rock-action">Site architecture optimized for conversion and crawlability</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CATEGORY CREATION -->
+<section id="category">
+  <div class="overline"><div class="overline-rule"></div><div class="overline-text">Rock 01 — Category Creation</div></div>
+  <h2>Define the <em>category.</em></h2>
+  <p class="section-body">No one is searching for "Prod Ops Agent" yet — because we haven't named it. That's the opportunity. H2 is the window to plant the category flag, build the vocabulary, and make NeuBird AI synonymous with autonomous production operations before a competitor does.</p>
+
+  <div class="demand-grid">
+    <div class="demand-card">
+      <h4>Name it. <em>Own it.</em></h4>
+      <p>Prod Ops Agent is the category. Every piece of external content — website, decks, ads, analyst briefings — should use this term consistently and define it on our terms before the market defines it for us.</p>
+    </div>
+    <div class="demand-card">
+      <h4>The category <em>POV.</em></h4>
+      <p>A single, authoritative long-form document that defines what a Prod Ops Agent is, why the category exists now, and why detection + RCA + optimization belong together. This becomes the foundation every other content asset is built on.</p>
+    </div>
+    <div class="demand-card">
+      <h4>Analyst <em>briefings.</em></h4>
+      <p>10+ briefings across Gartner, Forrester, and IDC in H2. Get the Prod Ops Agent category into analyst vocabularies before they build their own framework for it. Every briefing should lead with the category POV, a customer proof point, and a clear ask: use this term, cite this company. Show up at Gartner IOCS prepared — not just with a booth, but with a briefing pre-booked and a one-pager they can take back to their research.</p>
+    </div>
+    <div class="demand-card">
+      <h4>GigaOM <em>category research.</em></h4>
+      <p>Commission category-defining research with GigaOM to establish Prod Ops Agent as a recognized market category. A GigaOM Radar or Sonar report positions NeuBird AI as the category leader at the moment of category formation — before incumbents have had time to stake a claim. This becomes a foundational sales asset, a PR moment, and a credibility anchor for every analyst conversation that follows.</p>
+    </div>
+    <div class="demand-card">
+      <h4>Forrester TEI <em>report.</em></h4>
+      <p>Commission a Total Economic Impact study with Forrester to quantify the ROI of the Prod Ops Agent. A validated TEI report gives enterprise buyers the financial justification they need to get budget approved — and gives NeuBird AI a third-party proof point that no internal case study can match. Target: 200%+ ROI with a payback period under 6 months, grounded in real customer data.</p>
+    </div>
+    <div class="demand-card">
+      <h4>Thought leadership <em>at scale.</em></h4>
+      <p>Bylines in The New Stack, InfoQ, and DevOps.com. Speaking slots framed around the category, not the product. Guest posts from practitioners who've experienced the shift from reactive firefighting to proactive prevention.</p>
+    </div>
+  </div>
+
+  <div style="margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid var(--rule);">
+    <div class="overline"><div class="overline-rule"></div><div class="overline-text">Category pillars</div></div>
+    <div class="demand-grid" style="margin-top: 1.5rem;">
+      <div class="demand-card">
+        <h4>Cost is <em>compounding.</em></h4>
+        <p>Every unresolved incident burns engineering hours that should be on the roadmap. Every P1 war room pulls eight people off productive work. Every missed SLA erodes the contracts your revenue depends on. Production incidents are one of the highest hidden costs on the engineering P&L — and they compound silently until they can't be ignored. NeuBird AI makes them visible, then makes them stop.</p>
+      </div>
+      <div class="demand-card">
+        <h4>Speed is <em>the differentiator.</em></h4>
+        <p>The teams that win aren't the ones with the most monitoring dashboards — they're the ones that resolve issues before customers notice them. Detection 30–60 minutes before failure. RCA in under 2 minutes. Resolution in under 3. Speed at this level isn't an engineering metric, it's a commercial one: it's the difference between a customer who never noticed and a customer who's writing a churn email.</p>
+      </div>
+      <div class="demand-card">
+        <h4>Complexity is <em>the new normal.</em></h4>
+        <p>Modern production environments span multiple clouds, dozens of services, and hundreds of dependencies — and they're getting more complex every quarter. Human-only incident response doesn't scale with that complexity. The teams still trying to manage it manually are running faster to stay in place. A Prod Ops Agent isn't a nice-to-have for complex environments. It's the only architecture that makes sense.</p>
+      </div>
+      <div class="demand-card">
+        <h4>Risk is <em>preventable.</em></h4>
+        <p>The biggest risk isn't the incident you respond to — it's the one that was preventable. A reactive posture means you're always arriving after the damage is done: after the customer noticed, after the SLA was breached, after the board is asking questions. Detecting degradation 30–60 minutes before failure changes the conversation entirely. You don't have a recovery story. You have a prevention posture — and that's a fundamentally different position to be in when reliability becomes a commercial expectation written into contracts.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pull-quote" style="margin-top: 2rem;">
+    <div class="pull-quote-text">"The goal isn't to win the Prod Ops Agent category. The goal is to be the company that defined it — because the company that defines the category sets the buying criteria, and the buying criteria is built around their strengths."</div>
+    <div class="pull-quote-attr">Category Creation Playbook, H2 2026</div>
+  </div>
+</section>
+
+<!-- DUAL MODE MESSAGING -->
+<section id="messaging">
+  <div class="overline"><div class="overline-rule"></div><div class="overline-text">Rock 02 — Positioning & Messaging</div></div>
+  <h2>Light mode & <em>dark mode.</em></h2>
+  <p class="section-body">Same product. Completely different language. C-suite messaging leads with outcomes they own. Practitioner messaging leads with feelings they recognize. Getting this right across every channel is the difference between resonating and being ignored.</p>
+
+  <div class="dual-mode">
+    <!-- LIGHT MODE -->
+    <div class="mode-light-panel">
+      <div class="mode-badge badge-light">☀ Light Mode — C-Suite</div>
+      <div class="mode-eyebrow">CIO · CTO · CFO · VP Infrastructure</div>
+      <h3>Protect Revenue. Reduce Risk. <em>Free the Roadmap.</em></h3>
+      <div class="mode-lead">"Production incidents are silently compounding your costs, your risk, and your competitive position. The Prod Ops Agent prevents them before they happen, resolves the ones that do autonomously, and gives your engineering capacity back to the roadmap."</div>
+      <ul class="mode-pillars">
+        <li><strong>Cost story:</strong> Replaces the 8-person war room. 200+ hours/month recovered, 60%+ incident cost reduction.</li>
+        <li><strong>Risk story:</strong> Detect degradation 30–60 min before failure. Reduce P1 war rooms by 80%. Arrive at board conversations with a prevention posture.</li>
+        <li><strong>Reliability story:</strong> 80% MTTR reduction. Under 3-minute resolution. SLAs become a commercial differentiator.</li>
+      </ul>
+      <div class="mode-channels-label">Channels</div>
+      <div class="channel-tags">
+        <span class="channel-tag">Executive briefings</span>
+        <span class="channel-tag">Gartner IOCS</span>
+        <span class="channel-tag">Microsoft Ignite</span>
+        <span class="channel-tag">LinkedIn</span>
+        <span class="channel-tag">One-pagers</span>
+        <span class="channel-tag">ROI calculator</span>
+      </div>
+    </div>
+
+    <!-- DARK MODE — navy background per brand -->
+    <div class="mode-dark-panel">
+      <div class="mode-badge badge-dark">🌙 Dark Mode — Engineering</div>
+      <div class="mode-eyebrow">SRE · Platform Eng · DevOps · On-Call</div>
+      <h3>Stop getting paged <em>at 3am.</em></h3>
+      <div class="mode-lead">"Stop getting paged at 3am for incidents The Prod Ops Agent can resolve in 2 minutes."</div>
+      <ul class="mode-pillars">
+        <li><strong>Toil story:</strong> The Prod Ops Agent handles it while you sleep. No more repetitive, draining incidents burning out your best engineers.</li>
+        <li><strong>Productivity story:</strong> You'll never have to piece together what happened across five tools again. 2-minute RCA. One answer.</li>
+        <li><strong>Trust story:</strong> Every fix, every workaround, every hard-won lesson captured and reused automatically. Every action human-approved.</li>
+      </ul>
+      <div class="mode-channels-label">Channels</div>
+      <div class="channel-tags">
+        <span class="channel-tag">KubeCon</span>
+        <span class="channel-tag">GitHub Universe</span>
+        <span class="channel-tag">Developer blog</span>
+        <span class="channel-tag">GitHub</span>
+        <span class="channel-tag">Hacker News</span>
+        <span class="channel-tag">Technical demos</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="pull-quote" style="margin-top: 2rem;">
+    <div class="pull-quote-text">"The killer line for C-Suite isn't 'faster MTTR' — it's 'a prevention posture.' The killer line for practitioners isn't 'autonomous remediation' — it's 'the agent handles it while you sleep.' These aren't synonyms. They're different conversations entirely."</div>
+    <div class="pull-quote-attr">Messaging Playbook, May 2026</div>
+  </div>
+</section>
+
+<!-- PARTNERSHIPS -->
+<section id="partners">
+  <div class="overline"><div class="overline-rule"></div><div class="overline-text">Rock 03 — Partnership GTM</div></div>
+  <h2>Win through <em>the clouds.</em></h2>
+  <p class="section-body">AWS, Azure, and Red Hat OpenShift are the platforms our prospects already run on. The GTM motion isn't just about listing on a marketplace — it's about showing up as the native Prod Ops Agent for each ecosystem, inside the procurement paths our buyers already use.</p>
+
+  <div class="partner-grid">
+
+    <!-- AWS -->
+    <div class="partner-card">
+      <div class="partner-logo-area">
+        <div class="partner-logo-box pl-aws">☁</div>
+        <div>
+          <div class="partner-name">Amazon <em>Web Services</em></div>
+          <div style="font-size:11px;color:var(--ink-light);font-weight:300;">ISV Accelerate · AWS Marketplace</div>
+        </div>
+      </div>
+      <div class="partner-tier">Priority Partner</div>
+      <div class="partner-desc">The biggest infrastructure platform on the planet — and NeuBird AI's highest-volume event presence. AWS re:Invent alone justifies a full GTM motion. Marketplace listing removes procurement friction for enterprise buyers and unlocks committed spend.</div>
+      <div class="partner-actions">
+        <div class="partner-action">AWS Marketplace listing live — BYOL + SaaS subscription model</div>
+        <div class="partner-action">ISV Accelerate enrollment — co-sell with AWS field sellers</div>
+        <div class="partner-action">AWS re:Invent Gold booth + 2 speaking slots as GTM anchor</div>
+        <div class="partner-action">AWS GameDay sponsorships (Jul, + ongoing) for practitioner pipeline</div>
+        <div class="partner-action">Joint one-pager: NeuBird AI as the Prod Ops Agent for AWS-native stacks</div>
+        <div class="partner-action">APN partner relationships: Caylent and ecosystem SIs</div>
+      </div>
+    </div>
+
+    <!-- AZURE -->
+    <div class="partner-card">
+      <div class="partner-logo-area">
+        <div class="partner-logo-box pl-azure">⬡</div>
+        <div>
+          <div class="partner-name">Microsoft <em>Azure</em></div>
+          <div style="font-size:11px;color:var(--ink-light);font-weight:300;">Azure Marketplace · CSP Channel</div>
+        </div>
+      </div>
+      <div class="partner-tier">Priority Partner</div>
+      <div class="partner-desc">Microsoft Ignite (Nov 17–20, SF) is the H2 anchor for the Azure partnership. C-suite buyers at Ignite are Light Mode — they want to hear about revenue protection and prevention posture, not incident tooling. The Azure GTM motion leads executive, not engineering.</div>
+      <div class="partner-actions">
+        <div class="partner-action">Azure Marketplace listing — transact through MACC committed spend</div>
+        <div class="partner-action">Microsoft Ignite co-presence and joint customer sessions</div>
+        <div class="partner-action">CSP channel activation: reseller program for NeuBird AI</div>
+        <div class="partner-action">Azure-native architecture one-pager for enterprise buyers</div>
+        <div class="partner-action">Microsoft Build speaking slot (Jun) carried into H2 content</div>
+        <div class="partner-action">Joint messaging: NeuBird AI as the prevention layer on Azure-hosted stacks</div>
+      </div>
+    </div>
+
+    <!-- RED HAT -->
+    <div class="partner-card">
+      <div class="partner-logo-area">
+        <div class="partner-logo-box pl-rh">🎩</div>
+        <div>
+          <div class="partner-name">Red Hat <em>OpenShift</em></div>
+          <div style="font-size:11px;color:var(--ink-light);font-weight:300;">Certified Operator · Partner Showcase</div>
+        </div>
+      </div>
+      <div class="partner-tier">Strategic Partner</div>
+      <div class="partner-desc">OpenShift is where the automotive, financial services, and healthcare enterprises that represent NeuBird AI's highest-ACV deals run their production workloads. The customer story already uses OpenShift (94% MTTR, $2.1M prevented). Turn that proof into a full partner motion.</div>
+      <div class="partner-actions">
+        <div class="partner-action">Red Hat Certified Operator — NeuBird AI in the OpenShift OperatorHub</div>
+        <div class="partner-action">KubeCon partner showcase and joint booth presence (Nov 9–12)</div>
+        <div class="partner-action">Red Hat Summit H1 presence carried into H2 co-sell motion</div>
+        <div class="partner-action">Joint case study: the automotive customer story (94% MTTR on OpenShift)</div>
+        <div class="partner-action">OpenShift-specific deployment one-pager: "No egress. In-cluster. SOC 2."</div>
+        <div class="partner-action">Partner-sourced pipeline target: 10% of H2 pipeline via Red Hat ecosystem</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PARTNER PRINCIPLES -->
+  <div class="partner-principles">
+    <div class="pp-card">
+      <div class="pp-head">Marketplace first.</div>
+      <div class="pp-body">Enterprise buyers want to transact through committed cloud spend. AWS and Azure Marketplace listings remove procurement friction and let deals close inside existing budget — without a new vendor approval cycle.</div>
+    </div>
+    <div class="pp-card">
+      <div class="pp-head">Right mode per cloud.</div>
+      <div class="pp-body">AWS GTM leads Dark Mode (practitioners, GameDay, re:Invent engineers). Azure leads Light Mode (CIOs, Ignite, CFO-friendly MACC spend). Red Hat leads both — platform engineers trust the Certified Operator; executives trust the OpenShift case study.</div>
+    </div>
+    <div class="pp-card">
+      <div class="pp-head">Co-sell, not just list.</div>
+      <div class="pp-body">A Marketplace listing with no co-sell motion is shelf presence. ISV Accelerate, Azure MCEM, and Red Hat partner programs all require active field alignment. Each partner needs a named NeuBird AI owner, a joint pipeline review cadence, and shared deal registration.</div>
+    </div>
+  </div>
+
+  <div class="pull-quote" style="margin-top: 2rem;">
+    <div class="pull-quote-text">"Would you build your own Datadog? Then why build your own AI SRE? Buy the platform, focus your engineers on your product." — and for the partner motion: meet buyers inside the procurement path they already trust.</div>
+    <div class="pull-quote-attr">Messaging Playbook — Objection Handling</div>
+  </div>
+</section>
+
+<!-- BRAND & SITE -->
+<section id="brand">
+  <div class="overline"><div class="overline-rule"></div><div class="overline-text">Rock 04 — Brand & Site</div></div>
+  <h2>Refreshed brand <em>& site.</em></h2>
+  <p class="section-body">The category needs a home. The new website and refreshed brand aren't cosmetic — they're the first physical expression of the Prod Ops Agent category and the dual-mode messaging system. Every page should do a job: define the category, convert the visitor, or equip the sales team.</p>
+
+  <div class="demand-grid">
+    <div class="demand-card">
+      <h4>Website <em>launch.</em></h4>
+      <p>New site architecture built around the Prod Ops Agent category. Homepage leads with the category definition and our key proof points. Separate conversion paths for C-suite (Light Mode) and practitioners (Dark Mode) from the first scroll.</p>
+    </div>
+    <div class="demand-card">
+      <h4>Dual-mode <em>design.</em></h4>
+      <p>Light Mode pages for C-suite: white, open, outcome-led. Dark Mode pages for practitioners: navy, dense, proof-led. The design system signals who the page is for before the visitor reads a word. Both modes, one brand.</p>
+    </div>
+    <div class="demand-card">
+      <h4>Collateral <em>refresh.</em></h4>
+      <p>One-pagers, pitch decks, and battlecards rebuilt in the new brand. Partner-specific one-pagers for AWS, Azure, and Red Hat. Customer case studies templated to match. Sales team equipped before the H2 event season starts.</p>
+    </div>
+    <div class="demand-card">
+      <h4>Launch as <em>a moment.</em></h4>
+      <p>The website launch isn't a quiet deployment — it's a campaign. Coordinated announcement across LinkedIn, email, and partner channels. A press release. A "what changed and why" blog post. Treat the brand refresh as news because it is.</p>
+    </div>
+  </div>
+
+  <div style="margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid var(--rule);">
+    <div class="overline"><div class="overline-rule"></div><div class="overline-text">Key pages to build</div></div>
+    <div class="kpi-grid" style="margin-top: 1.5rem;">
+      <div class="kpi-card">
+        <div class="kpi-label">Homepage</div>
+        <div class="kpi-target">Category definition + key proof points + dual CTA (C-suite / practitioner)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Product</div>
+        <div class="kpi-target">Detection → RCA → Optimization arc. ACP protocol. FalconClaw skills hub. Architecture diagram.</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Solutions</div>
+        <div class="kpi-target">By persona (SRE, CIO) and by cloud (AWS, Azure, OpenShift). Light Mode and Dark Mode pages.</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Customers</div>
+        <div class="kpi-target">Automotive story (94% MTTR, $2.1M prevented). Financial services. Additional logos as they close.</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Competitive</div>
+        <div class="kpi-target">vs. Datadog. vs. Resolve. vs. Traversal. vs. build-your-own. Killer lines on every page.</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Security</div>
+        <div class="kpi-target">SOC 2 Type II. Zero storage. Read-only. VPC isolation. A page that closes procurement concerns before the call.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pull-quote" style="margin-top: 2rem;">
+    <div class="pull-quote-text">"The website is the cheapest sales rep NeuBird AI has — and it's on call 24/7. Every page should answer the question a prospect is actually asking, in the language of the person asking it."</div>
+    <div class="pull-quote-attr">Brand & Site Strategy, H2 2026</div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events">
+  <div class="overline"><div class="overline-rule"></div><div class="overline-text">Rock 05 — Events & Demand Generation</div></div>
+  <h2>H2 event <em>calendar.</em></h2>
+  <p class="section-body">Seven major events from July through December, anchored by a Gold sponsorship at AWS re:Invent. Every event needs a clear audience mode, a pipeline target, and a content capture plan. Badge scans are not the goal — qualified pipeline is.</p>
+
+  <div class="events-wrap">
+    <!-- JULY -->
+    <div class="month-header"><div class="month-dot"></div>July 2026</div>
+    <div class="event-row">
+      <div class="event-date">Jul 22</div>
+      <div>
+        <div class="event-name">AWS GameDay</div>
+        <div class="event-detail">Seattle, WA · Technical practitioners · Dark Mode</div>
+      </div>
+      <div class="event-meta">
+<div class="event-badge b-gameday">GameDay</div>
+      </div>
+    </div>
+
+    <!-- OCTOBER -->
+    <div class="month-header"><div class="month-dot"></div>October 2026</div>
+    <div class="event-row">
+      <div class="event-date">Oct 13–15</div>
+      <div>
+        <div class="event-name">TechCrunch Disrupt</div>
+        <div class="event-detail">San Francisco, CA · Startup + VC ecosystem</div>
+      </div>
+      <div class="event-meta">
+<div class="event-badge b-waitlist">Waitlist</div>
+      </div>
+    </div>
+    <div class="event-row">
+      <div class="event-date">Oct 28–29</div>
+      <div>
+        <div class="event-name">GitHub Universe</div>
+        <div class="event-detail">San Francisco, CA · Developer + engineering · Bronze + Demo session · 3 passes + 2 customer passes · Dark Mode</div>
+      </div>
+      <div class="event-meta">
+<div class="event-badge b-bronze">Bronze</div>
+      </div>
+    </div>
+
+    <!-- NOVEMBER -->
+    <div class="month-header"><div class="month-dot"></div>November 2026</div>
+    <div class="event-row">
+      <div class="event-date">Nov 9–12</div>
+      <div>
+        <div class="event-name">KubeCon + CloudNativeCon</div>
+        <div class="event-detail">Salt Lake City, UT · Platform engineers, DevOps, SREs · Silver · 10×8 booth + 8 passes · Dark Mode</div>
+      </div>
+      <div class="event-meta">
+<div class="event-badge b-silver">Silver</div>
+      </div>
+    </div>
+    <div class="event-row">
+      <div class="event-date">Nov 17–20</div>
+      <div>
+        <div class="event-name">Microsoft Ignite</div>
+        <div class="event-detail">San Francisco, CA · C-suite + IT leaders · Enterprise buyers · Light Mode</div>
+      </div>
+      <div class="event-meta">
+<div class="event-badge b-silver">Sponsored</div>
+      </div>
+    </div>
+    <div class="event-row">
+      <div class="event-date">Nov 30–Dec 4</div>
+      <div>
+        <div class="event-name flagship">AWS re:Invent — Flagship.</div>
+        <div class="event-detail">Las Vegas, NV · Gold: 10×20 booth + 10×10 meeting room · 2 speaking slots · Digital branding · Both modes</div>
+      </div>
+      <div class="event-meta">
+<div class="event-badge b-gold">Gold · Flagship</div>
+      </div>
+    </div>
+
+    <!-- DECEMBER -->
+    <div class="month-header"><div class="month-dot"></div>December 2026</div>
+    <div class="event-row">
+      <div class="event-date">Dec 8–10</div>
+      <div>
+        <div class="event-name">Gartner IOCS</div>
+        <div class="event-detail">Las Vegas, NV · CIOs, infrastructure leaders, analysts · Silver · Light Mode</div>
+      </div>
+      <div class="event-meta">
+<div class="event-badge b-analyst">Silver · Analyst</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="events-summary-bar">
+    <div class="ev-stat"><div class="ev-num">7</div><div class="ev-lbl">Major events</div></div>
+    <div class="ev-stat"><div class="ev-num">2</div><div class="ev-lbl">Speaking slots at re:Invent</div></div>
+    <div class="ev-stat"><div class="ev-num">4</div><div class="ev-lbl">Cities in Nov–Dec</div></div>
+  </div>
+
+  <div class="demand-grid">
+    <div class="demand-card">
+      <h4>Pre-event <em>activation.</em></h4>
+      <p>Outbound to ICP prospects 3 weeks before each event. Set meetings in advance — don't chase badge scans on the floor. Warm beats cold at a booth every time.</p>
+    </div>
+    <div class="demand-card">
+      <h4>Right mode, <em>right venue.</em></h4>
+      <p>Dark Mode at KubeCon, GitHub Universe, and GameDay. Light Mode at Gartner IOCS and Microsoft Ignite. Both modes at re:Invent — the audience is split.</p>
+    </div>
+    <div class="demand-card">
+      <h4>Ancillary <em>events.</em></h4>
+      <p>Host or sponsor side events at flagship conferences. Deeper conversations with fewer, better-fit prospects beats a crowded booth floor every time.</p>
+    </div>
+    <div class="demand-card">
+      <h4>Events as <em>content.</em></h4>
+      <p>Every speaking slot becomes a blog post, a social clip, and a nurture email. Events should generate content that keeps working for months after.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SEO / GEO -->
+<section id="seo">
+  <div class="overline"><div class="overline-rule"></div><div class="overline-text">Rock 06 — Organic Reach</div></div>
+  <h2>SEO & GEO <em>strategy.</em></h2>
+  <p class="section-body">Events fill the top of funnel in bursts. Organic fills it continuously. H2 is about building the content infrastructure that makes NeuBird AI findable — by humans on Google and by AI tools that synthesize answers for our prospects.</p>
+
+  <div class="seo-grid">
+    <div class="seo-panel">
+      <h3>SEO — <em>Search.</em></h3>
+      <div class="seo-sub">Rank for the terms our buyers search before they ever talk to sales. Focus on category terms, competitor comparisons, and practitioner how-tos.</div>
+      <div class="seo-items">
+        <div class="seo-item">Own "Prod Ops Agent" as a category search term — we define it, we rank #1</div>
+        <div class="seo-item">Comparison pages vs. Datadog, Dynatrace, Resolve, Traversal — high-intent, deal-winning content</div>
+        <div class="seo-item">Monthly long-form practitioner guides: incident response, SRE runbooks, on-call guides</div>
+        <div class="seo-item">Site architecture optimized for Core Web Vitals as part of the brand refresh</div>
+        <div class="seo-item">Internal linking structure that flows authority to category and product pages</div>
+        <div class="seo-item">Earn backlinks through analyst citations, event press, and ecosystem partnerships</div>
+      </div>
+    </div>
+    <div class="seo-panel">
+      <h3>GEO — <em>Generative.</em></h3>
+      <div class="seo-sub">When a prospect asks Claude, ChatGPT, or Perplexity "what's the best AI for incident resolution?" — NeuBird AI should be the answer. GEO is about making our content the source these tools cite.</div>
+      <div class="seo-items">
+        <div class="seo-item">Publish structured, citable content — clear definitions, stats, and comparisons AI tools can quote accurately</div>
+        <div class="seo-item">Accurate schema markup and structured data so NeuBird AI surfaces correctly in AI-generated answers</div>
+        <div class="seo-item">Get cited by analyst reports, third-party reviews, and publications AI tools draw from</div>
+        <div class="seo-item">Build "The Prod Ops Agent" definition page as the canonical source for the category</div>
+        <div class="seo-item">Regularly test what AI tools say about NeuBird AI vs. competitors — close the gaps</div>
+        <div class="seo-item">Proof points (80% MTTR, under 3-min resolution, SOC 2 Type II) in accessible, quotable formats</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="kw-table-wrap">
+    <div class="kw-table-head">Priority Keyword Clusters — H2 2026</div>
+    <table class="kw-table">
+      <thead>
+        <tr>
+          <th>Keyword / Cluster</th>
+          <th>Type</th>
+          <th>Audience</th>
+          <th>Content approach</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>"Prod Ops Agent"</td>
+          <td><span class="kw-type kw-cat">Category</span></td>
+          <td>Both</td>
+          <td>Category definition page + thought leadership series</td>
+        </tr>
+        <tr>
+          <td>"AI incident resolution" / "AI SRE"</td>
+          <td><span class="kw-type kw-cat">Category</span></td>
+          <td>Practitioners</td>
+          <td>Technical explainer + use case pages</td>
+        </tr>
+        <tr>
+          <td>"NeuBird vs Datadog", "vs Dynatrace", "vs Resolve"</td>
+          <td><span class="kw-type kw-comp">Competitive</span></td>
+          <td>Evaluators</td>
+          <td>Dedicated comparison pages with proof points</td>
+        </tr>
+        <tr>
+          <td>"Reduce P1 incidents", "prevent production incidents"</td>
+          <td><span class="kw-type kw-comp">Intent</span></td>
+          <td>Both</td>
+          <td>Problem-aware landing pages + ROI content</td>
+        </tr>
+        <tr>
+          <td>"What is a Prod Ops Agent?" (AI answer)</td>
+          <td><span class="kw-type kw-geo">GEO</span></td>
+          <td>All</td>
+          <td>Structured definitional content for AI citation</td>
+        </tr>
+        <tr>
+          <td>"Best AI for SRE", "AI for on-call engineers"</td>
+          <td><span class="kw-type kw-geo">GEO</span></td>
+          <td>Practitioners</td>
+          <td>Listicle content + third-party review seeding</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- KPIs -->
+<section id="kpis">
+  <div class="overline"><div class="overline-rule"></div><div class="overline-text">Measuring What Matters</div></div>
+  <h2>H2 success <em>metrics.</em></h2>
+  <p class="section-body">Every Large Rock needs a number attached. These are the KPIs that define whether H2 was a success — set as targets to chase, not minimums to meet.</p>
+
+  <div class="kpi-group">
+    <div class="kpi-group-label">🚀 Brand &amp; Website</div>
+    <div class="kpi-cards">
+      <div class="kpi-card">
+        <div class="kpi-num">Q3</div>
+        <div class="kpi-name">Brand & website launch</div>
+        <div class="kpi-desc">New site + identity refresh live by end of Q3. All collateral updated by October 1.</div>
+        <div class="kpi-tag">Milestone</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-num">+40%</div>
+        <div class="kpi-name">Website traffic growth</div>
+        <div class="kpi-desc">H2 vs. H1 organic sessions. New architecture, better SEO, and category content compound.</div>
+        <div class="kpi-tag">vs. H1</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-num">&lt;3s</div>
+        <div class="kpi-name">Core Web Vitals (LCP)</div>
+        <div class="kpi-desc">Largest Contentful Paint under 3 seconds on new site. Performance is a product signal.</div>
+        <div class="kpi-tag">Technical</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-num">&gt;3%</div>
+        <div class="kpi-name">Conversion rate</div>
+        <div class="kpi-desc">Visitors to demo request or trial signup. Mode-specific landing pages with clear CTAs.</div>
+        <div class="kpi-tag">Conversion</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="kpi-group">
+    <div class="kpi-group-label">🏔 Category Creation</div>
+    <div class="kpi-cards">
+      <div class="kpi-card">
+        <div class="kpi-num">10+</div>
+        <div class="kpi-name">Analyst briefings</div>
+        <div class="kpi-desc">10+ briefings across Gartner, Forrester, and IDC. Get the Prod Ops Agent category into analyst vocabularies before the market defines it without us.</div>
+        <div class="kpi-tag">H2 Target</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-num">2</div>
+        <div class="kpi-name">Commissioned research reports</div>
+        <div class="kpi-desc">GigaOM Radar or Sonar report establishing the Prod Ops Agent category, and a Forrester Total Economic Impact study quantifying ROI for enterprise buyers. Both published as sales assets by Q4.</div>
+        <div class="kpi-tag">Milestone</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-num">#1</div>
+        <div class="kpi-name">"Prod Ops Agent" rank</div>
+        <div class="kpi-desc">Own the top organic position for the category term we invented. We defined it — we rank for it.</div>
+        <div class="kpi-tag">SEO Goal</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-num">6+</div>
+        <div class="kpi-name">Tier 1 media placements</div>
+        <div class="kpi-desc">Category POV placed in TechCrunch, The New Stack, VentureBeat, or equivalent.</div>
+        <div class="kpi-tag">PR Goal</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-num">2×</div>
+        <div class="kpi-name">Category share of voice</div>
+        <div class="kpi-desc">Double NeuBird AI's share of voice in "AI for production operations" conversations vs. H1.</div>
+        <div class="kpi-tag">vs. H1</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="kpi-group">
+    <div class="kpi-group-label">📡 Events &amp; Pipeline</div>
+    <div class="kpi-cards">
+      <div class="kpi-card">
+        <div class="kpi-num">TBD</div>
+        <div class="kpi-name">Pipeline from H2 events</div>
+        <div class="kpi-desc">Set pipeline targets per event. re:Invent ($508K) anchors the largest pipeline contribution.</div>
+        <div class="kpi-tag">Pipeline</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-num">TBD</div>
+        <div class="kpi-name">Qualified leads per event</div>
+        <div class="kpi-desc">Define MQL criteria per venue: GameDay = practitioner ICP. Gartner IOCS = executive buyer.</div>
+        <div class="kpi-tag">Per Event</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-num">2</div>
+        <div class="kpi-name">Speaking slots (re:Invent)</div>
+        <div class="kpi-desc">Both slots filled. One technical (Dark Mode), one executive business case (Light Mode).</div>
+        <div class="kpi-tag">Q4 Goal</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-num">48h</div>
+        <div class="kpi-name">Post-event follow-up SLA</div>
+        <div class="kpi-desc">100% of event leads in sequences within 48 hours. Closed-loop reporting within 30 days.</div>
+        <div class="kpi-tag">Process</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="kpi-group">
+    <div class="kpi-group-label">🌐 SEO &amp; GEO</div>
+    <div class="kpi-cards">
+      <div class="kpi-card">
+        <div class="kpi-num">+50%</div>
+        <div class="kpi-name">Organic traffic growth</div>
+        <div class="kpi-desc">H2 vs. H1 organic sessions. New site, category content, and competitive pages compound.</div>
+        <div class="kpi-tag">vs. H1</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-num">7</div>
+        <div class="kpi-name">Priority keywords top 10</div>
+        <div class="kpi-desc">At least 7 priority keyword clusters in the top 10 Google results by end of December.</div>
+        <div class="kpi-tag">Dec Target</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-num">6</div>
+        <div class="kpi-name">Long-form content pieces</div>
+        <div class="kpi-desc">One major content piece per month H2. Technical depth for practitioners; business case for execs.</div>
+        <div class="kpi-tag">Content</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-num">Cited</div>
+        <div class="kpi-name">GEO — AI tool citations</div>
+        <div class="kpi-desc">NeuBird AI cited correctly in ChatGPT, Claude, and Perplexity for Prod Ops Agent queries.</div>
+        <div class="kpi-tag">GEO Goal</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="overline"><div class="overline-rule"></div><div class="overline-text">Month by Month</div></div>
+  <h2>H2 2026 <em>timeline.</em></h2>
+  <p class="section-body">What ships when. Orange for brand, navy for category, green for events, gray for SEO, and coral for content and messaging.</p>
+
+  <div class="timeline-grid">
+    <div class="tl-col">
+      <div class="tl-col-head"><em>July</em></div>
+      <div class="tl-items">
+        <div class="tl-item tl-brand">Brand identity system — finalize</div>
+        <div class="tl-item tl-category">Category POV: "What is The Prod Ops Agent?"</div>
+        <div class="tl-item tl-event">AWS GameDay · Seattle</div>
+        <div class="tl-item tl-seo">SEO audit + keyword gap analysis</div>
+        <div class="tl-item tl-content">Dark + Light Mode playbooks finalized</div>
+        <div class="tl-item tl-partner">AWS ISV Accelerate enrollment</div>
+        <div class="tl-item tl-partner">AWS Marketplace listing — publish</div>
+      </div>
+    </div>
+    <div class="tl-col">
+      <div class="tl-col-head"><em>August</em></div>
+      <div class="tl-items">
+        <div class="tl-item tl-brand">Website development sprint</div>
+        <div class="tl-item tl-category">10+ analyst briefings: Gartner, Forrester, IDC</div>
+        <div class="tl-item tl-category">GigaOM category research commissioned</div>
+        <div class="tl-item tl-category">Forrester TEI study kicked off</div>
+        <div class="tl-item tl-seo">Competitive comparison pages live</div>
+        <div class="tl-item tl-content">Sales + CS messaging training</div>
+        <div class="tl-item tl-partner">Azure Marketplace listing — publish</div>
+        <div class="tl-item tl-partner">Red Hat Certified Operator — submit</div>
+      </div>
+    </div>
+    <div class="tl-col">
+      <div class="tl-col-head"><em>September</em></div>
+      <div class="tl-items">
+        <div class="tl-item tl-brand">New website soft launch + QA</div>
+        <div class="tl-item tl-brand">All collateral updated to new brand</div>
+        <div class="tl-item tl-category">Category PR push — media placements</div>
+        <div class="tl-item tl-seo">Practitioner content piece #1</div>
+        <div class="tl-item tl-partner">Red Hat Certified Operator — approved</div>
+        <div class="tl-item tl-partner">Partner one-pagers: AWS, Azure, OpenShift</div>
+        <div class="tl-item tl-partner">Joint OpenShift case study published</div>
+      </div>
+    </div>
+    <div class="tl-col">
+      <div class="tl-col-head"><em>October</em></div>
+      <div class="tl-items">
+        <div class="tl-item tl-brand">✓ New brand &amp; site fully live</div>
+        <div class="tl-item tl-event">TechCrunch Disrupt · SF</div>
+        <div class="tl-item tl-event">GitHub Universe · SF</div>
+        <div class="tl-item tl-seo">Practitioner content piece #2</div>
+        <div class="tl-item tl-category">Q3 share of voice report</div>
+        <div class="tl-item tl-partner">AWS + Azure co-sell pipeline review</div>
+      </div>
+    </div>
+    <div class="tl-col">
+      <div class="tl-col-head"><em>November</em></div>
+      <div class="tl-items">
+        <div class="tl-item tl-event">KubeCon · Red Hat OpenShift showcase</div>
+        <div class="tl-item tl-event">Microsoft Ignite · Azure co-presence</div>
+        <div class="tl-item tl-event-flag">⭐ AWS re:Invent · Gold · Las Vegas</div>
+        <div class="tl-item tl-seo">Practitioner content piece #3</div>
+        <div class="tl-item tl-partner">re:Invent: AWS co-sell meetings + APN</div>
+        <div class="tl-item tl-content">Executive ROI + business case assets</div>
+      </div>
+    </div>
+    <div class="tl-col">
+      <div class="tl-col-head"><em>December</em></div>
+      <div class="tl-items">
+        <div class="tl-item tl-event-flag">⭐ re:Invent concludes · Dec 4</div>
+        <div class="tl-item tl-event">Gartner IOCS · Las Vegas</div>
+        <div class="tl-item tl-seo">Practitioner content piece #4</div>
+        <div class="tl-item tl-category">H2 metrics review + H1 '27 kickoff</div>
+        <div class="tl-item tl-partner">Partner pipeline attribution report</div>
+        <div class="tl-item tl-content">GEO audit — AI citation report</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tl-legend">
+    <div class="tl-leg"><div class="tl-leg-dot" style="background:rgba(250,85,30,0.3);border-left:2px solid var(--orange);"></div> Brand</div>
+    <div class="tl-leg"><div class="tl-leg-dot" style="background:rgba(0,58,81,0.12);border-left:2px solid var(--navy);"></div> Category</div>
+    <div class="tl-leg"><div class="tl-leg-dot" style="background:rgba(0,140,97,0.1);border-left:2px solid var(--forest);"></div> Events</div>
+    <div class="tl-leg"><div class="tl-leg-dot" style="background:var(--panel);border-left:2px solid var(--ink-light);"></div> SEO / GEO</div>
+    <div class="tl-leg"><div class="tl-leg-dot" style="background:rgba(250,85,30,0.06);border-left:2px solid var(--coral);"></div> Content &amp; Messaging</div>
+    <div class="tl-leg"><div class="tl-leg-dot" style="background:rgba(0,140,97,0.08);border-left:2px solid var(--forest);"></div> Partnerships</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-tagline">Same substrate · same memory · different lens.<br>One platform across detection, RCA, and optimization.</div>
+    <div class="footer-doc">NeuBird AI · H2 2026 Marketing Plan · Internal &amp; Agency · May 2026</div>
+  </div>
+  <a class="cta-btn" href="#">See it on your stack →</a>
+</footer>
+
+</body>
+</html>
