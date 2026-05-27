@@ -780,6 +780,63 @@
 </head>
 <body>
 
+<!-- PASSWORD GATE -->
+<div id="gate" style="
+  position:fixed;inset:0;z-index:9999;
+  background:#F7F5F2;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'IBM Plex Sans',sans-serif;
+">
+  <div style="text-align:center;max-width:360px;padding:2rem;">
+    <div style="font-family:'Fraunces',serif;font-size:1.6rem;font-weight:300;color:#242321;margin-bottom:0.25rem;">
+      NeuBird <em style="color:#FA551E;">AI</em>
+    </div>
+    <div style="font-size:0.75rem;font-weight:500;text-transform:uppercase;letter-spacing:0.08em;color:#FA551E;margin-bottom:2rem;">
+      H2 2026 Marketing Plan
+    </div>
+    <input id="pw" type="password" placeholder="Enter password"
+      style="
+        width:100%;box-sizing:border-box;
+        padding:0.75rem 1rem;
+        border:1.5px solid #E2E2DE;border-radius:4px;
+        font-family:'IBM Plex Sans',sans-serif;font-size:0.95rem;font-weight:300;
+        background:#fff;color:#242321;
+        outline:none;margin-bottom:0.75rem;
+      "
+      onkeydown="if(event.key==='Enter')checkPw()"
+    />
+    <div id="pw-err" style="font-size:0.8rem;color:#FA551E;min-height:1rem;margin-bottom:0.5rem;"></div>
+    <button onclick="checkPw()" style="
+      width:100%;padding:0.75rem;
+      background:#FA551E;color:#fff;border:none;border-radius:4px;
+      font-family:'IBM Plex Sans',sans-serif;font-size:0.9rem;font-weight:500;
+      cursor:pointer;letter-spacing:0.02em;
+    ">Continue →</button>
+  </div>
+</div>
+
+<div id="main-content" style="display:none;">
+<script>
+  (function(){
+    if(sessionStorage.getItem('nb-auth')==='1'){
+      document.getElementById('gate').style.display='none';
+      document.getElementById('main-content').style.display='block';
+    }
+  })();
+  function checkPw(){
+    var val=document.getElementById('pw').value;
+    if(val==='nboprodops'){
+      sessionStorage.setItem('nb-auth','1');
+      document.getElementById('gate').style.display='none';
+      document.getElementById('main-content').style.display='block';
+    } else {
+      document.getElementById('pw-err').textContent='Incorrect password. Try again.';
+      document.getElementById('pw').value='';
+      document.getElementById('pw').focus();
+    }
+  }
+</script>
+
 <!-- NAV -->
 <nav>
   <div class="nav-logo">NeuBird <em>AI</em></div>
@@ -1582,5 +1639,6 @@
   <a class="cta-btn" href="#">See it on your stack →</a>
 </footer>
 
+</div><!-- /main-content -->
 </body>
 </html>
