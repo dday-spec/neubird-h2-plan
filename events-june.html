@@ -20,352 +20,312 @@
     --rule:      #E2E2DE;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'IBM Plex Sans', sans-serif; font-weight: 300; background: var(--cream); color: var(--ink); }
-
-  /* NAV */
-  nav {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(247,245,242,0.96); backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--rule);
-    display: flex; align-items: center; gap: 1.5rem;
-    padding: 0 2.5rem; height: 52px;
-    font-size: 0.78rem;
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 300;
+    background: #e8e6e2;
+    color: var(--ink);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
   }
-  .nav-logo { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 300; }
-  .nav-logo em { color: var(--orange); font-style: italic; }
-  .nav-divider { width: 1px; height: 18px; background: var(--rule); }
-  .nav-badge { margin-left: auto; background: var(--orange); color: #fff; font-size: 0.7rem; font-weight: 500; padding: 0.2rem 0.6rem; border-radius: 2px; letter-spacing: 0.04em; }
 
-  /* HERO */
-  .hero { padding: 4rem 2.5rem 2rem; max-width: 900px; margin: 0 auto; }
-  .overline { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
-  .overline-rule { width: 32px; height: 2px; background: var(--orange); flex-shrink: 0; }
-  .overline-text { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--orange); }
-  h1 { font-family: 'Fraunces', serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 300; line-height: 1.15; margin-bottom: 1rem; }
-  h1 em { color: var(--orange); font-style: italic; }
-  .hero-sub { font-size: 1rem; font-weight: 300; color: var(--ink-mid); line-height: 1.7; max-width: 620px; margin-bottom: 2rem; }
-  .hero-meta { display: flex; flex-wrap: wrap; gap: 1.5rem; font-size: 0.78rem; font-weight: 300; color: var(--ink-light); border-top: 1px solid var(--rule); padding-top: 1.25rem; }
-  .hero-meta strong { color: var(--ink); font-weight: 500; margin-right: 0.3rem; }
-
-  /* CALENDAR */
-  .cal-wrap { max-width: 900px; margin: 0 auto; padding: 0 2.5rem 2.5rem; }
-  .cal-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 2px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
-    border-radius: 6px;
+  /* ── SLIDE FRAME ── */
+  .slide {
+    width: 1200px;
+    background: var(--cream);
+    border-radius: 8px;
     overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.15);
   }
-  .cal-header {
-    background: var(--navy); color: rgba(255,255,255,0.7);
-    font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem;
-    font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em;
-    text-align: center; padding: 0.6rem 0;
+
+  /* ── SLIDE HEADER ── */
+  .slide-header {
+    background: var(--navy);
+    padding: 1.5rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
-  .cal-cell {
-    background: #fff; min-height: 80px; padding: 0.5rem;
-    position: relative; font-size: 0.75rem;
+  .slide-logo { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 300; color: #fff; }
+  .slide-logo em { color: var(--orange); font-style: italic; }
+  .slide-title-block { text-align: center; }
+  .slide-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.5); margin-bottom: 0.2rem; }
+  .slide-title { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 300; color: #fff; line-height: 1.2; }
+  .slide-title em { color: var(--orange); font-style: italic; }
+  .slide-badge { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; background: var(--orange); color: #fff; padding: 0.3rem 0.75rem; border-radius: 2px; }
+
+  /* ── SLIDE BODY ── */
+  .slide-body {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 0;
+    min-height: 560px;
   }
-  .cal-cell.empty { background: var(--panel); }
-  .cal-cell.today { background: #fff; }
-  .cal-num { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; font-weight: 500; color: var(--ink-light); margin-bottom: 0.3rem; }
-  .cal-num.weekend { color: var(--rule); }
 
-  /* Event pills */
-  .cal-event {
-    font-size: 0.6rem; font-weight: 500; border-radius: 2px;
-    padding: 0.15rem 0.35rem; margin-bottom: 0.2rem;
-    line-height: 1.3; display: block;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  /* ── LEFT: CALENDAR ── */
+  .cal-panel {
+    background: #fff;
+    border-right: 1px solid var(--rule);
+    padding: 1.75rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
-  .ev-orange { background: rgba(250,85,30,0.12); color: var(--orange); border-left: 2px solid var(--orange); }
-  .ev-navy  { background: rgba(0,58,81,0.1); color: var(--navy); border-left: 2px solid var(--navy); }
-  .ev-forest { background: rgba(0,140,97,0.1); color: var(--forest); border-left: 2px solid var(--forest); }
+  .cal-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--orange); margin-bottom: 0.25rem; }
+  .cal-month { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 300; color: var(--ink); margin-bottom: 0.75rem; }
 
-  /* SUMMARY BAR */
-  .summary-bar {
-    display: flex; gap: 2rem; flex-wrap: wrap;
-    background: var(--navy); border-radius: 6px;
-    padding: 1.5rem 2rem; margin-bottom: 2rem;
+  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+  .cal-dow { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-light); text-align: center; padding: 0.3rem 0; }
+  .cal-cell { min-height: 52px; padding: 0.3rem; border-radius: 2px; }
+  .cal-cell.empty { }
+  .cal-cell.weekend .day-num { color: var(--rule); }
+  .day-num { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; font-weight: 400; color: var(--ink-light); margin-bottom: 0.2rem; }
+  .day-pill {
+    font-size: 0.52rem; font-weight: 500; border-radius: 2px;
+    padding: 0.1rem 0.3rem; line-height: 1.4;
+    display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
-  .sum-stat .sum-num { font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 300; color: #fff; line-height: 1; }
-  .sum-stat .sum-lbl { font-size: 0.72rem; font-weight: 300; color: rgba(255,255,255,0.55); margin-top: 0.2rem; }
+  .pill-orange { background: rgba(250,85,30,0.15); color: var(--orange); }
+  .pill-navy   { background: rgba(0,58,81,0.1);   color: var(--navy); }
+  .pill-forest { background: rgba(0,140,97,0.1);  color: var(--forest); }
 
-  /* EVENT CARDS */
-  .events-wrap { max-width: 900px; margin: 0 auto; padding: 0 2.5rem 4rem; }
+  /* Stats row */
+  .cal-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin-top: 0.5rem; }
+  .cal-stat { background: var(--panel); border-radius: 4px; padding: 0.6rem 0.5rem; text-align: center; }
+  .cal-stat-num { font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 300; color: var(--ink); line-height: 1; }
+  .cal-stat-lbl { font-size: 0.58rem; font-weight: 300; color: var(--ink-light); margin-top: 0.15rem; line-height: 1.3; }
 
-  .event-card { background: #fff; border: 1px solid var(--rule); border-radius: 6px; padding: 2rem; margin-bottom: 1.25rem; }
-  .event-card.featured { border-color: var(--orange); border-width: 2px; }
+  /* Legend */
+  .cal-legend { display: flex; flex-direction: column; gap: 0.35rem; }
+  .legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.68rem; font-weight: 300; color: var(--ink-mid); }
+  .legend-dot { width: 8px; height: 8px; border-radius: 1px; flex-shrink: 0; }
 
-  .event-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem; }
-  .event-date-chip { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--orange); background: rgba(250,85,30,0.08); padding: 0.3rem 0.65rem; border-radius: 2px; white-space: nowrap; }
-  .event-date-chip.tbd { color: var(--ink-light); background: var(--panel); }
-  .event-title { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 300; line-height: 1.2; margin-bottom: 0.2rem; }
-  .event-title em { color: var(--orange); font-style: italic; }
-  .event-location { font-size: 0.8rem; font-weight: 300; color: var(--ink-light); }
-  .event-hosted-tag { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; background: var(--orange); color: #fff; padding: 0.25rem 0.6rem; border-radius: 2px; margin-top: 0.4rem; }
-
-  .badges { display: flex; flex-direction: column; align-items: flex-end; gap: 0.4rem; flex-shrink: 0; }
-  .event-badge { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.25rem 0.6rem; border-radius: 2px; white-space: nowrap; }
-  .b-dark  { background: rgba(0,58,81,0.08); color: var(--navy); border: 1px solid rgba(0,58,81,0.2); }
-  .b-light { background: rgba(250,85,30,0.08); color: var(--orange); border: 1px solid rgba(250,85,30,0.2); }
-  .b-both  { background: rgba(0,140,97,0.08); color: var(--forest); border: 1px solid rgba(0,140,97,0.2); }
-  .b-hosted { background: var(--orange); color: #fff; }
-
-  .event-divider { height: 1px; background: var(--rule); margin: 1.25rem 0; }
-
-  .event-meta-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.25rem; }
-  .meta-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-light); margin-bottom: 0.2rem; }
-  .meta-value { font-size: 0.85rem; font-weight: 400; color: var(--ink); }
-
-  .event-actions-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-light); margin-bottom: 0.6rem; }
-  .action-list { list-style: none; }
-  .action-list li { font-size: 0.82rem; font-weight: 300; color: var(--ink-mid); padding: 0.35rem 0; border-bottom: 1px solid var(--rule); display: flex; align-items: flex-start; gap: 0.5rem; }
-  .action-list li:last-child { border-bottom: none; }
-  .action-list li::before { content: '→'; color: var(--orange); flex-shrink: 0; font-size: 0.75rem; margin-top: 0.05rem; }
-
-  /* FOOTER */
-  footer { border-top: 1px solid var(--rule); padding: 1.5rem 2.5rem; display: flex; align-items: center; justify-content: space-between; font-size: 0.72rem; color: var(--ink-light); }
-  footer a { color: var(--orange); text-decoration: none; }
-
-  @media (max-width: 640px) {
-    .event-meta-grid { grid-template-columns: 1fr 1fr; }
-    .event-card-header { flex-direction: column; }
-    .cal-cell { min-height: 56px; }
+  /* ── RIGHT: EVENT TILES ── */
+  .events-panel {
+    padding: 1.75rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
   }
+  .events-heading { font-family: 'Fraunces', serif; font-size: 0.95rem; font-weight: 300; color: var(--ink-mid); margin-bottom: 0.25rem; }
+
+  .event-tile {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    padding: 1rem 1.25rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.75rem;
+    align-items: start;
+    position: relative;
+  }
+  .event-tile.hosted {
+    border-color: var(--orange);
+    border-left: 3px solid var(--orange);
+  }
+  .event-tile-left { }
+  .event-tile-name { font-family: 'Fraunces', serif; font-size: 1.05rem; font-weight: 300; color: var(--ink); line-height: 1.2; margin-bottom: 0.2rem; }
+  .event-tile-name em { color: var(--orange); font-style: italic; }
+  .event-tile-meta { font-size: 0.72rem; font-weight: 300; color: var(--ink-light); margin-bottom: 0.5rem; }
+  .event-tile-points { list-style: none; }
+  .event-tile-points li { font-size: 0.72rem; font-weight: 300; color: var(--ink-mid); line-height: 1.5; display: flex; gap: 0.35rem; }
+  .event-tile-points li::before { content: '—'; color: var(--orange); flex-shrink: 0; font-size: 0.65rem; }
+
+  .event-tile-right { display: flex; flex-direction: column; align-items: flex-end; gap: 0.35rem; flex-shrink: 0; }
+  .tile-date { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; font-weight: 500; color: var(--orange); background: rgba(250,85,30,0.08); padding: 0.2rem 0.5rem; border-radius: 2px; white-space: nowrap; }
+  .tile-mode { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; padding: 0.2rem 0.5rem; border-radius: 2px; white-space: nowrap; }
+  .mode-dark  { background: rgba(0,58,81,0.08); color: var(--navy); }
+  .mode-both  { background: rgba(0,140,97,0.08); color: var(--forest); }
+  .mode-hosted { background: var(--orange); color: #fff; }
+
+  /* ── SLIDE FOOTER ── */
+  .slide-footer {
+    border-top: 1px solid var(--rule);
+    padding: 0.85rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.65rem;
+    color: var(--ink-light);
+    font-weight: 300;
+  }
+  .slide-footer a { color: var(--orange); text-decoration: none; font-size: 0.65rem; }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo">NeuBird <em>AI</em></div>
-  <div class="nav-divider"></div>
-  <span style="font-size:0.78rem;color:var(--ink-mid);font-weight:300;">June 2026 Events</span>
-  <div class="nav-badge">June 2026</div>
-</nav>
+<div class="slide">
 
-<div class="hero">
-  <div class="overline"><div class="overline-rule"></div><div class="overline-text">Events · June 2026</div></div>
-  <h1>June event <em>calendar.</em></h1>
-  <p class="hero-sub">Four events across New York and Los Angeles. DataDog Dash is our hosted rooftop event — the highest-density practitioner moment of the month. Two AWS Summits give us east and west coast reach, and GameDay on the 23rd closes the month with a technical pipeline builder.</p>
-  <div class="hero-meta">
-    <span><strong>Events</strong> 4</span>
-    <span><strong>Cities</strong> New York · Los Angeles</span>
-    <span><strong>Hosted events</strong> 1 (DataDog Dash rooftop)</span>
-    <span><strong>AWS-anchored</strong> 3</span>
-  </div>
-</div>
-
-<!-- CALENDAR VIEW -->
-<div class="cal-wrap">
-  <div class="overline" style="margin-bottom:1rem;"><div class="overline-rule"></div><div class="overline-text">June 2026</div></div>
-  <div class="cal-grid">
-    <!-- Headers -->
-    <div class="cal-header">Sun</div>
-    <div class="cal-header">Mon</div>
-    <div class="cal-header">Tue</div>
-    <div class="cal-header">Wed</div>
-    <div class="cal-header">Thu</div>
-    <div class="cal-header">Fri</div>
-    <div class="cal-header">Sat</div>
-
-    <!-- Row 1: Jun 1–7 (Jun 1 = Mon) -->
-    <div class="cal-cell empty"></div>
-    <div class="cal-cell"><div class="cal-num">1</div></div>
-    <div class="cal-cell"><div class="cal-num">2</div></div>
-    <div class="cal-cell"><div class="cal-num">3</div></div>
-    <div class="cal-cell"><div class="cal-num">4</div></div>
-    <div class="cal-cell"><div class="cal-num">5</div></div>
-    <div class="cal-cell"><div class="cal-num weekend">6</div></div>
-
-    <!-- Row 2: Jun 7–14 -->
-    <div class="cal-cell"><div class="cal-num weekend">7</div></div>
-    <div class="cal-cell"><div class="cal-num">8</div></div>
-    <div class="cal-cell"><div class="cal-num">9</div><span class="cal-event ev-orange">DataDog Dash 🏙</span></div>
-    <div class="cal-cell"><div class="cal-num">10</div><span class="cal-event ev-navy">AWS Summit LA</span></div>
-    <div class="cal-cell"><div class="cal-num">11</div></div>
-    <div class="cal-cell"><div class="cal-num">12</div></div>
-    <div class="cal-cell"><div class="cal-num weekend">13</div></div>
-
-    <!-- Row 3: Jun 14–21 -->
-    <div class="cal-cell"><div class="cal-num weekend">14</div></div>
-    <div class="cal-cell"><div class="cal-num">15</div></div>
-    <div class="cal-cell"><div class="cal-num">16</div></div>
-    <div class="cal-cell"><div class="cal-num">17</div><span class="cal-event ev-navy">AWS Summit NY</span></div>
-    <div class="cal-cell"><div class="cal-num">18</div></div>
-    <div class="cal-cell"><div class="cal-num">19</div></div>
-    <div class="cal-cell"><div class="cal-num weekend">20</div></div>
-
-    <!-- Row 4: Jun 21–28 -->
-    <div class="cal-cell"><div class="cal-num weekend">21</div></div>
-    <div class="cal-cell"><div class="cal-num">22</div></div>
-    <div class="cal-cell"><div class="cal-num">23</div><span class="cal-event ev-forest">AWS GameDay NYC</span></div>
-    <div class="cal-cell"><div class="cal-num">24</div></div>
-    <div class="cal-cell"><div class="cal-num">25</div></div>
-    <div class="cal-cell"><div class="cal-num">26</div></div>
-    <div class="cal-cell"><div class="cal-num weekend">27</div></div>
-
-    <!-- Row 5: Jun 28–30 -->
-    <div class="cal-cell"><div class="cal-num weekend">28</div></div>
-    <div class="cal-cell"><div class="cal-num">29</div></div>
-    <div class="cal-cell"><div class="cal-num">30</div></div>
-    <div class="cal-cell empty"></div>
-    <div class="cal-cell empty"></div>
-    <div class="cal-cell empty"></div>
-    <div class="cal-cell empty"></div>
-  </div>
-
-  <!-- Legend -->
-  <div style="display:flex;gap:1.5rem;margin-top:0.75rem;flex-wrap:wrap;">
-    <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.72rem;color:var(--ink-light);">
-      <span style="width:10px;height:10px;background:var(--orange);border-radius:1px;display:inline-block;"></span> NeuBird hosted
+  <!-- HEADER -->
+  <div class="slide-header">
+    <div class="slide-logo">NeuBird <em>AI</em></div>
+    <div class="slide-title-block">
+      <div class="slide-eyebrow">Events Calendar</div>
+      <div class="slide-title">June 2026 — <em>Field Plan</em></div>
     </div>
-    <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.72rem;color:var(--ink-light);">
-      <span style="width:10px;height:10px;background:var(--navy);border-radius:1px;display:inline-block;"></span> AWS Summit
-    </div>
-    <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.72rem;color:var(--ink-light);">
-      <span style="width:10px;height:10px;background:var(--forest);border-radius:1px;display:inline-block;"></span> AWS GameDay
-    </div>
-    <div style="display:flex;align-items:center;gap:0.4rem;font-size:0.72rem;color:var(--ink-light);"><span style="width:10px;height:10px;background:var(--orange);border-radius:1px;display:inline-block;"></span> NeuBird hosted rooftop</div>
-  </div>
-</div>
-
-<!-- EVENT CARDS -->
-<div class="events-wrap">
-
-  <div class="summary-bar">
-    <div class="sum-stat"><div class="sum-num">4</div><div class="sum-lbl">June events</div></div>
-    <div class="sum-stat"><div class="sum-num">1</div><div class="sum-lbl">NeuBird hosted</div></div>
-    <div class="sum-stat"><div class="sum-num">3</div><div class="sum-lbl">AWS-anchored</div></div>
-    <div class="sum-stat"><div class="sum-num">2</div><div class="sum-lbl">Cities</div></div>
+    <div class="slide-badge">June 2026</div>
   </div>
 
-  <!-- DATADOG DASH — ROOFTOP -->
-  <div class="event-card featured">
-    <div class="event-card-header">
+  <!-- BODY -->
+  <div class="slide-body">
+
+    <!-- LEFT: CALENDAR -->
+    <div class="cal-panel">
       <div>
-        <div class="event-title">DataDog <em>Dash.</em></div>
-        <div class="event-location">New York, NY</div>
-        <div class="event-hosted-tag">🏙 NeuBird Rooftop Event</div>
+        <div class="cal-label">June 2026</div>
+        <div class="cal-month">Four events.<br>Two cities.</div>
       </div>
-      <div class="badges">
-        <div class="event-date-chip">Jun 9</div>
-        <div class="event-badge b-hosted">Hosted</div>
-        <div class="event-badge b-dark">🌙 Dark Mode</div>
+
+      <div class="cal-grid">
+        <div class="cal-dow">Su</div><div class="cal-dow">Mo</div><div class="cal-dow">Tu</div><div class="cal-dow">We</div><div class="cal-dow">Th</div><div class="cal-dow">Fr</div><div class="cal-dow">Sa</div>
+
+        <!-- Row 1 -->
+        <div class="cal-cell empty weekend"></div>
+        <div class="cal-cell"><div class="day-num">1</div></div>
+        <div class="cal-cell"><div class="day-num">2</div></div>
+        <div class="cal-cell"><div class="day-num">3</div></div>
+        <div class="cal-cell"><div class="day-num">4</div></div>
+        <div class="cal-cell"><div class="day-num">5</div></div>
+        <div class="cal-cell weekend"><div class="day-num">6</div></div>
+
+        <!-- Row 2 -->
+        <div class="cal-cell weekend"><div class="day-num">7</div></div>
+        <div class="cal-cell"><div class="day-num">8</div></div>
+        <div class="cal-cell"><div class="day-num">9</div><span class="day-pill pill-orange">🏙 DataDog Dash</span></div>
+        <div class="cal-cell"><div class="day-num">10</div><span class="day-pill pill-navy">AWS Summit LA</span></div>
+        <div class="cal-cell"><div class="day-num">11</div></div>
+        <div class="cal-cell"><div class="day-num">12</div></div>
+        <div class="cal-cell weekend"><div class="day-num">13</div></div>
+
+        <!-- Row 3 -->
+        <div class="cal-cell weekend"><div class="day-num">14</div></div>
+        <div class="cal-cell"><div class="day-num">15</div></div>
+        <div class="cal-cell"><div class="day-num">16</div></div>
+        <div class="cal-cell"><div class="day-num">17</div><span class="day-pill pill-navy">AWS Summit NY</span></div>
+        <div class="cal-cell"><div class="day-num">18</div></div>
+        <div class="cal-cell"><div class="day-num">19</div></div>
+        <div class="cal-cell weekend"><div class="day-num">20</div></div>
+
+        <!-- Row 4 -->
+        <div class="cal-cell weekend"><div class="day-num">21</div></div>
+        <div class="cal-cell"><div class="day-num">22</div></div>
+        <div class="cal-cell"><div class="day-num">23</div><span class="day-pill pill-forest">AWS GameDay NYC</span></div>
+        <div class="cal-cell"><div class="day-num">24</div></div>
+        <div class="cal-cell"><div class="day-num">25</div></div>
+        <div class="cal-cell"><div class="day-num">26</div></div>
+        <div class="cal-cell weekend"><div class="day-num">27</div></div>
+
+        <!-- Row 5 -->
+        <div class="cal-cell weekend"><div class="day-num">28</div></div>
+        <div class="cal-cell"><div class="day-num">29</div></div>
+        <div class="cal-cell"><div class="day-num">30</div></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+        <div class="cal-cell empty"></div>
+      </div>
+
+      <div class="cal-stats">
+        <div class="cal-stat"><div class="cal-stat-num">4</div><div class="cal-stat-lbl">Events</div></div>
+        <div class="cal-stat"><div class="cal-stat-num">1</div><div class="cal-stat-lbl">Hosted</div></div>
+        <div class="cal-stat"><div class="cal-stat-num">3</div><div class="cal-stat-lbl">AWS</div></div>
+        <div class="cal-stat"><div class="cal-stat-num">2</div><div class="cal-stat-lbl">Cities</div></div>
+      </div>
+
+      <div class="cal-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:var(--orange);"></div>NeuBird hosted rooftop (DataDog Dash)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--navy);"></div>AWS Summit (LA + New York)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--forest);"></div>AWS GameDay NYC</div>
       </div>
     </div>
-    <div class="event-divider"></div>
-    <div class="event-meta-grid">
-      <div class="meta-item"><div class="meta-label">Format</div><div class="meta-value">NeuBird-hosted rooftop event co-located with DataDog Dash</div></div>
-      <div class="meta-item"><div class="meta-label">Audience</div><div class="meta-value">SREs, Platform Engineers, DevOps leads — DataDog Dash attendees</div></div>
-      <div class="meta-item"><div class="meta-label">Strategic angle</div><div class="meta-value">DataDog buyers are our buyers — own the conversation off the main floor</div></div>
+
+    <!-- RIGHT: EVENT TILES -->
+    <div class="events-panel">
+
+      <!-- DataDog Dash -->
+      <div class="event-tile hosted">
+        <div class="event-tile-left">
+          <div class="event-tile-name">DataDog <em>Dash</em> — NeuBird Rooftop</div>
+          <div class="event-tile-meta">New York, NY · NeuBird-hosted event</div>
+          <ul class="event-tile-points">
+            <li>Curated rooftop for SRE and platform engineering ICP — deeper conversations than the conference floor</li>
+            <li>DataDog buyers are our buyers. Show the contrast: they show the fire, we put it out</li>
+            <li>Demo-first: 2-min RCA live. Pre-set invites sent 2–3 weeks in advance</li>
+          </ul>
+        </div>
+        <div class="event-tile-right">
+          <div class="tile-date">Jun 9</div>
+          <div class="tile-mode mode-hosted">🏙 Hosted</div>
+          <div class="tile-mode mode-dark">🌙 Dark Mode</div>
+        </div>
+      </div>
+
+      <!-- AWS Summit LA -->
+      <div class="event-tile">
+        <div class="event-tile-left">
+          <div class="event-tile-name">AWS Summit <em>Los Angeles</em></div>
+          <div class="event-tile-meta">Los Angeles, CA · AWS regional event</div>
+          <ul class="event-tile-points">
+            <li>Position NeuBird AI as the native Prod Ops Agent for AWS-native stacks</li>
+            <li>ISV Accelerate co-sell angle — engage AWS field sellers on site</li>
+            <li>Collect west coast practitioner leads for re:Invent pipeline</li>
+          </ul>
+        </div>
+        <div class="event-tile-right">
+          <div class="tile-date">Jun 10</div>
+          <div class="tile-mode mode-dark">🌙 Dark Mode</div>
+        </div>
+      </div>
+
+      <!-- AWS Summit NY -->
+      <div class="event-tile">
+        <div class="event-tile-left">
+          <div class="event-tile-name">AWS Summit <em>New York</em></div>
+          <div class="event-tile-meta">New York, NY · Largest AWS Summit in the US</div>
+          <ul class="event-tile-points">
+            <li>Dual-mode: practitioner track + executive buyers in the same venue</li>
+            <li>NY financial services concentration — lead with reliability as a commercial differentiator</li>
+            <li>Pre-set meetings 3 weeks out. Every conversation seeds re:Invent pipeline</li>
+          </ul>
+        </div>
+        <div class="event-tile-right">
+          <div class="tile-date">Jun 17</div>
+          <div class="tile-mode mode-both">☀ + 🌙 Both</div>
+        </div>
+      </div>
+
+      <!-- AWS GameDay -->
+      <div class="event-tile">
+        <div class="event-tile-left">
+          <div class="event-tile-name">AWS GameDay <em>New York</em></div>
+          <div class="event-tile-meta">New York, NY · Hands-on technical challenge event</div>
+          <ul class="event-tile-points">
+            <li>Highest-quality practitioner lead environment of the month — engineers who learn by doing</li>
+            <li>"This is what it feels like when you have an AI agent in the room"</li>
+            <li>Closes June strong — deepens the same audience from AWS Summit NY six days earlier</li>
+          </ul>
+        </div>
+        <div class="event-tile-right">
+          <div class="tile-date">Jun 23</div>
+          <div class="tile-mode mode-dark">🌙 Dark Mode</div>
+        </div>
+      </div>
+
     </div>
-    <div class="event-divider"></div>
-    <div class="event-actions-label">Key actions</div>
-    <ul class="action-list">
-      <li>Host a curated rooftop experience for practitioner ICP — smaller, deeper conversations than the conference floor</li>
-      <li>Lead with the practitioner message: "You'll never have to piece together what happened across five tools again"</li>
-      <li>Direct contrast: DataDog shows you the fire. NeuBird AI puts it out</li>
-      <li>Demo-first: 2-minute RCA live, no slides required — let the product do the talking</li>
-      <li>Pre-set invites to attendee list 2–3 weeks out — curate for SRE and platform engineering titles</li>
-      <li>Capture leads into Dark Mode nurture sequence immediately post-event</li>
-    </ul>
   </div>
 
-  <!-- AWS LA SUMMIT -->
-  <div class="event-card">
-    <div class="event-card-header">
-      <div>
-        <div class="event-title">AWS Summit <em>Los Angeles.</em></div>
-        <div class="event-location">Los Angeles, CA</div>
-      </div>
-      <div class="badges">
-        <div class="event-date-chip">Jun 10</div>
-        <div class="event-badge b-dark">🌙 Dark Mode</div>
-      </div>
-    </div>
-    <div class="event-divider"></div>
-    <div class="event-meta-grid">
-      <div class="meta-item"><div class="meta-label">Format</div><div class="meta-value">AWS Summit — regional, practitioner-heavy</div></div>
-      <div class="meta-item"><div class="meta-label">Audience</div><div class="meta-value">Cloud engineers, architects, DevOps — AWS ecosystem</div></div>
-      <div class="meta-item"><div class="meta-label">Strategic angle</div><div class="meta-value">NeuBird AI as the native Prod Ops Agent for AWS stacks</div></div>
-    </div>
-    <div class="event-divider"></div>
-    <div class="event-actions-label">Key actions</div>
-    <ul class="action-list">
-      <li>AWS Marketplace messaging front and center — transact through committed spend</li>
-      <li>ISV Accelerate co-sell angle: engage AWS field sellers on site</li>
-      <li>Caylent SI relationship — joint presence or co-branded collateral where possible</li>
-      <li>Collect practitioner leads for re:Invent pipeline warm-up</li>
-      <li>Distribute AWS-native one-pager: NeuBird AI as the Prod Ops Agent for AWS stacks</li>
-    </ul>
-  </div>
-
-  <!-- AWS NEW YORK SUMMIT -->
-  <div class="event-card">
-    <div class="event-card-header">
-      <div>
-        <div class="event-title">AWS Summit <em>New York.</em></div>
-        <div class="event-location">New York, NY</div>
-      </div>
-      <div class="badges">
-        <div class="event-date-chip">Jun 17</div>
-        <div class="event-badge b-both">☀ + 🌙 Both Modes</div>
-      </div>
-    </div>
-    <div class="event-divider"></div>
-    <div class="event-meta-grid">
-      <div class="meta-item"><div class="meta-label">Format</div><div class="meta-value">AWS Summit — largest US regional event</div></div>
-      <div class="meta-item"><div class="meta-label">Audience</div><div class="meta-value">Cloud engineers + enterprise buyers — east coast concentration</div></div>
-      <div class="meta-item"><div class="meta-label">Strategic angle</div><div class="meta-value">Scale + reach: NY attracts both engineering and executive buyers</div></div>
-    </div>
-    <div class="event-divider"></div>
-    <div class="event-actions-label">Key actions</div>
-    <ul class="action-list">
-      <li>Dual-mode presence: practitioner messaging for engineering track, executive messaging for leadership sessions</li>
-      <li>Pre-set meetings with ICP prospects — don't rely on floor traffic alone</li>
-      <li>NY financial services concentration: lead with reliability-as-commercial-differentiator for FS buyers</li>
-      <li>Qualify leads separately into Dark Mode and Light Mode nurture sequences</li>
-      <li>Seed re:Invent pipeline — every NY conversation is a six-month warm relationship by November</li>
-    </ul>
-  </div>
-
-  <!-- AWS GAMEDAY NYC -->
-  <div class="event-card">
-    <div class="event-card-header">
-      <div>
-        <div class="event-title">AWS GameDay <em>New York.</em></div>
-        <div class="event-location">New York, NY</div>
-      </div>
-      <div class="badges">
-        <div class="event-date-chip">Jun 23</div>
-        <div class="event-badge b-dark">🌙 Dark Mode</div>
-      </div>
-    </div>
-    <div class="event-divider"></div>
-    <div class="event-meta-grid">
-      <div class="meta-item"><div class="meta-label">Format</div><div class="meta-value">AWS GameDay — hands-on technical challenge event</div></div>
-      <div class="meta-item"><div class="meta-label">Audience</div><div class="meta-value">Practitioners — engineers who learn by doing, not by watching</div></div>
-      <div class="meta-item"><div class="meta-label">Strategic angle</div><div class="meta-value">Highest-quality practitioner lead environment of the month</div></div>
-    </div>
-    <div class="event-divider"></div>
-    <div class="event-actions-label">Key actions</div>
-    <ul class="action-list">
-      <li>Sponsorship framed around the hands-on format — practitioners who engage in GameDay are exactly NeuBird AI's Dark Mode ICP</li>
-      <li>Connect NeuBird AI's real-time diagnosis to the GameDay format: "This is what it feels like when you have an AI agent in the room"</li>
-      <li>Collect engineering leads for practitioner nurture sequence</li>
-      <li>Closes the month strong — six days after AWS NY Summit, building on the same audience with deeper engagement</li>
-    </ul>
+  <!-- FOOTER -->
+  <div class="slide-footer">
+    <span>NeuBird AI · June 2026 Events · Internal</span>
+    <span style="color:var(--ink-light);">All events: New York & Los Angeles · Primary mode: Dark Mode (practitioner ICP)</span>
+    <a href="index.html">← Full H2 Plan</a>
   </div>
 
 </div>
-
-<footer>
-  <span>NeuBird AI · June 2026 Events · Internal</span>
-  <a href="index.html">← Full H2 Plan</a>
-</footer>
 
 </body>
 </html>
