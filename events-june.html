@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuBird AI — June 2026 Events</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange:    #FA551E;
+    --navy:      #003A51;
+    --forest:    #008C61;
+    --ink:       #242321;
+    --ink-mid:   #4A4845;
+    --ink-light: #7A7875;
+    --cream:     #F7F5F2;
+    --panel:     #F4F4F2;
+    --rule:      #E2E2DE;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 300;
+    background: var(--cream);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(247,245,242,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+    display: flex; align-items: center; gap: 1.5rem;
+    padding: 0 2.5rem; height: 52px;
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.02em;
+  }
+  .nav-logo { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 300; color: var(--ink); white-space: nowrap; }
+  .nav-logo em { color: var(--orange); font-style: italic; }
+  .nav-divider { width: 1px; height: 18px; background: var(--rule); }
+  .nav-badge { margin-left: auto; background: var(--orange); color: #fff; font-size: 0.7rem; font-weight: 500; padding: 0.2rem 0.6rem; border-radius: 2px; letter-spacing: 0.04em; }
+
+  /* HERO */
+  .hero {
+    padding: 4rem 2.5rem 3rem;
+    max-width: 860px; margin: 0 auto;
+  }
+  .overline { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+  .overline-rule { width: 32px; height: 2px; background: var(--orange); flex-shrink: 0; }
+  .overline-text { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--orange); }
+  h1 { font-family: 'Fraunces', serif; font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 300; line-height: 1.15; color: var(--ink); margin-bottom: 1rem; }
+  h1 em { color: var(--orange); font-style: italic; }
+  .hero-sub { font-size: 1rem; font-weight: 300; color: var(--ink-mid); line-height: 1.7; max-width: 600px; margin-bottom: 2rem; }
+  .hero-meta {
+    display: flex; flex-wrap: wrap; gap: 1.5rem;
+    font-size: 0.78rem; font-weight: 300; color: var(--ink-light);
+    border-top: 1px solid var(--rule); padding-top: 1.25rem;
+  }
+  .hero-meta strong { color: var(--ink); font-weight: 500; margin-right: 0.3rem; }
+
+  /* EVENTS */
+  .events-wrap {
+    max-width: 860px; margin: 0 auto;
+    padding: 0 2.5rem 4rem;
+  }
+  .event-card {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 2rem 2rem 1.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .event-card-header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 1rem; margin-bottom: 1.25rem;
+  }
+  .event-date-chip {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--orange); background: rgba(250,85,30,0.08);
+    padding: 0.3rem 0.65rem; border-radius: 2px; white-space: nowrap;
+  }
+  .event-title { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 300; color: var(--ink); line-height: 1.2; margin-bottom: 0.25rem; }
+  .event-title em { color: var(--orange); font-style: italic; }
+  .event-location { font-size: 0.8rem; font-weight: 300; color: var(--ink-light); }
+  .event-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em;
+    padding: 0.25rem 0.6rem; border-radius: 2px; white-space: nowrap;
+  }
+  .b-dark { background: rgba(0,58,81,0.08); color: var(--navy); border: 1px solid rgba(0,58,81,0.2); }
+  .b-light { background: rgba(250,85,30,0.08); color: var(--orange); border: 1px solid rgba(250,85,30,0.2); }
+  .b-both { background: rgba(0,140,97,0.08); color: var(--forest); border: 1px solid rgba(0,140,97,0.2); }
+
+  .event-divider { height: 1px; background: var(--rule); margin: 1.25rem 0; }
+
+  .event-meta-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .meta-item { }
+  .meta-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-light); margin-bottom: 0.2rem; }
+  .meta-value { font-size: 0.85rem; font-weight: 400; color: var(--ink); }
+
+  .event-actions-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-light); margin-bottom: 0.6rem; }
+  .action-list { list-style: none; }
+  .action-list li {
+    font-size: 0.82rem; font-weight: 300; color: var(--ink-mid);
+    padding: 0.35rem 0; border-bottom: 1px solid var(--rule);
+    display: flex; align-items: flex-start; gap: 0.5rem;
+  }
+  .action-list li:last-child { border-bottom: none; }
+  .action-list li::before { content: '→'; color: var(--orange); flex-shrink: 0; font-size: 0.75rem; margin-top: 0.05rem; }
+
+  /* SUMMARY BAR */
+  .summary-bar {
+    display: flex; gap: 2rem; flex-wrap: wrap;
+    background: var(--navy); border-radius: 6px;
+    padding: 1.5rem 2rem; margin-bottom: 2rem;
+  }
+  .sum-stat { }
+  .sum-num { font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 300; color: #fff; line-height: 1; }
+  .sum-lbl { font-size: 0.72rem; font-weight: 300; color: rgba(255,255,255,0.6); margin-top: 0.2rem; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 1.5rem 2.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 0.72rem; color: var(--ink-light); font-weight: 300;
+  }
+  footer a { color: var(--orange); text-decoration: none; font-size: 0.72rem; }
+
+  @media (max-width: 600px) {
+    .event-meta-grid { grid-template-columns: 1fr 1fr; }
+    .event-card-header { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">NeuBird <em>AI</em></div>
+  <div class="nav-divider"></div>
+  <span style="font-size:0.78rem;color:var(--ink-mid);font-weight:300;">June 2026 Events</span>
+  <div class="nav-badge">June 2026</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="overline">
+    <div class="overline-rule"></div>
+    <div class="overline-text">Events · June 2026</div>
+  </div>
+  <h1>June event <em>calendar.</em></h1>
+  <p class="hero-sub">Three events in June, two in New York and one in LA. DataDog Dash is a key practitioner moment — Dark Mode lead. Both AWS summits give us access to cloud-native engineering buyers at scale across both coasts.</p>
+  <div class="hero-meta">
+    <span><strong>Events</strong> 3</span>
+    <span><strong>Cities</strong> New York · Los Angeles</span>
+    <span><strong>Primary mode</strong> Dark Mode (practitioners)</span>
+    <span><strong>Month</strong> June 2026</span>
+  </div>
+</div>
+
+<!-- EVENTS -->
+<div class="events-wrap">
+
+  <div class="summary-bar">
+    <div class="sum-stat"><div class="sum-num">3</div><div class="sum-lbl">June events</div></div>
+    <div class="sum-stat"><div class="sum-num">2</div><div class="sum-lbl">Cities</div></div>
+    <div class="sum-stat"><div class="sum-num">2</div><div class="sum-lbl">AWS-anchored events</div></div>
+    <div class="sum-stat"><div class="sum-num">1</div><div class="sum-lbl">Vendor-hosted event</div></div>
+  </div>
+
+  <!-- DATADOG DASH -->
+  <div class="event-card">
+    <div class="event-card-header">
+      <div>
+        <div class="event-title">DataDog <em>Dash.</em></div>
+        <div class="event-location">New York, NY</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.5rem;">
+        <div class="event-date-chip">June 2026</div>
+        <div class="event-badge b-dark">🌙 Dark Mode</div>
+      </div>
+    </div>
+    <div class="event-divider"></div>
+    <div class="event-meta-grid">
+      <div class="meta-item"><div class="meta-label">Audience</div><div class="meta-value">SREs, Platform Engineers, DevOps leads</div></div>
+      <div class="meta-item"><div class="meta-label">Format</div><div class="meta-value">Vendor-hosted conference + practitioner sessions</div></div>
+      <div class="meta-item"><div class="meta-label">Strategic angle</div><div class="meta-value">DataDog buyers are our buyers — show the contrast</div></div>
+    </div>
+    <div class="event-divider"></div>
+    <div class="event-actions-label">Key actions</div>
+    <ul class="action-list">
+      <li>Lead with the practitioner message: "You'll never have to piece together what happened across five tools again"</li>
+      <li>Direct contrast: DataDog shows you the fire. NeuBird AI puts it out</li>
+      <li>Capture technical ICP leads — SREs and platform engineers attending DataDog are exactly our Dark Mode buyer</li>
+      <li>Demo-first approach: show 2-minute RCA live, no slides required</li>
+      <li>Pre-set meetings with attendees 2–3 weeks in advance via outbound</li>
+    </ul>
+  </div>
+
+  <!-- AWS LA SUMMIT -->
+  <div class="event-card">
+    <div class="event-card-header">
+      <div>
+        <div class="event-title">AWS Summit <em>Los Angeles.</em></div>
+        <div class="event-location">Los Angeles, CA</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.5rem;">
+        <div class="event-date-chip">June 2026</div>
+        <div class="event-badge b-dark">🌙 Dark Mode</div>
+      </div>
+    </div>
+    <div class="event-divider"></div>
+    <div class="event-meta-grid">
+      <div class="meta-item"><div class="meta-label">Audience</div><div class="meta-value">Cloud engineers, architects, DevOps — AWS ecosystem</div></div>
+      <div class="meta-item"><div class="meta-label">Format</div><div class="meta-value">AWS Summit — regional, practitioner-heavy</div></div>
+      <div class="meta-item"><div class="meta-label">Strategic angle</div><div class="meta-value">Position NeuBird AI as the native Prod Ops Agent for AWS stacks</div></div>
+    </div>
+    <div class="event-divider"></div>
+    <div class="event-actions-label">Key actions</div>
+    <ul class="action-list">
+      <li>AWS Marketplace messaging front and center — transact through committed spend</li>
+      <li>ISV Accelerate co-sell angle: engage AWS field sellers attending the summit</li>
+      <li>Caylent SI relationship — joint presence or co-branded collateral if possible</li>
+      <li>Collect practitioner leads for nurture into re:Invent pipeline</li>
+      <li>Distribute AWS-native architecture one-pager: NeuBird AI as the Prod Ops Agent for AWS stacks</li>
+    </ul>
+  </div>
+
+  <!-- AWS NEW YORK SUMMIT -->
+  <div class="event-card">
+    <div class="event-card-header">
+      <div>
+        <div class="event-title">AWS Summit <em>New York.</em></div>
+        <div class="event-location">New York, NY · June 17, 2026</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.5rem;">
+        <div class="event-date-chip">Jun 17</div>
+        <div class="event-badge b-both">☀ + 🌙 Both Modes</div>
+      </div>
+    </div>
+    <div class="event-divider"></div>
+    <div class="event-meta-grid">
+      <div class="meta-item"><div class="meta-label">Audience</div><div class="meta-value">Cloud engineers + enterprise buyers — largest AWS Summit in the US</div></div>
+      <div class="meta-item"><div class="meta-label">Format</div><div class="meta-value">AWS Summit — flagship US regional event</div></div>
+      <div class="meta-item"><div class="meta-label">Strategic angle</div><div class="meta-value">Scale + reach: NY attracts both engineering and executive buyers</div></div>
+    </div>
+    <div class="event-divider"></div>
+    <div class="event-actions-label">Key actions</div>
+    <ul class="action-list">
+      <li>Dual-mode presence: practitioner messaging for engineering track, executive messaging for leadership sessions</li>
+      <li>Highest-volume AWS regional event — prioritize pre-set meetings over floor traffic</li>
+      <li>AWS Marketplace messaging to C-suite buyers: unlock committed spend, remove procurement friction</li>
+      <li>Collect both practitioner and executive leads — qualify separately into Dark Mode and Light Mode nurture sequences</li>
+      <li>NY financial services concentration: lead with the reliability-as-commercial-differentiator story for FS buyers</li>
+      <li>Seed re:Invent pipeline: every NY conversation is a six-month warm relationship by the time re:Invent arrives</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>NeuBird AI · June 2026 Events · Internal</span>
+  <a href="index.html">← Full H2 Plan</a>
+</footer>
+
+</body>
+</html>
