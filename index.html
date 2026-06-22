@@ -776,6 +776,174 @@
     .stats-bar-5, .stats-bar-4 { grid-template-columns: repeat(2, 1fr); }
     nav a { display: none; }
   }
+
+  /* ── REVENUE OPS & SDR ── */
+  .ops-matrix {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 2.5rem;
+    font-size: 13px;
+  }
+  .ops-matrix thead th {
+    background: var(--navy);
+    color: rgba(255,255,255,0.8);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.85rem 1rem;
+    text-align: left;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  .ops-matrix thead th:first-child { width: 130px; color: rgba(255,255,255,0.35); }
+  .ops-matrix thead th.col-featured { border-top: 2px solid var(--orange); }
+  .ops-matrix .col-event-name { font-family: var(--serif); font-size: 12.5px; font-weight: 300; color: #fff; line-height: 1.3; }
+  .ops-matrix .col-event-name em { color: var(--orange); font-style: italic; }
+  .ops-matrix .col-event-date { font-family: var(--mono); font-size: 10px; color: rgba(255,255,255,0.35); margin-top: 0.2rem; }
+  .ops-matrix tbody tr { border-top: 1px solid var(--rule); }
+  .ops-matrix tbody tr:hover td { background: var(--panel); }
+  .ops-matrix tbody td {
+    padding: 0.75rem 1rem;
+    vertical-align: top;
+    border-right: 1px solid var(--rule);
+    font-weight: 300;
+    color: var(--ink-mid);
+    line-height: 1.55;
+    background: var(--white);
+  }
+  .ops-matrix tbody td:first-child {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-mid);
+    background: var(--panel);
+    white-space: nowrap;
+  }
+  .ops-matrix tbody tr.highlight-row td { background: rgba(250,85,30,0.03); }
+  .ops-matrix tbody tr.highlight-row td:first-child { color: var(--orange); background: rgba(250,85,30,0.06); }
+  .ops-matrix ul { list-style: none; }
+  .ops-matrix li { display: flex; gap: 0.35rem; font-size: 12.5px; line-height: 1.55; }
+  .ops-matrix li::before { content: '—'; color: var(--orange); flex-shrink: 0; font-size: 11px; }
+  .ops-chip {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    padding: 0.1rem 0.45rem;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .chip-o { background: rgba(250,85,30,0.1); color: var(--orange); }
+  .chip-n { background: rgba(0,58,81,0.08); color: var(--navy); }
+  .chip-f { background: rgba(0,140,97,0.08); color: var(--forest); }
+  .ops-tbd { font-family: var(--mono); font-size: 11.5px; color: var(--ink-light); }
+
+  /* SDR sequence cards */
+  .sdr-event-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+  .sdr-event-card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 0;
+    transition: background 0.12s;
+  }
+  .sdr-event-card:hover { background: var(--panel); }
+  .sdr-event-card.featured { border-top: 3px solid var(--orange); }
+  .sdr-card-top {
+    padding: 1.25rem 1.5rem 1rem;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .sdr-card-name { font-family: var(--serif); font-size: 15px; font-weight: 300; color: var(--ink); line-height: 1.3; }
+  .sdr-card-name em { color: var(--orange); font-style: italic; }
+  .sdr-card-sub { font-size: 12px; font-weight: 300; color: var(--ink-light); margin-top: 0.2rem; }
+  .sdr-card-date {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--orange);
+    background: rgba(250,85,30,0.08);
+    padding: 0.2rem 0.55rem;
+    border-radius: 2px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .sdr-card-body { padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+  .sdr-subsection-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-light);
+    margin-bottom: 0.4rem;
+  }
+  .sdr-personas { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .seq-list { display: flex; flex-direction: column; gap: 0.4rem; }
+  .seq-item { display: grid; grid-template-columns: 54px 1fr; gap: 0.6rem; align-items: baseline; }
+  .seq-t {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    color: var(--orange);
+  }
+  .seq-text { font-size: 12.5px; font-weight: 300; color: var(--ink-mid); line-height: 1.5; }
+  .sdr-goal-bar {
+    background: var(--panel);
+    border-left: 3px solid var(--orange);
+    padding: 0.65rem 1rem;
+    font-size: 12.5px;
+    font-weight: 300;
+    color: var(--ink-mid);
+    line-height: 1.5;
+  }
+  .sdr-goal-bar strong { font-weight: 500; color: var(--ink); }
+
+  /* Messaging table */
+  table.msg-table { width: 100%; border-collapse: collapse; background: var(--white); margin-bottom: 1.5rem; }
+  table.msg-table thead th {
+    background: var(--navy);
+    color: rgba(255,255,255,0.75);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  table.msg-table tbody tr { border-top: 1px solid var(--rule); }
+  table.msg-table tbody tr:nth-child(even) { background: var(--panel); }
+  table.msg-table tbody td {
+    padding: 0.7rem 1rem;
+    font-size: 12.5px;
+    font-weight: 300;
+    color: var(--ink-mid);
+    vertical-align: top;
+    line-height: 1.5;
+    border-right: 1px solid var(--rule);
+  }
+  table.msg-table tbody td:first-child {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--orange);
+    white-space: nowrap;
+  }
 </style>
 </head>
 <body>
@@ -850,6 +1018,8 @@
   <a href="#seo">SEO / GEO</a>
   <a href="#kpis">KPIs</a>
   <a href="#timeline">Timeline</a>
+  <a href="#revops">Revenue Ops</a>
+  <a href="#sdr">Sales Dev</a>
   <div class="nav-right">
     <div class="nav-badge">H2 2026</div>
   </div>
@@ -1617,6 +1787,375 @@
     <div class="tl-leg"><div class="tl-leg-dot" style="background:rgba(250,85,30,0.06);border-left:2px solid var(--coral);"></div> Content &amp; Messaging</div>
     <div class="tl-leg"><div class="tl-leg-dot" style="background:rgba(0,140,97,0.08);border-left:2px solid var(--forest);"></div> Partnerships</div>
   </div>
+</section>
+
+<!-- REVENUE OPS -->
+<section id="revops">
+  <div class="overline"><div class="overline-rule"></div><div class="overline-text">Revenue Operations</div></div>
+  <h2>Pipeline & CRM <em>playbook.</em></h2>
+  <p class="section-body">Pipeline doesn't happen at the event — it happens in the three weeks before and the ten days after. This section defines the per-event ICP, CRM workflow, conversion targets, and pipeline goals so RevOps and field teams are aligned before anyone gets on a plane.</p>
+
+  <table class="ops-matrix">
+    <thead>
+      <tr>
+        <th>Row / Event</th>
+        <th class="col-featured">
+          <div class="col-event-name">DataDog <em>Dash</em> — Rooftop</div>
+          <div class="col-event-date">Jun 9 · New York, NY</div>
+        </th>
+        <th>
+          <div class="col-event-name">AWS Summit <em>Los Angeles</em></div>
+          <div class="col-event-date">Jun 10 · Los Angeles, CA</div>
+        </th>
+        <th>
+          <div class="col-event-name">AWS Summit <em>New York</em></div>
+          <div class="col-event-date">Jun 17 · New York, NY</div>
+        </th>
+        <th>
+          <div class="col-event-name">AWS GameDay <em>NYC</em></div>
+          <div class="col-event-date">Jun 23 · New York, NY</div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Target ICP</td>
+        <td>
+          <ul>
+            <li>SRE, Platform Eng, DevOps leads</li>
+            <li>Mid-market to enterprise, AWS-native</li>
+            <li><span class="ops-chip chip-o">30 invites → 15 attendees</span></li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>Cloud engineers, AWS architects</li>
+            <li>West coast AWS-native orgs</li>
+            <li><span class="ops-chip chip-n">ISV co-sell list via AWS field</span></li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>Dual: practitioners + VP/CTO buyers</li>
+            <li>Financial services concentration</li>
+            <li><span class="ops-chip chip-f">Segment by persona on capture</span></li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>Hands-on engineers, SRE, platform teams</li>
+            <li>High-intent: learn-by-doing audience</li>
+            <li><span class="ops-chip chip-n">Overlap with Summit NY list</span></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>CRM Workflow</td>
+        <td>
+          <ul>
+            <li>Create event campaign pre-event</li>
+            <li>iPad capture → auto-create contacts</li>
+            <li>Tag: source=datadog-dash, tier=warm</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>Pre-set meetings logged as activities</li>
+            <li>Badge scan → CRM import within 24 hrs</li>
+            <li>Tag: source=aws-summit-la, isp=aws</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>Segment contacts by persona at capture</li>
+            <li>Exec contacts → AE-owned sequences</li>
+            <li>Tag: source=aws-summit-ny, persona=exec|practitioner</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>Cross-reference Summit NY contacts</li>
+            <li>Flag repeat touches for AE follow-up</li>
+            <li>Tag: source=aws-gameday-nyc, intent=high</li>
+          </ul>
+        </td>
+      </tr>
+      <tr class="highlight-row">
+        <td>Pipeline Target</td>
+        <td><span class="ops-tbd">TBD — align with sales</span></td>
+        <td><span class="ops-tbd">TBD — align with sales</span></td>
+        <td><span class="ops-tbd">TBD — align with sales</span></td>
+        <td><span class="ops-tbd">TBD — align with sales</span></td>
+      </tr>
+      <tr>
+        <td>Conversion Goal</td>
+        <td>
+          <ul>
+            <li>15 contacts → 5 discovery calls</li>
+            <li>2 qualified opps in 30 days</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>20 pre-set meetings → 8 qualified</li>
+            <li>3 qualified opps in 30 days</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>30 contacts → 10 discovery calls</li>
+            <li>4 qualified opps in 30 days</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>20 contacts → 6 discovery calls</li>
+            <li>2 qualified opps in 30 days</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="demand-grid">
+    <div class="demand-card">
+      <h4>Pipeline starts <em>before the event.</em></h4>
+      <p>Badge scans are not pipeline. Pre-set meetings, rooftop invites, and ISV co-sell lists are. Every event needs a named account list and outreach launched three weeks out — not the week of.</p>
+    </div>
+    <div class="demand-card">
+      <h4>CRM hygiene <em>at capture.</em></h4>
+      <p>Contacts created within 24 hours of each event. Source tags applied consistently. Persona field populated at intake — exec vs. practitioner determines which sequence fires automatically.</p>
+    </div>
+    <div class="demand-card">
+      <h4>Conversion window <em>is 30 days.</em></h4>
+      <p>If a contact hasn't moved to discovery call within 30 days of the event, they need a different play — not more of the same sequence. RevOps reviews conversion rates at the 30-day mark for each event.</p>
+    </div>
+    <div class="demand-card">
+      <h4>Pipeline targets <em>align with sales.</em></h4>
+      <p>Targets marked TBD until aligned with sales leadership. Field marketing does not set pipeline targets in isolation — these are a joint commitment between marketing, RevOps, and field sales before each event.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SALES DEVELOPMENT -->
+<section id="sdr">
+  <div class="overline"><div class="overline-rule"></div><div class="overline-text">Sales Development</div></div>
+  <h2>Outreach & sequence <em>playbook.</em></h2>
+  <p class="section-body">SDR motion for each June event: who to reach, when to reach them, what to say, and how to follow up. Pre-event sequences launch three weeks out. Post-event sequences run 10 days. Every touch has a single CTA.</p>
+
+  <div class="sdr-event-grid">
+
+    <!-- DataDog Dash -->
+    <div class="sdr-event-card featured">
+      <div class="sdr-card-top">
+        <div>
+          <div class="sdr-card-name">DataDog <em>Dash</em> — NeuBird Rooftop</div>
+          <div class="sdr-card-sub">New York, NY · NeuBird-hosted · 30 target invites</div>
+        </div>
+        <div class="sdr-card-date">Jun 9</div>
+      </div>
+      <div class="sdr-card-body">
+        <div>
+          <div class="sdr-subsection-label">Target Personas</div>
+          <div class="sdr-personas">
+            <span class="ops-chip chip-o">SRE Lead</span>
+            <span class="ops-chip chip-n">Platform Engineer</span>
+            <span class="ops-chip chip-n">DevOps Manager</span>
+            <span class="ops-chip chip-f">VP Engineering</span>
+          </div>
+        </div>
+        <div>
+          <div class="sdr-subsection-label">Pre-Event Sequence</div>
+          <div class="seq-list">
+            <div class="seq-item"><span class="seq-t">T−21</span><span class="seq-text">Invite: "You're invited to NeuBird's rooftop during Dash" — personal, from AE or SDR</span></div>
+            <div class="seq-item"><span class="seq-t">T−14</span><span class="seq-text">LinkedIn connect + event reminder message</span></div>
+            <div class="seq-item"><span class="seq-t">T−7</span><span class="seq-text">Reminder: logistics, what to expect, 2-min RCA demo teaser</span></div>
+            <div class="seq-item"><span class="seq-t">T−2</span><span class="seq-text">Final: "We'll be on the rooftop — see you Tuesday"</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="sdr-subsection-label">Post-Event Sequence</div>
+          <div class="seq-list">
+            <div class="seq-item"><span class="seq-t">Day 0</span><span class="seq-text">Same-day personal note — reference a specific conversation point</span></div>
+            <div class="seq-item"><span class="seq-t">Day 3</span><span class="seq-text">RCA demo recording + 1-pager: "See the full 10-min walkthrough"</span></div>
+            <div class="seq-item"><span class="seq-t">Day 7</span><span class="seq-text">Discovery ask: "30 min to explore your incident workflows?"</span></div>
+            <div class="seq-item"><span class="seq-t">Day 10</span><span class="seq-text">SDR phone + final email — last touch before exiting sequence</span></div>
+          </div>
+        </div>
+        <div class="sdr-goal-bar"><strong>Goal:</strong> 30 invites → 15 attendees → 5 discovery calls booked within 2 weeks</div>
+      </div>
+    </div>
+
+    <!-- AWS Summit LA -->
+    <div class="sdr-event-card">
+      <div class="sdr-card-top">
+        <div>
+          <div class="sdr-card-name">AWS Summit <em>Los Angeles</em></div>
+          <div class="sdr-card-sub">Los Angeles, CA · AWS regional · 20 pre-set meetings</div>
+        </div>
+        <div class="sdr-card-date">Jun 10</div>
+      </div>
+      <div class="sdr-card-body">
+        <div>
+          <div class="sdr-subsection-label">Target Personas</div>
+          <div class="sdr-personas">
+            <span class="ops-chip chip-n">Cloud Engineer</span>
+            <span class="ops-chip chip-n">AWS Architect</span>
+            <span class="ops-chip chip-f">Engineering Manager</span>
+          </div>
+        </div>
+        <div>
+          <div class="sdr-subsection-label">Pre-Event Sequence</div>
+          <div class="seq-list">
+            <div class="seq-item"><span class="seq-t">T−14</span><span class="seq-text">Coordinate pre-set meeting list with AWS ISV field team</span></div>
+            <div class="seq-item"><span class="seq-t">T−10</span><span class="seq-text">Outreach to ISV-sourced contacts: meeting ask + agenda</span></div>
+            <div class="seq-item"><span class="seq-t">T−5</span><span class="seq-text">Meeting confirmation + logistics. LinkedIn connection request</span></div>
+            <div class="seq-item"><span class="seq-t">T−1</span><span class="seq-text">Day-before reminder with booth location and meeting slot</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="sdr-subsection-label">Post-Event Sequence</div>
+          <div class="seq-list">
+            <div class="seq-item"><span class="seq-t">Day 1</span><span class="seq-text">Thank you + AWS-specific use case: "How NeuBird works in your stack"</span></div>
+            <div class="seq-item"><span class="seq-t">Day 3</span><span class="seq-text">AWS case study or proof point — west coast ICP preferred</span></div>
+            <div class="seq-item"><span class="seq-t">Day 7</span><span class="seq-text">Demo invite: "See it live — 30 min for your team"</span></div>
+          </div>
+        </div>
+        <div class="sdr-goal-bar"><strong>Goal:</strong> 20 pre-set meetings → 8 qualified → 3 opps within 30 days</div>
+      </div>
+    </div>
+
+    <!-- AWS Summit NY -->
+    <div class="sdr-event-card">
+      <div class="sdr-card-top">
+        <div>
+          <div class="sdr-card-name">AWS Summit <em>New York</em></div>
+          <div class="sdr-card-sub">New York, NY · Largest US Summit · Dual-mode</div>
+        </div>
+        <div class="sdr-card-date">Jun 17</div>
+      </div>
+      <div class="sdr-card-body">
+        <div>
+          <div class="sdr-subsection-label">Target Personas</div>
+          <div class="sdr-personas">
+            <span class="ops-chip chip-n">SRE / Platform Eng</span>
+            <span class="ops-chip chip-o">VP Engineering</span>
+            <span class="ops-chip chip-o">CTO</span>
+            <span class="ops-chip chip-f">FinServ IT Leaders</span>
+          </div>
+        </div>
+        <div>
+          <div class="sdr-subsection-label">Pre-Event Sequence</div>
+          <div class="seq-list">
+            <div class="seq-item"><span class="seq-t">T−21</span><span class="seq-text">Meeting ask: practitioners via SDR, execs via AE personal outreach</span></div>
+            <div class="seq-item"><span class="seq-t">T−14</span><span class="seq-text">LinkedIn + email follow-up. FinServ reliability angle for NYC exec track</span></div>
+            <div class="seq-item"><span class="seq-t">T−7</span><span class="seq-text">Meeting confirmation + pre-read (1-pager segmented by persona)</span></div>
+            <div class="seq-item"><span class="seq-t">T−1</span><span class="seq-text">Logistics reminder. Flag exec meetings to AE for prep</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="sdr-subsection-label">Post-Event Sequence (segmented)</div>
+          <div class="seq-list">
+            <div class="seq-item"><span class="seq-t">Day 1</span><span class="seq-text">Persona-split email: practitioner → trial CTA; exec → discovery call ask</span></div>
+            <div class="seq-item"><span class="seq-t">Day 5</span><span class="seq-text">FinServ proof point or reliability case study for exec track</span></div>
+            <div class="seq-item"><span class="seq-t">Day 10</span><span class="seq-text">Final touch: re:Invent preview + meeting ask for non-responders</span></div>
+          </div>
+        </div>
+        <div class="sdr-goal-bar"><strong>Goal:</strong> 30 contacts → 10 discovery calls → 4 qualified opps. Every exec conversation seeds re:Invent pipeline.</div>
+      </div>
+    </div>
+
+    <!-- AWS GameDay -->
+    <div class="sdr-event-card">
+      <div class="sdr-card-top">
+        <div>
+          <div class="sdr-card-name">AWS GameDay <em>New York</em></div>
+          <div class="sdr-card-sub">New York, NY · Hands-on technical event</div>
+        </div>
+        <div class="sdr-card-date">Jun 23</div>
+      </div>
+      <div class="sdr-card-body">
+        <div>
+          <div class="sdr-subsection-label">Target Personas</div>
+          <div class="sdr-personas">
+            <span class="ops-chip chip-n">SRE</span>
+            <span class="ops-chip chip-n">Platform Engineer</span>
+            <span class="ops-chip chip-f">DevOps Lead</span>
+          </div>
+        </div>
+        <div>
+          <div class="sdr-subsection-label">Pre-Event Sequence</div>
+          <div class="seq-list">
+            <div class="seq-item"><span class="seq-t">T−14</span><span class="seq-text">Coordinate facilitator role with AWS. Brief NeuBird reps on GameDay format</span></div>
+            <div class="seq-item"><span class="seq-t">T−7</span><span class="seq-text">Cross-reference Summit NY attendee list — warm outreach to repeat audience</span></div>
+            <div class="seq-item"><span class="seq-t">T−3</span><span class="seq-text">"See you at GameDay" note to confirmed participants from Summit NY</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="sdr-subsection-label">Post-Event Sequence</div>
+          <div class="seq-list">
+            <div class="seq-item"><span class="seq-t">Day 0</span><span class="seq-text">"You saw it work — want it in production?" — same-day email with trial CTA</span></div>
+            <div class="seq-item"><span class="seq-t">Day 3</span><span class="seq-text">Technical 1-pager + sandbox trial invite: "Run your own scenario"</span></div>
+            <div class="seq-item"><span class="seq-t">Day 7</span><span class="seq-text">SDR outreach to non-responders. Offer architecture call for high-intent contacts</span></div>
+          </div>
+        </div>
+        <div class="sdr-goal-bar"><strong>Goal:</strong> 20 contacts → 6 discovery calls. Highest-intent audience of June — close the month strong.</div>
+      </div>
+    </div>
+
+  </div><!-- /sdr-event-grid -->
+
+  <div class="overline" style="margin-top:0.5rem;"><div class="overline-rule"></div><div class="overline-text">SDR Messaging Guide</div></div>
+
+  <table class="msg-table">
+    <thead>
+      <tr>
+        <th>Touch</th>
+        <th>Channel</th>
+        <th>Core Message</th>
+        <th>CTA</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T−21 / T−14</td>
+        <td>Email + LinkedIn</td>
+        <td>Invitation or meeting ask — personal, brief, no product pitch. Reference the specific event and why this person specifically</td>
+        <td>Accept invite / Book meeting slot</td>
+      </tr>
+      <tr>
+        <td>T−7 / T−1</td>
+        <td>Email</td>
+        <td>Logistics + teaser. Hosted events: "We'll show a 2-min live RCA. No slides." Conference events: meeting confirmation + agenda</td>
+        <td>Confirm attendance</td>
+      </tr>
+      <tr>
+        <td>Day 0</td>
+        <td>Email (personal)</td>
+        <td>"Great to meet you at [event]" — reference a specific thing they said or showed interest in. Never a template</td>
+        <td>Reply to continue conversation</td>
+      </tr>
+      <tr>
+        <td>Day 3</td>
+        <td>Email</td>
+        <td>One relevant asset: demo recording, case study, or technical 1-pager matched to their persona and stack</td>
+        <td>Watch / Read</td>
+      </tr>
+      <tr>
+        <td>Day 7</td>
+        <td>Email</td>
+        <td>"30 minutes to see it in your environment" — direct discovery call ask. No preamble</td>
+        <td>Book discovery call</td>
+      </tr>
+      <tr>
+        <td>Day 10</td>
+        <td>Email + Phone</td>
+        <td>Final touch — last attempt before exiting sequence. Short. Acknowledge it's the last one</td>
+        <td>Reply or book call</td>
+      </tr>
+    </tbody>
+  </table>
+
 </section>
 
 <!-- FOOTER -->
