@@ -256,7 +256,7 @@
   }
   .deal-stage-row {
     display: grid;
-    grid-template-columns: 90px 160px 80px 1fr;
+    grid-template-columns: 80px 150px 78px 64px 1fr;
     border-bottom: 1px solid var(--rule);
     background: var(--white);
     transition: background 0.12s;
@@ -297,6 +297,9 @@
   }
   .deal-meddpic-badge.highlight { background: rgba(250,85,30,0.1); color: var(--orange); }
   .deal-cell-desc { font-size: 12px; color: var(--ink-mid); line-height: 1.5; }
+  .deal-winrate { font-family: var(--mono); font-size: 11.5px; font-weight: 500; color: var(--navy); }
+  .deal-winrate.won { color: var(--forest); }
+  .deal-winrate.lost { color: var(--ink-light); }
 
   /* ── MEDDPIC LETTER CARDS ── */
   .meddpic-grid {
@@ -797,55 +800,102 @@
         <div class="deal-cell header">Stage</div>
         <div class="deal-cell header">Name</div>
         <div class="deal-cell header">MEDDPIC Gate</div>
+        <div class="deal-cell header">Win Rate</div>
         <div class="deal-cell header">Entry Criteria</div>
       </div>
       <div class="deal-stage-row">
         <div class="deal-cell"><span class="deal-stage-num">Stage 0</span></div>
-        <div class="deal-cell"><span class="deal-stage-name">Unqualified</span></div>
+        <div class="deal-cell"><span class="deal-stage-name">Meeting Set</span></div>
         <div class="deal-cell"><span class="tag tag-g">None</span></div>
-        <div class="deal-cell deal-cell-desc">Opportunity created. No qualification completed. SDR owns until discovery call done.</div>
+        <div class="deal-cell"><span class="deal-winrate">5%</span></div>
+        <div class="deal-cell deal-cell-desc">An initial meeting is booked with a prospect that meets basic ICP criteria but has not yet taken place. Deal Name, Close Date, Amount (est.), and Deal Owner populated. SDR owns until the discovery call.</div>
       </div>
       <div class="deal-stage-row">
         <div class="deal-cell"><span class="deal-stage-num">Stage 1</span></div>
         <div class="deal-cell"><span class="deal-stage-name">Discovery</span></div>
         <div class="deal-cell"><span class="deal-meddpic-badge highlight">M + I</span></div>
+        <div class="deal-cell"><span class="deal-winrate">10%</span></div>
         <div class="deal-cell deal-cell-desc">Discovery call complete. Metrics (M) and Identify Pain (I) documented. Pain is real and quantified. AE owns the opportunity.</div>
       </div>
       <div class="deal-stage-row">
         <div class="deal-cell"><span class="deal-stage-num">Stage 2</span></div>
         <div class="deal-cell"><span class="deal-stage-name">Champion Engaged</span></div>
         <div class="deal-cell"><span class="deal-meddpic-badge">C</span></div>
+        <div class="deal-cell"><span class="deal-winrate">20%</span></div>
         <div class="deal-cell deal-cell-desc">Champion (C) identified by name and title. Confirmed they have internal credibility and access to the Economic Buyer. Not just a coach.</div>
       </div>
       <div class="deal-stage-row">
         <div class="deal-cell"><span class="deal-stage-num">Stage 3</span></div>
         <div class="deal-cell"><span class="deal-stage-name">Economic Buyer Identified</span></div>
         <div class="deal-cell"><span class="deal-meddpic-badge">E</span></div>
+        <div class="deal-cell"><span class="deal-winrate">35%</span></div>
         <div class="deal-cell deal-cell-desc">Economic Buyer (E) named in CRM. AE or champion has had a direct conversation with them. EB is aware of NeuBird AI and the potential initiative.</div>
       </div>
       <div class="deal-stage-row">
         <div class="deal-cell"><span class="deal-stage-num">Stage 4</span></div>
         <div class="deal-cell"><span class="deal-stage-name">POC Kickoff</span></div>
         <div class="deal-cell"><span class="deal-meddpic-badge">D</span></div>
+        <div class="deal-cell"><span class="deal-winrate">50%</span></div>
         <div class="deal-cell deal-cell-desc">Decision Criteria (D) documented — what does the prospect use to evaluate vendors? Technical requirements, security, pricing model, integration needs. POC scope agreed.</div>
       </div>
       <div class="deal-stage-row">
         <div class="deal-cell"><span class="deal-stage-num">Stage 5</span></div>
         <div class="deal-cell"><span class="deal-stage-name">POC Complete</span></div>
         <div class="deal-cell"><span class="deal-meddpic-badge">D</span></div>
+        <div class="deal-cell"><span class="deal-winrate">65%</span></div>
         <div class="deal-cell deal-cell-desc">Decision Process (D) mapped — who is involved in the decision, in what order, and what are the legal/procurement gates? Close date updated to reflect actual process timeline.</div>
       </div>
       <div class="deal-stage-row">
         <div class="deal-cell"><span class="deal-stage-num">Stage 6</span></div>
         <div class="deal-cell"><span class="deal-stage-name">Proposal / Negotiation</span></div>
         <div class="deal-cell"><span class="deal-meddpic-badge">P</span></div>
+        <div class="deal-cell"><span class="deal-winrate">80%</span></div>
         <div class="deal-cell deal-cell-desc">Proposal (P) presented to EB or champion. Pricing shared. Legal review initiated. All MEDDPIC fields must be complete before stage 6.</div>
       </div>
       <div class="deal-stage-row">
         <div class="deal-cell"><span class="deal-stage-num">Stage 7</span></div>
-        <div class="deal-cell"><span class="deal-stage-name">Closed Won / Lost</span></div>
+        <div class="deal-cell"><span class="deal-stage-name">Closed Won</span></div>
         <div class="deal-cell"><span class="tag tag-f">Complete</span></div>
-        <div class="deal-cell deal-cell-desc">All MEDDPIC fields complete. Win/loss reason required. CS handoff initiated within 48 hrs (won) or contact recycled to nurture (lost).</div>
+        <div class="deal-cell"><span class="deal-winrate won">100%</span></div>
+        <div class="deal-cell deal-cell-desc">Contract signed. All MEDDPIC fields complete, win reason and final Amount populated. CS handoff initiated within 48 hrs.</div>
+      </div>
+      <div class="deal-stage-row">
+        <div class="deal-cell"><span class="deal-stage-num">Stage 7</span></div>
+        <div class="deal-cell"><span class="deal-stage-name">Closed Lost</span></div>
+        <div class="deal-cell"><span class="tag tag-g">Complete</span></div>
+        <div class="deal-cell"><span class="deal-winrate lost">0%</span></div>
+        <div class="deal-cell deal-cell-desc">Deal lost. Closed Lost Reason required (and Lost To competitor where applicable). Contact recycled to long-term nurture.</div>
+      </div>
+    </div>
+
+    <!-- Closed Lost picklists -->
+    <div class="sub-overline"><div class="sub-overline-rule"></div><div class="sub-overline-text">Closed Lost — Required Picklists</div></div>
+    <p class="body-text">When a deal moves to Closed Lost, two account property fields are required. Closed Lost Reason captures why; Lost To (Competitor) captures who we lost to when a competitor won.</p>
+
+    <div class="two-col-grid">
+      <div class="list-card">
+        <div class="list-card-label">Closed Lost Reason <span style="color:var(--ink-light);">· dropdown</span></div>
+        <div class="list-card-items">
+          <span class="tag tag-n">Lost to Competitor</span>
+          <span class="tag tag-n">Price / Budget</span>
+          <span class="tag tag-n">No Decision / Stalled</span>
+          <span class="tag tag-n">Product Not a Fit</span>
+          <span class="tag tag-n">Timing / Reprioritized</span>
+          <span class="tag tag-n">Champion Left / Org Change</span>
+          <span class="tag tag-g">Other (note required)</span>
+        </div>
+      </div>
+      <div class="list-card" style="background:var(--white);">
+        <div class="list-card-label">Lost To (Competitor) <span style="color:var(--ink-light);">· dropdown</span></div>
+        <div class="list-card-items">
+          <span class="tag tag-o">Datadog</span>
+          <span class="tag tag-o">Grafana Cloud</span>
+          <span class="tag tag-o">Chronosphere</span>
+          <span class="tag tag-o">New Relic</span>
+          <span class="tag tag-o">Dynatrace</span>
+          <span class="tag tag-f">Internal Build</span>
+          <span class="tag tag-g">Other</span>
+        </div>
       </div>
     </div>
 

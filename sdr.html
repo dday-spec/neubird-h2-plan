@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuBird AI — Sales Development</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange:    #FA551E;
+    --navy:      #003A51;
+    --forest:    #008C61;
+    --ink:       #242321;
+    --ink-mid:   #4A4845;
+    --ink-light: #7A7875;
+    --cream:     #F7F5F2;
+    --panel:     #F4F4F2;
+    --rule:      #E2E2DE;
+    --white:     #FFFFFF;
+    --serif:     'Fraunces', Georgia, serif;
+    --sans:      'IBM Plex Sans', system-ui, sans-serif;
+    --mono:      'IBM Plex Mono', 'Courier New', monospace;
+    --nav-w:     230px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 15px;
+    color: var(--ink);
+    background: var(--white);
+    display: flex;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* ── LEFT NAV ── */
+  .sidenav {
+    width: var(--nav-w);
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    overflow-y: auto;
+  }
+  .nav-logo-area {
+    padding: 1.75rem 1.5rem 1.25rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav-logo { font-family: var(--serif); font-size: 1rem; font-weight: 300; color: #fff; }
+  .nav-logo em { color: var(--orange); font-style: italic; }
+  .nav-context {
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.3);
+    margin-top: 0.3rem;
+  }
+  .nav-section { padding: 1.25rem 1.25rem 0.5rem; }
+  .nav-section-label {
+    font-family: var(--mono);
+    font-size: 0.52rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.28);
+    margin-bottom: 0.5rem;
+    padding-left: 0.5rem;
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding: 0.55rem 0.75rem;
+    border-radius: 4px;
+    font-family: var(--sans);
+    font-size: 13.5px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.6);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    margin-bottom: 0.1rem;
+    transition: background 0.12s, color 0.12s;
+  }
+  .nav-item:hover { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.9); }
+  .nav-item.active { background: rgba(250,85,30,0.18); color: #fff; }
+  .nav-item.active .nav-dot { background: var(--orange); }
+  .nav-dot { width: 6px; height: 6px; border-radius: 1px; background: rgba(255,255,255,0.2); flex-shrink: 0; transition: background 0.12s; }
+  .nav-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 0.75rem 1.25rem; }
+  .nav-footer { margin-top: auto; padding: 1.25rem 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); }
+  .nav-footer-links { display: flex; flex-direction: column; gap: 0.5rem; }
+  .nav-footer a {
+    font-family: var(--mono);
+    font-size: 0.57rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.3);
+    display: flex; align-items: center; gap: 0.4rem;
+    transition: color 0.12s;
+  }
+  .nav-footer a:hover { color: rgba(255,255,255,0.65); }
+
+  /* ── MAIN ── */
+  .main { margin-left: var(--nav-w); flex: 1; display: flex; flex-direction: column; }
+
+  .page-header {
+    padding: 2.5rem 3rem 2rem;
+    border-bottom: 1px solid var(--rule);
+    background: var(--white);
+  }
+  .page-eyebrow {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--orange);
+    margin-bottom: 0.5rem;
+  }
+  .page-title { font-family: var(--serif); font-size: 2rem; font-weight: 300; color: var(--ink); line-height: 1.2; }
+  .page-title em { font-style: italic; color: var(--orange); }
+  .page-desc { font-size: 13.5px; font-weight: 300; color: var(--ink-light); margin-top: 0.5rem; max-width: 640px; line-height: 1.6; }
+
+  .content-panel { display: none; padding: 2.5rem 3rem; max-width: 980px; }
+  .content-panel.active { display: block; }
+
+  /* Overline */
+  .sub-overline { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; margin-top: 2.5rem; }
+  .sub-overline:first-child { margin-top: 0; }
+  .sub-overline-rule { width: 24px; height: 2px; background: var(--orange); flex-shrink: 0; }
+  .sub-overline-text { font-family: var(--sans); font-weight: 500; font-size: 10.5px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); }
+
+  h2 { font-family: var(--serif); font-size: 1.6rem; font-weight: 300; color: var(--ink); margin-bottom: 0.5rem; line-height: 1.25; }
+  h2 em { font-style: italic; color: var(--orange); }
+  h3 { font-family: var(--serif); font-size: 1.05rem; font-weight: 300; color: var(--ink); margin-bottom: 0.4rem; line-height: 1.3; }
+  h3 em { font-style: italic; color: var(--orange); }
+  .body-text { font-size: 13.5px; font-weight: 300; color: var(--ink-mid); line-height: 1.7; margin-bottom: 1.75rem; max-width: 680px; }
+
+  /* Tags */
+  .tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    padding: 0.1rem 0.45rem;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .tag-o { background: rgba(250,85,30,0.1); color: var(--orange); }
+  .tag-n { background: rgba(0,58,81,0.08); color: var(--navy); }
+  .tag-f { background: rgba(0,140,97,0.08); color: var(--forest); }
+  .tag-g { background: var(--panel); color: var(--ink-mid); }
+
+  /* ── STAT STRIP ── */
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+  .stat-cell { background: var(--white); padding: 1.5rem; transition: background 0.12s; }
+  .stat-cell:hover { background: var(--cream); }
+  .stat-num { font-family: var(--serif); font-size: 2.1rem; font-weight: 300; font-style: italic; color: var(--orange); line-height: 1; margin-bottom: 0.4rem; }
+  .stat-label { font-size: 12px; font-weight: 300; color: var(--ink-mid); line-height: 1.5; }
+
+  /* ── FACT ROW ── */
+  .fact-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+  .fact-cell { padding: 1rem 1.25rem; border-right: 1px solid var(--rule); background: var(--white); }
+  .fact-cell:last-child { border-right: none; }
+  .fact-key { font-family: var(--mono); font-size: 9.5px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-light); margin-bottom: 0.35rem; }
+  .fact-val { font-size: 13px; font-weight: 400; color: var(--ink); line-height: 1.4; }
+
+  /* ── MOTION CARDS (3-col) ── */
+  .motion-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+  .motion-card { background: var(--white); padding: 1.5rem; transition: background 0.12s; }
+  .motion-card:hover { background: var(--cream); }
+  .motion-num { font-family: var(--mono); font-size: 9.5px; font-weight: 500; color: rgba(250,85,30,0.55); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.4rem; }
+  .motion-name { font-family: var(--serif); font-size: 1.15rem; font-weight: 300; color: var(--ink); margin-bottom: 0.2rem; line-height: 1.2; }
+  .motion-name em { font-style: italic; color: var(--orange); }
+  .motion-tag { margin-bottom: 0.75rem; }
+  .motion-def { font-size: 12.5px; font-weight: 300; color: var(--ink-mid); line-height: 1.6; }
+
+  /* ── TWO-COL GRID ── */
+  .two-col-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+  .list-card {
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    padding: 1.25rem 1.5rem;
+  }
+  .list-card-label { font-family: var(--mono); font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--orange); margin-bottom: 0.75rem; }
+  .list-card-items { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+
+  /* ── PERSONA / PROFILE ── */
+  .lc-flow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    margin-bottom: 2rem;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .lc-stage {
+    flex: 1;
+    min-width: 150px;
+    padding: 1.1rem 0.9rem;
+    border-right: 1px solid var(--rule);
+    background: var(--white);
+    transition: background 0.12s;
+  }
+  .lc-stage:last-child { border-right: none; }
+  .lc-stage:hover { background: var(--panel); }
+  .lc-stage-name { font-family: var(--serif); font-size: 0.95rem; font-weight: 300; color: var(--ink); margin-bottom: 0.4rem; line-height: 1.2; }
+  .lc-stage-name em { color: var(--orange); font-style: italic; }
+  .lc-note { font-size: 11.5px; font-weight: 300; color: var(--ink-light); line-height: 1.45; }
+
+  /* ── DO TABLE ── */
+  table.ops-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    font-size: 13px;
+  }
+  table.ops-table thead th {
+    background: var(--navy);
+    color: rgba(255,255,255,0.75);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  table.ops-table tbody tr { border-top: 1px solid var(--rule); }
+  table.ops-table tbody tr:nth-child(even) { background: var(--panel); }
+  table.ops-table tbody td {
+    padding: 0.75rem 1rem;
+    font-weight: 300;
+    color: var(--ink-mid);
+    vertical-align: top;
+    line-height: 1.55;
+    border-right: 1px solid var(--rule);
+    font-size: 13px;
+  }
+  table.ops-table tbody td:first-child { font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--ink); }
+
+  /* ── CARD GRID ── */
+  .card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; margin-bottom: 2rem; }
+  .info-card { background: var(--white); padding: 1.5rem; transition: background 0.12s; }
+  .info-card:hover { background: var(--cream); }
+  .info-card h3 { margin-bottom: 0.5rem; }
+  .info-card p { font-size: 13px; font-weight: 300; color: var(--ink-mid); line-height: 1.65; }
+
+  /* ── CHECK LIST ── */
+  .check-list { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; margin-bottom: 2rem; }
+  .check-item { display: grid; grid-template-columns: 30px 1fr; border-top: 1px solid var(--rule); background: var(--white); transition: background 0.12s; }
+  .check-item:first-child { border-top: none; }
+  .check-item:hover { background: var(--panel); }
+  .check-mark { display: flex; align-items: flex-start; justify-content: center; padding: 0.85rem 0; color: var(--orange); font-size: 12px; }
+  .check-text { padding: 0.85rem 1rem 0.85rem 0; font-size: 13px; font-weight: 300; color: var(--ink-mid); line-height: 1.55; }
+  .check-text strong { font-weight: 500; color: var(--ink); }
+</style>
+</head>
+<body>
+
+<!-- LEFT NAV -->
+<nav class="sidenav">
+  <div class="nav-logo-area">
+    <div class="nav-logo">NeuBird <em>AI</em></div>
+    <div class="nav-context">Sales Development · H2 2026</div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-label">This Section</div>
+    <button class="nav-item active" onclick="show('role', this)">
+      <span class="nav-dot"></span> The Role
+    </button>
+    <button class="nav-item" onclick="show('motion', this)">
+      <span class="nav-dot"></span> The Motion
+    </button>
+    <button class="nav-item" onclick="show('buyers', this)">
+      <span class="nav-dot"></span> Target Buyers
+    </button>
+    <button class="nav-item" onclick="show('hiring', this)">
+      <span class="nav-dot"></span> Hiring Profile
+    </button>
+  </div>
+
+  <div class="nav-divider"></div>
+
+  <div class="nav-section">
+    <div class="nav-section-label">Also</div>
+    <a class="nav-item" href="revops.html">
+      <span class="nav-dot"></span> Revenue Operations
+    </a>
+  </div>
+
+  <div class="nav-footer">
+    <div class="nav-footer-links">
+      <a href="index.html">← Full H2 Plan</a>
+      <a href="revops.html">Revenue Operations →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- ══════════════════════════════════════════
+       THE ROLE
+  ══════════════════════════════════════════ -->
+  <div id="panel-role" class="content-panel active">
+    <div class="page-header" style="margin:-2.5rem -3rem 2.5rem; padding:2.5rem 3rem 2rem;">
+      <div class="page-eyebrow">Sales Development</div>
+      <div class="page-title">Founding <em>SDR.</em></div>
+      <div class="page-desc">Our first Founding SDR hire — owning the full pipeline motion across inbound, outbound, and allbound. This page is the working spec for the role: the mandate, the motion to build, the buyers to reach, and the hiring profile.</div>
+    </div>
+
+    <!-- Mandate -->
+    <div class="sub-overline"><div class="sub-overline-rule"></div><div class="sub-overline-text">The Mandate</div></div>
+    <p class="body-text">This is our first Founding SDR, and it sits on the marketing team. The role owns the full pipeline motion — inbound, outbound, and allbound. We already have sequences, tooling, and meetings on the calendar. What we don't have yet is the motion that scales across all three, and that is what this hire is here to build. Player and coach from day one: they do the reps, and they set the standard.</p>
+
+    <!-- Role facts -->
+    <div class="fact-row">
+      <div class="fact-cell">
+        <div class="fact-key">Team</div>
+        <div class="fact-val">Marketing</div>
+      </div>
+      <div class="fact-cell">
+        <div class="fact-key">Location</div>
+        <div class="fact-val">Redwood City, CA · in-office</div>
+      </div>
+      <div class="fact-cell">
+        <div class="fact-key">Seniority</div>
+        <div class="fact-val">Founding hire · 2–4 yrs</div>
+      </div>
+      <div class="fact-cell">
+        <div class="fact-key">Comp</div>
+        <div class="fact-val">Base + variable + founding equity</div>
+      </div>
+    </div>
+
+    <!-- Why it matters -->
+    <div class="sub-overline"><div class="sub-overline-rule"></div><div class="sub-overline-text">Why It Matters</div></div>
+    <p class="body-text">Production never sleeps, and neither do the teams keeping it alive. Engineering teams lose roughly 40% of their time to incidents — pulled off the roadmap to firefight problems that page them at the worst possible hour. NeuBird AI builds The Production Ops Agent, an AI agent that cuts incident resolution from hours to minutes. The proof is real, and the GTM engine is being built to match the product.</p>
+
+    <div class="stat-strip">
+      <div class="stat-cell">
+        <div class="stat-num">90%</div>
+        <div class="stat-label">Up to 90% MTTR reduction</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">94%</div>
+        <div class="stat-label">RCA accuracy across production investigations</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">120K+</div>
+        <div class="stat-label">Production investigations to date</div>
+      </div>
+    </div>
+
+    <p class="body-text" style="margin-bottom:0;">Backed by Xora Innovation, Mayfield, M12 (Microsoft), and AWS.</p>
+  </div><!-- /role -->
+
+
+  <!-- ══════════════════════════════════════════
+       THE MOTION
+  ══════════════════════════════════════════ -->
+  <div id="panel-motion" class="content-panel">
+    <div class="page-header" style="margin:-2.5rem -3rem 2.5rem; padding:2.5rem 3rem 2rem;">
+      <div class="page-eyebrow">Sales Development</div>
+      <div class="page-title">The <em>Motion.</em></div>
+      <div class="page-desc">One coordinated motion across three plays. The Founding SDR runs all three, learns what lands with engineering buyers, and turns what works into a playbook the next reps inherit.</div>
+    </div>
+
+    <div class="sub-overline"><div class="sub-overline-rule"></div><div class="sub-overline-text">Inbound · Outbound · Allbound</div></div>
+    <p class="body-text">First on the ground: qualifying inbound demand the moment a buyer raises a hand, running outbound into target accounts, and orchestrating the allbound plays that tie campaigns, intent signals, and prospecting into one coordinated motion.</p>
+
+    <div class="motion-grid">
+      <div class="motion-card">
+        <div class="motion-num">Play 01</div>
+        <div class="motion-name"><em>Inbound</em></div>
+        <div class="motion-tag"><span class="tag tag-o">Speed-to-lead</span></div>
+        <div class="motion-def">Qualify and route hand-raisers from the website, content, and events before they go cold. Win on speed — respond fast the moment a buyer raises a hand.</div>
+      </div>
+      <div class="motion-card">
+        <div class="motion-num">Play 02</div>
+        <div class="motion-name"><em>Outbound</em></div>
+        <div class="motion-tag"><span class="tag tag-n">Build & test</span></div>
+        <div class="motion-def">Build and test outbound sequences across email, phone, and LinkedIn into target accounts, then refine based on what converts. Fresh eyes on the motion, not a handed-down script.</div>
+      </div>
+      <div class="motion-card">
+        <div class="motion-num">Play 03</div>
+        <div class="motion-name"><em>Allbound</em></div>
+        <div class="motion-tag"><span class="tag tag-f">Orchestrate</span></div>
+        <div class="motion-def">Turn marketing campaigns, intent signals, and account activity into timely, coordinated outreach — the motion that ties inbound and outbound together so they feed each other.</div>
+      </div>
+    </div>
+
+    <!-- What you'll do -->
+    <div class="sub-overline"><div class="sub-overline-rule"></div><div class="sub-overline-text">What You'll Do</div></div>
+
+    <table class="ops-table">
+      <thead>
+        <tr><th style="width:200px;">Responsibility</th><th>Detail</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Own the pipeline</td>
+          <td>Research, prospect, and engage SRE, Platform Engineering, and DevOps leaders across inbound, outbound, and allbound — while responding fast to inbound demand.</td>
+        </tr>
+        <tr>
+          <td>Win on speed-to-lead</td>
+          <td>Qualify and route hand-raisers from the website, content, and events before they go cold.</td>
+        </tr>
+        <tr>
+          <td>Build the outbound motion</td>
+          <td>Build and test outbound sequences across email, phone, and LinkedIn, then refine based on what converts.</td>
+        </tr>
+        <tr>
+          <td>Run the allbound plays</td>
+          <td>Turn marketing campaigns, intent signals, and account activity into timely, coordinated outreach.</td>
+        </tr>
+        <tr>
+          <td>Sharpen the message</td>
+          <td>Partner with marketing and product to refine messaging based on real buyer reactions.</td>
+        </tr>
+        <tr>
+          <td>Build for those who follow</td>
+          <td>Document what works into a repeatable playbook that the next SDR hires inherit.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div><!-- /motion -->
+
+
+  <!-- ══════════════════════════════════════════
+       TARGET BUYERS
+  ══════════════════════════════════════════ -->
+  <div id="panel-buyers" class="content-panel">
+    <div class="page-header" style="margin:-2.5rem -3rem 2.5rem; padding:2.5rem 3rem 2rem;">
+      <div class="page-eyebrow">Sales Development</div>
+      <div class="page-title">Target <em>Buyers.</em></div>
+      <div class="page-desc">Who to reach and why they listen. The buyers are engineering leaders drowning in production noise — the people who feel the 2am page and the 40% of time lost to incidents.</div>
+    </div>
+
+    <div class="sub-overline"><div class="sub-overline-rule"></div><div class="sub-overline-text">Personas</div></div>
+    <p class="body-text">Prospecting centers on the technical leaders who own production reliability and the engineering managers accountable for the roadmap that incidents keep derailing.</p>
+
+    <div class="lc-flow">
+      <div class="lc-stage">
+        <div class="lc-stage-name">SRE <em>Lead</em></div>
+        <div class="lc-note">Owns reliability and on-call. Feels incident load and MTTR pressure most directly.</div>
+      </div>
+      <div class="lc-stage">
+        <div class="lc-stage-name">Platform <em>Engineering</em></div>
+        <div class="lc-note">Owns the tooling and infrastructure the rest of engineering runs on.</div>
+      </div>
+      <div class="lc-stage">
+        <div class="lc-stage-name">DevOps <em>Leaders</em></div>
+        <div class="lc-note">Accountable for the pipeline from build to production and the noise it generates.</div>
+      </div>
+      <div class="lc-stage">
+        <div class="lc-stage-name">Engineering <em>Managers</em></div>
+        <div class="lc-note">Watch the roadmap slip every time the team is pulled off to firefight.</div>
+      </div>
+    </div>
+
+    <div class="sub-overline"><div class="sub-overline-rule"></div><div class="sub-overline-text">The Angle</div></div>
+    <div class="card-grid">
+      <div class="info-card">
+        <h3>The pain <em>they feel.</em></h3>
+        <p>Engineering teams lose roughly 40% of their time to incidents — pulled off the roadmap to firefight problems that page them at the worst possible hour. They're drowning in production noise and piecing every incident story together across five tools.</p>
+      </div>
+      <div class="info-card">
+        <h3>What we <em>offer them.</em></h3>
+        <p>The Production Ops Agent catches issues before they page anyone, resolves incidents without an engineer reconstructing the story, and turns every investigation into operating knowledge. Production stays running, so engineers don't have to.</p>
+      </div>
+      <div class="info-card">
+        <h3>Why they <em>reply.</em></h3>
+        <p>Real proof points they can feel: up to 90% MTTR reduction and 94% RCA accuracy across 120,000+ production investigations. The job is to make a busy engineering leader stop scrolling — strong, specific written outreach that speaks to their reality.</p>
+      </div>
+      <div class="info-card">
+        <h3>How we <em>learn.</em></h3>
+        <p>Figure out what actually lands with SRE leads and engineering managers, then turn what works into a playbook. Partner with marketing and product to refine the message based on real buyer reactions, not assumptions.</p>
+      </div>
+    </div>
+  </div><!-- /buyers -->
+
+
+  <!-- ══════════════════════════════════════════
+       HIRING PROFILE
+  ══════════════════════════════════════════ -->
+  <div id="panel-hiring" class="content-panel">
+    <div class="page-header" style="margin:-2.5rem -3rem 2.5rem; padding:2.5rem 3rem 2rem;">
+      <div class="page-eyebrow">Sales Development</div>
+      <div class="page-title">Hiring <em>Profile.</em></div>
+      <div class="page-desc">What we're looking for in the Founding SDR, the nice-to-haves that set a candidate apart, and what the seat offers in return.</div>
+    </div>
+
+    <div class="sub-overline"><div class="sub-overline-rule"></div><div class="sub-overline-text">What We're Looking For</div></div>
+
+    <div class="check-list">
+      <div class="check-item">
+        <div class="check-mark">◆</div>
+        <div class="check-text"><strong>2 to 4 years</strong> in an SDR, BDR, or demand role — ideally selling technical products to engineering buyers.</div>
+      </div>
+      <div class="check-item">
+        <div class="check-mark">◆</div>
+        <div class="check-text"><strong>Range across motions.</strong> Works inbound and outbound with equal energy and sees how they feed each other.</div>
+      </div>
+      <div class="check-item">
+        <div class="check-mark">◆</div>
+        <div class="check-text"><strong>A builder's instinct.</strong> Has wanted to own a motion, not just run a script someone handed them.</div>
+      </div>
+      <div class="check-item">
+        <div class="check-mark">◆</div>
+        <div class="check-text"><strong>Strong written communication.</strong> Can make a busy engineering leader stop scrolling and reply.</div>
+      </div>
+      <div class="check-item">
+        <div class="check-mark">◆</div>
+        <div class="check-text"><strong>Comfort with technical concepts</strong> (incidents, observability, SRE, DevOps) — or the curiosity and drive to get there fast.</div>
+      </div>
+      <div class="check-item">
+        <div class="check-mark">◆</div>
+        <div class="check-text"><strong>Fluency with modern sales and marketing tooling:</strong> CRM, sequencing, and prospecting platforms.</div>
+      </div>
+      <div class="check-item">
+        <div class="check-mark">◆</div>
+        <div class="check-text"><strong>Self-direction and high ownership</strong> in an early-stage, in-office environment.</div>
+      </div>
+    </div>
+
+    <div class="sub-overline"><div class="sub-overline-rule"></div><div class="sub-overline-text">Nice to Have</div></div>
+    <div class="two-col-grid">
+      <div class="list-card" style="background:var(--white);">
+        <div class="list-card-label">Bonus Experience</div>
+        <div style="font-size:13px;font-weight:300;color:var(--ink-mid);line-height:1.6;">Selling DevOps, observability, AIOps, or infrastructure software.</div>
+      </div>
+      <div class="list-card" style="background:var(--white);">
+        <div class="list-card-label">Bonus Environment</div>
+        <div style="font-size:13px;font-weight:300;color:var(--ink-mid);line-height:1.6;">Early-stage or founding-team startup experience.</div>
+      </div>
+    </div>
+
+    <div class="sub-overline"><div class="sub-overline-rule"></div><div class="sub-overline-text">What We Offer</div></div>
+    <div class="card-grid">
+      <div class="info-card">
+        <h3>A genuine <em>founding seat.</em></h3>
+        <p>Shape the inbound, outbound, and allbound motion from the ground floor and grow as it scales.</p>
+      </div>
+      <div class="info-card">
+        <h3>Founding-team <em>equity.</em></h3>
+        <p>Founding equity alongside a competitive base and variable compensation. <span style="color:var(--ink-light);">(OTE band to confirm before posting.)</span></p>
+      </div>
+      <div class="info-card">
+        <h3>Direct <em>partnership.</em></h3>
+        <p>Work directly with the founding GTM team, in-office in Redwood City, CA.</p>
+      </div>
+      <div class="info-card">
+        <h3>Real <em>backing.</em></h3>
+        <p>The backing of top-tier investors and a product with proof points customers already feel.</p>
+      </div>
+    </div>
+  </div><!-- /hiring -->
+
+</div><!-- /main -->
+
+<script>
+  function show(id, btn) {
+    document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+</script>
+</body>
+</html>
