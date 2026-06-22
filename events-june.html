@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NeuBird AI — June 2026 Events</title>
+<title>NeuBird AI — June 2026 Field Operations</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -18,497 +18,489 @@
     --cream:     #F7F5F2;
     --panel:     #F4F4F2;
     --rule:      #E2E2DE;
+    --nav-w:     220px;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
   body {
     font-family: 'IBM Plex Sans', sans-serif;
     font-weight: 300;
-    background: #e8e6e2;
+    background: var(--cream);
     color: var(--ink);
     min-height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
   }
 
-  /* ── SLIDE FRAME ── */
-  .slide {
-    width: 1200px;
-    background: var(--cream);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.15);
-  }
-
-  /* ── SLIDE HEADER ── */
-  .slide-header {
+  /* ── LEFT NAV ── */
+  .sidenav {
+    width: var(--nav-w);
+    min-height: 100vh;
     background: var(--navy);
-    padding: 1.5rem 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .slide-logo { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 300; color: #fff; }
-  .slide-logo em { color: var(--orange); font-style: italic; }
-  .slide-title-block { text-align: center; }
-  .slide-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.5); margin-bottom: 0.2rem; }
-  .slide-title { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 300; color: #fff; line-height: 1.2; }
-  .slide-title em { color: var(--orange); font-style: italic; }
-  .slide-badge { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; background: var(--orange); color: #fff; padding: 0.3rem 0.75rem; border-radius: 2px; }
-
-  /* ── SLIDE BODY ── */
-  .slide-body {
-    display: grid;
-    grid-template-columns: 340px 1fr;
-    gap: 0;
-    min-height: 560px;
-  }
-
-  /* ── LEFT: CALENDAR ── */
-  .cal-panel {
-    background: #fff;
-    border-right: 1px solid var(--rule);
-    padding: 1.75rem 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    flex-shrink: 0;
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
   }
-  .cal-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--orange); margin-bottom: 0.25rem; }
-  .cal-month { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 300; color: var(--ink); margin-bottom: 0.75rem; }
 
-  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
-  .cal-dow { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-light); text-align: center; padding: 0.3rem 0; }
-  .cal-cell { min-height: 52px; padding: 0.3rem; border-radius: 2px; }
-  .cal-cell.empty { }
-  .cal-cell.weekend .day-num { color: var(--rule); }
-  .day-num { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; font-weight: 400; color: var(--ink-light); margin-bottom: 0.2rem; }
-  .day-pill {
-    font-size: 0.52rem; font-weight: 500; border-radius: 2px;
-    padding: 0.1rem 0.3rem; line-height: 1.4;
-    display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  .sidenav-logo {
+    padding: 1.75rem 1.5rem 1.25rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
   }
-  .pill-orange { background: rgba(250,85,30,0.15); color: var(--orange); }
-  .pill-navy   { background: rgba(0,58,81,0.1);   color: var(--navy); }
-  .pill-forest { background: rgba(0,140,97,0.1);  color: var(--forest); }
-
-  /* Stats row */
-  .cal-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin-top: 0.5rem; }
-  .cal-stat { background: var(--panel); border-radius: 4px; padding: 0.6rem 0.5rem; text-align: center; }
-  .cal-stat-num { font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 300; color: var(--ink); line-height: 1; }
-  .cal-stat-lbl { font-size: 0.58rem; font-weight: 300; color: var(--ink-light); margin-top: 0.15rem; line-height: 1.3; }
-
-  /* Legend */
-  .cal-legend { display: flex; flex-direction: column; gap: 0.35rem; }
-  .legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.68rem; font-weight: 300; color: var(--ink-mid); }
-  .legend-dot { width: 8px; height: 8px; border-radius: 1px; flex-shrink: 0; }
-
-  /* ── RIGHT: EVENT TILES ── */
-  .events-panel {
-    padding: 1.75rem 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+  .sidenav-logo-mark {
+    font-family: 'Fraunces', serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: #fff;
+    line-height: 1.2;
   }
-  .events-heading { font-family: 'Fraunces', serif; font-size: 0.95rem; font-weight: 300; color: var(--ink-mid); margin-bottom: 0.25rem; }
-
-  .event-tile {
-    background: #fff;
-    border: 1px solid var(--rule);
-    border-radius: 5px;
-    padding: 1rem 1.25rem;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 0.75rem;
-    align-items: start;
-    position: relative;
-  }
-  .event-tile.hosted {
-    border-color: var(--orange);
-    border-left: 3px solid var(--orange);
-  }
-  .event-tile-left { }
-  .event-tile-name { font-family: 'Fraunces', serif; font-size: 1.05rem; font-weight: 300; color: var(--ink); line-height: 1.2; margin-bottom: 0.2rem; }
-  .event-tile-name em { color: var(--orange); font-style: italic; }
-  .event-tile-meta { font-size: 0.72rem; font-weight: 300; color: var(--ink-light); margin-bottom: 0.5rem; }
-  .event-tile-points { list-style: none; }
-  .event-tile-points li { font-size: 0.72rem; font-weight: 300; color: var(--ink-mid); line-height: 1.5; display: flex; gap: 0.35rem; }
-  .event-tile-points li::before { content: '—'; color: var(--orange); flex-shrink: 0; font-size: 0.65rem; }
-
-  .event-tile-right { display: flex; flex-direction: column; align-items: flex-end; gap: 0.35rem; flex-shrink: 0; }
-  .tile-date { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; font-weight: 500; color: var(--orange); background: rgba(250,85,30,0.08); padding: 0.2rem 0.5rem; border-radius: 2px; white-space: nowrap; }
-  .tile-mode { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; padding: 0.2rem 0.5rem; border-radius: 2px; white-space: nowrap; }
-  .mode-dark  { background: rgba(0,58,81,0.08); color: var(--navy); }
-  .mode-both  { background: rgba(0,140,97,0.08); color: var(--forest); }
-  .mode-hosted { background: var(--orange); color: #fff; }
-
-  /* ── TAB BAR ── */
-  .tab-bar {
-    display: flex;
-    border-bottom: 1px solid var(--rule);
-    background: #fff;
-    padding: 0 2.5rem;
-  }
-  .tab-btn {
+  .sidenav-logo-mark em { color: var(--orange); font-style: italic; }
+  .sidenav-logo-sub {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.62rem;
+    font-size: 0.55rem;
     font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--ink-light);
-    background: none;
-    border: none;
-    border-bottom: 2px solid transparent;
-    padding: 0.75rem 1.25rem 0.65rem;
-    cursor: pointer;
-    margin-bottom: -1px;
-    transition: color 0.15s, border-color 0.15s;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.35);
+    margin-top: 0.3rem;
   }
-  .tab-btn:hover { color: var(--ink); }
-  .tab-btn.active { color: var(--orange); border-bottom-color: var(--orange); }
 
-  /* ── TAB PANELS ── */
-  .tab-panel { display: none; }
-  .tab-panel.active { display: block; }
+  .sidenav-section {
+    padding: 1.25rem 1.5rem 0.5rem;
+  }
+  .sidenav-section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.52rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 0.5rem;
+  }
 
-  /* ── REVOPS TAB ── */
-  .revops-body {
-    padding: 1.5rem 2rem;
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.55rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.65);
+    cursor: pointer;
+    text-decoration: none;
+    margin-bottom: 0.15rem;
+    transition: background 0.15s, color 0.15s;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+  }
+  .nav-link:hover { background: rgba(255,255,255,0.06); color: #fff; }
+  .nav-link.active { background: rgba(250,85,30,0.18); color: #fff; }
+  .nav-link.active .nav-icon { color: var(--orange); }
+  .nav-icon { font-size: 0.85rem; width: 1rem; text-align: center; flex-shrink: 0; }
+
+  .sidenav-footer {
+    margin-top: auto;
+    padding: 1.25rem 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .sidenav-footer a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.58rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.35);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .sidenav-footer a:hover { color: rgba(255,255,255,0.65); }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    margin-left: var(--nav-w);
+    flex: 1;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
   }
-  .revops-intro {
+
+  .main-header {
+    padding: 2rem 2.5rem 1.5rem;
+    border-bottom: 1px solid var(--rule);
+    background: #fff;
+  }
+  .main-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--orange);
+    margin-bottom: 0.4rem;
+  }
+  .main-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.75rem;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .main-title em { color: var(--orange); font-style: italic; }
+  .main-desc {
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: var(--ink-light);
+    margin-top: 0.4rem;
+  }
+
+  .main-body { padding: 2rem 2.5rem; flex: 1; }
+
+  /* ── SECTIONS ── */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* ── STAT ROW ── */
+  .stat-row {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 0.75rem;
-    padding-bottom: 1rem;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .stat-card {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 1.25rem 1.5rem;
+  }
+  .stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .stat-num em { color: var(--orange); font-style: italic; }
+  .stat-lbl {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-light);
+    margin-top: 0.35rem;
+  }
+
+  /* ── SECTION HEADING ── */
+  .section-heading {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--ink);
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
     border-bottom: 1px solid var(--rule);
   }
-  .revops-stat { text-align: center; }
-  .revops-stat-num { font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 300; color: var(--ink); line-height: 1; }
-  .revops-stat-num em { color: var(--orange); font-style: italic; }
-  .revops-stat-lbl { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-light); margin-top: 0.25rem; }
+  .section-heading em { color: var(--orange); font-style: italic; }
 
+  /* ── REVOPS MATRIX ── */
   .revops-matrix {
     display: grid;
-    grid-template-columns: 130px repeat(4, 1fr);
+    grid-template-columns: 140px repeat(4, 1fr);
     gap: 0;
     border: 1px solid var(--rule);
-    border-radius: 5px;
+    border-radius: 6px;
     overflow: hidden;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
+    margin-bottom: 2rem;
   }
-  /* Column headers */
+
   .matrix-corner {
     background: var(--navy);
-    padding: 0.75rem 0.85rem;
+    padding: 0.85rem 1rem;
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.55rem;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.4);
   }
   .matrix-col-head {
     background: var(--navy);
-    padding: 0.75rem 0.85rem;
+    padding: 0.85rem 1rem;
     border-left: 1px solid rgba(255,255,255,0.1);
   }
   .matrix-col-head.featured { border-top: 2px solid var(--orange); }
-  .col-event { font-family: 'Fraunces', serif; font-size: 0.82rem; font-weight: 300; color: #fff; line-height: 1.2; }
+  .col-event { font-family: 'Fraunces', serif; font-size: 0.88rem; font-weight: 300; color: #fff; line-height: 1.2; }
   .col-event em { color: var(--orange); font-style: italic; }
-  .col-date { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; font-weight: 500; color: rgba(255,255,255,0.5); margin-top: 0.2rem; }
+  .col-date { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; color: rgba(255,255,255,0.4); margin-top: 0.2rem; }
 
-  /* Row labels */
   .matrix-row-label {
     background: var(--panel);
     border-top: 1px solid var(--rule);
-    padding: 0.7rem 0.85rem;
+    padding: 0.8rem 1rem;
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.57rem;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--ink-mid);
-    display: flex;
-    align-items: flex-start;
     line-height: 1.4;
   }
+  .matrix-row-label.highlight { color: var(--orange); }
 
-  /* Matrix cells */
   .matrix-cell {
     border-top: 1px solid var(--rule);
     border-left: 1px solid var(--rule);
-    padding: 0.7rem 0.85rem;
+    padding: 0.8rem 1rem;
     background: #fff;
-    vertical-align: top;
   }
   .matrix-cell ul { list-style: none; }
   .matrix-cell li {
-    font-size: 0.68rem;
+    font-size: 0.72rem;
     font-weight: 300;
     color: var(--ink-mid);
-    line-height: 1.5;
+    line-height: 1.6;
     display: flex;
-    gap: 0.3rem;
+    gap: 0.35rem;
   }
-  .matrix-cell li::before { content: '—'; color: var(--orange); flex-shrink: 0; font-size: 0.62rem; }
-  .matrix-cell .chip {
+  .matrix-cell li::before { content: '—'; color: var(--orange); flex-shrink: 0; font-size: 0.65rem; }
+  .matrix-cell.highlight { background: rgba(250,85,30,0.03); }
+
+  .chip {
     display: inline-block;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.58rem;
+    font-size: 0.6rem;
     font-weight: 500;
-    padding: 0.15rem 0.45rem;
+    padding: 0.15rem 0.5rem;
     border-radius: 2px;
-    white-space: nowrap;
   }
   .chip-orange { background: rgba(250,85,30,0.1); color: var(--orange); }
   .chip-navy   { background: rgba(0,58,81,0.08); color: var(--navy); }
   .chip-forest { background: rgba(0,140,97,0.08); color: var(--forest); }
+  .tbd { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--ink-light); }
 
-  /* Pipeline row highlight */
-  .matrix-row-label.pipeline { color: var(--orange); }
-  .matrix-cell.pipeline { background: rgba(250,85,30,0.03); }
-  .pipeline-tbd { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; color: var(--ink-light); }
-
-  /* ── SLIDE FOOTER ── */
-  .slide-footer {
-    border-top: 1px solid var(--rule);
-    padding: 0.85rem 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 0.65rem;
-    color: var(--ink-light);
-    font-weight: 300;
+  /* ── SDR SEQUENCE CARDS ── */
+  .sdr-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2rem;
   }
-  .slide-footer a { color: var(--orange); text-decoration: none; font-size: 0.65rem; }
+
+  .sdr-card {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .sdr-card.featured { border-top: 3px solid var(--orange); }
+
+  .sdr-card-header {
+    padding: 1rem 1.25rem 0.85rem;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .sdr-card-name {
+    font-family: 'Fraunces', serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .sdr-card-name em { color: var(--orange); font-style: italic; }
+  .sdr-card-meta {
+    font-size: 0.7rem;
+    font-weight: 300;
+    color: var(--ink-light);
+    margin-top: 0.2rem;
+  }
+  .sdr-card-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    font-weight: 500;
+    color: var(--orange);
+    background: rgba(250,85,30,0.08);
+    padding: 0.2rem 0.55rem;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  .sdr-card-body { padding: 1rem 1.25rem; display: flex; flex-direction: column; gap: 0.85rem; }
+
+  .sdr-row-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.57rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-light);
+    margin-bottom: 0.35rem;
+  }
+
+  .sdr-personas { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.1rem; }
+
+  .sequence-steps { display: flex; flex-direction: column; gap: 0.35rem; }
+  .seq-step {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    gap: 0.6rem;
+    align-items: baseline;
+  }
+  .seq-day {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 500;
+    color: var(--orange);
+    white-space: nowrap;
+  }
+  .seq-action {
+    font-size: 0.72rem;
+    font-weight: 300;
+    color: var(--ink-mid);
+    line-height: 1.4;
+  }
+
+  .sdr-goal {
+    font-size: 0.72rem;
+    font-weight: 300;
+    color: var(--ink-mid);
+    background: var(--panel);
+    border-radius: 4px;
+    padding: 0.6rem 0.85rem;
+    line-height: 1.5;
+  }
+  .sdr-goal strong { font-weight: 500; color: var(--ink); }
+
+  /* ── SDR PLAYBOOK TABLE ── */
+  .playbook-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    font-size: 0.73rem;
+  }
+  .playbook-table thead th {
+    background: var(--navy);
+    color: rgba(255,255,255,0.85);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.58rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.75rem 1rem;
+    text-align: left;
+  }
+  .playbook-table tbody tr { border-top: 1px solid var(--rule); }
+  .playbook-table tbody tr:nth-child(even) { background: var(--panel); }
+  .playbook-table tbody td {
+    padding: 0.7rem 1rem;
+    font-weight: 300;
+    color: var(--ink-mid);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .playbook-table tbody td:first-child {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    font-weight: 500;
+    color: var(--ink);
+    white-space: nowrap;
+  }
 </style>
 </head>
 <body>
 
-<div class="slide">
-
-  <!-- HEADER -->
-  <div class="slide-header">
-    <div class="slide-logo">NeuBird <em>AI</em></div>
-    <div class="slide-title-block">
-      <div class="slide-eyebrow">Events Calendar</div>
-      <div class="slide-title">June 2026 — <em>Field Plan</em></div>
-    </div>
-    <div class="slide-badge">June 2026</div>
+<!-- LEFT NAV -->
+<nav class="sidenav">
+  <div class="sidenav-logo">
+    <div class="sidenav-logo-mark">NeuBird <em>AI</em></div>
+    <div class="sidenav-logo-sub">June 2026 · Field Ops</div>
   </div>
 
-  <!-- TAB BAR -->
-  <div class="tab-bar">
-    <button class="tab-btn active" onclick="switchTab('field')">Field Events</button>
-    <button class="tab-btn" onclick="switchTab('revops')">RevOps &amp; Sales Dev</button>
+  <div class="sidenav-section">
+    <div class="sidenav-section-label">Operations</div>
+    <button class="nav-link active" onclick="show('revops', this)">
+      <span class="nav-icon">◈</span> Revenue Ops
+    </button>
+    <button class="nav-link" onclick="show('sdr', this)">
+      <span class="nav-icon">◎</span> Sales Development
+    </button>
   </div>
 
-  <!-- TAB: FIELD EVENTS -->
-  <div id="tab-field" class="tab-panel active">
-  <!-- BODY -->
-  <div class="slide-body">
-
-    <!-- LEFT: CALENDAR -->
-    <div class="cal-panel">
-      <div>
-        <div class="cal-label">June 2026</div>
-        <div class="cal-month">Four events.<br>Two cities.</div>
-      </div>
-
-      <div class="cal-grid">
-        <div class="cal-dow">Su</div><div class="cal-dow">Mo</div><div class="cal-dow">Tu</div><div class="cal-dow">We</div><div class="cal-dow">Th</div><div class="cal-dow">Fr</div><div class="cal-dow">Sa</div>
-
-        <!-- Row 1 -->
-        <div class="cal-cell empty weekend"></div>
-        <div class="cal-cell"><div class="day-num">1</div></div>
-        <div class="cal-cell"><div class="day-num">2</div></div>
-        <div class="cal-cell"><div class="day-num">3</div></div>
-        <div class="cal-cell"><div class="day-num">4</div></div>
-        <div class="cal-cell"><div class="day-num">5</div></div>
-        <div class="cal-cell weekend"><div class="day-num">6</div></div>
-
-        <!-- Row 2 -->
-        <div class="cal-cell weekend"><div class="day-num">7</div></div>
-        <div class="cal-cell"><div class="day-num">8</div></div>
-        <div class="cal-cell"><div class="day-num">9</div><span class="day-pill pill-orange">🏙 DataDog Dash</span></div>
-        <div class="cal-cell"><div class="day-num">10</div><span class="day-pill pill-navy">AWS Summit LA</span></div>
-        <div class="cal-cell"><div class="day-num">11</div></div>
-        <div class="cal-cell"><div class="day-num">12</div></div>
-        <div class="cal-cell weekend"><div class="day-num">13</div></div>
-
-        <!-- Row 3 -->
-        <div class="cal-cell weekend"><div class="day-num">14</div></div>
-        <div class="cal-cell"><div class="day-num">15</div></div>
-        <div class="cal-cell"><div class="day-num">16</div></div>
-        <div class="cal-cell"><div class="day-num">17</div><span class="day-pill pill-navy">AWS Summit NY</span></div>
-        <div class="cal-cell"><div class="day-num">18</div></div>
-        <div class="cal-cell"><div class="day-num">19</div></div>
-        <div class="cal-cell weekend"><div class="day-num">20</div></div>
-
-        <!-- Row 4 -->
-        <div class="cal-cell weekend"><div class="day-num">21</div></div>
-        <div class="cal-cell"><div class="day-num">22</div></div>
-        <div class="cal-cell"><div class="day-num">23</div><span class="day-pill pill-forest">AWS GameDay NYC</span></div>
-        <div class="cal-cell"><div class="day-num">24</div></div>
-        <div class="cal-cell"><div class="day-num">25</div></div>
-        <div class="cal-cell"><div class="day-num">26</div></div>
-        <div class="cal-cell weekend"><div class="day-num">27</div></div>
-
-        <!-- Row 5 -->
-        <div class="cal-cell weekend"><div class="day-num">28</div></div>
-        <div class="cal-cell"><div class="day-num">29</div></div>
-        <div class="cal-cell"><div class="day-num">30</div></div>
-        <div class="cal-cell empty"></div>
-        <div class="cal-cell empty"></div>
-        <div class="cal-cell empty"></div>
-        <div class="cal-cell empty"></div>
-      </div>
-
-      <div class="cal-stats">
-        <div class="cal-stat"><div class="cal-stat-num">4</div><div class="cal-stat-lbl">Events</div></div>
-        <div class="cal-stat"><div class="cal-stat-num">1</div><div class="cal-stat-lbl">Hosted</div></div>
-        <div class="cal-stat"><div class="cal-stat-num">3</div><div class="cal-stat-lbl">AWS</div></div>
-        <div class="cal-stat"><div class="cal-stat-num">2</div><div class="cal-stat-lbl">Cities</div></div>
-      </div>
-
-      <div class="cal-legend">
-        <div class="legend-item"><div class="legend-dot" style="background:var(--orange);"></div>NeuBird hosted rooftop (DataDog Dash)</div>
-        <div class="legend-item"><div class="legend-dot" style="background:var(--navy);"></div>AWS Summit (LA + New York)</div>
-        <div class="legend-item"><div class="legend-dot" style="background:var(--forest);"></div>AWS GameDay NYC</div>
-      </div>
-    </div>
-
-    <!-- RIGHT: EVENT TILES -->
-    <div class="events-panel">
-
-      <!-- DataDog Dash -->
-      <div class="event-tile hosted">
-        <div class="event-tile-left">
-          <div class="event-tile-name">DataDog <em>Dash</em> — NeuBird Rooftop</div>
-          <div class="event-tile-meta">New York, NY · NeuBird-hosted event</div>
-          <ul class="event-tile-points">
-            <li>Curated rooftop for SRE and platform engineering ICP — deeper conversations than the conference floor</li>
-            <li>DataDog buyers are our buyers. Show the contrast: they show the fire, we put it out</li>
-            <li>Demo-first: 2-min RCA live. Pre-set invites sent 2–3 weeks in advance</li>
-          </ul>
-        </div>
-        <div class="event-tile-right">
-          <div class="tile-date">Jun 9</div>
-          <div class="tile-mode mode-hosted">🏙 Hosted</div>
-          <div class="tile-mode mode-dark">🌙 Dark Mode</div>
-        </div>
-      </div>
-
-      <!-- AWS Summit LA -->
-      <div class="event-tile">
-        <div class="event-tile-left">
-          <div class="event-tile-name">AWS Summit <em>Los Angeles</em></div>
-          <div class="event-tile-meta">Los Angeles, CA · AWS regional event</div>
-          <ul class="event-tile-points">
-            <li>Position NeuBird AI as the native Prod Ops Agent for AWS-native stacks</li>
-            <li>ISV Accelerate co-sell angle — engage AWS field sellers on site</li>
-            <li>Collect west coast practitioner leads for re:Invent pipeline</li>
-          </ul>
-        </div>
-        <div class="event-tile-right">
-          <div class="tile-date">Jun 10</div>
-          <div class="tile-mode mode-dark">🌙 Dark Mode</div>
-        </div>
-      </div>
-
-      <!-- AWS Summit NY -->
-      <div class="event-tile">
-        <div class="event-tile-left">
-          <div class="event-tile-name">AWS Summit <em>New York</em></div>
-          <div class="event-tile-meta">New York, NY · Largest AWS Summit in the US</div>
-          <ul class="event-tile-points">
-            <li>Dual-mode: practitioner track + executive buyers in the same venue</li>
-            <li>NY financial services concentration — lead with reliability as a commercial differentiator</li>
-            <li>Pre-set meetings 3 weeks out. Every conversation seeds re:Invent pipeline</li>
-          </ul>
-        </div>
-        <div class="event-tile-right">
-          <div class="tile-date">Jun 17</div>
-          <div class="tile-mode mode-both">☀ + 🌙 Both</div>
-        </div>
-      </div>
-
-      <!-- AWS GameDay -->
-      <div class="event-tile">
-        <div class="event-tile-left">
-          <div class="event-tile-name">AWS GameDay <em>New York</em></div>
-          <div class="event-tile-meta">New York, NY · Hands-on technical challenge event</div>
-          <ul class="event-tile-points">
-            <li>Highest-quality practitioner lead environment of the month — engineers who learn by doing</li>
-            <li>"This is what it feels like when you have an AI agent in the room"</li>
-            <li>Closes June strong — deepens the same audience from AWS Summit NY six days earlier</li>
-          </ul>
-        </div>
-        <div class="event-tile-right">
-          <div class="tile-date">Jun 23</div>
-          <div class="tile-mode mode-dark">🌙 Dark Mode</div>
-        </div>
-      </div>
-
-    </div>
+  <div class="sidenav-footer">
+    <a href="index.html">← Full H2 Plan</a>
   </div>
-  </div><!-- /tab-field -->
+</nav>
 
-  <!-- TAB: REVOPS & SALES DEV -->
-  <div id="tab-revops" class="tab-panel">
-    <div class="revops-body">
+<!-- MAIN -->
+<div class="main">
 
-      <!-- Summary stats -->
-      <div class="revops-intro">
-        <div class="revops-stat">
-          <div class="revops-stat-num"><em>4</em></div>
-          <div class="revops-stat-lbl">Events · June</div>
+  <!-- ── REVENUE OPS ── -->
+  <div id="section-revops" class="section active">
+    <div class="main-header">
+      <div class="main-eyebrow">June 2026</div>
+      <div class="main-title">Revenue <em>Operations</em></div>
+      <div class="main-desc">Pipeline targets, CRM workflow, and per-event coverage strategy for June.</div>
+    </div>
+    <div class="main-body">
+
+      <!-- Stats -->
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-num"><em>4</em></div>
+          <div class="stat-lbl">Events · June</div>
         </div>
-        <div class="revops-stat">
-          <div class="revops-stat-num">75+</div>
-          <div class="revops-stat-lbl">Target Contacts</div>
+        <div class="stat-card">
+          <div class="stat-num">75+</div>
+          <div class="stat-lbl">Target Contacts</div>
         </div>
-        <div class="revops-stat">
-          <div class="revops-stat-num">3-wk</div>
-          <div class="revops-stat-lbl">Pre-event Outreach Window</div>
+        <div class="stat-card">
+          <div class="stat-num">2</div>
+          <div class="stat-lbl">Cities</div>
         </div>
-        <div class="revops-stat">
-          <div class="revops-stat-num">10-day</div>
-          <div class="revops-stat-lbl">Post-event Sequence</div>
+        <div class="stat-card">
+          <div class="stat-num">TBD</div>
+          <div class="stat-lbl">Pipeline Target</div>
         </div>
       </div>
 
-      <!-- Matrix -->
+      <!-- Per-event matrix -->
+      <div class="section-heading">Per-Event <em>Coverage Matrix</em></div>
+
       <div class="revops-matrix">
-
-        <!-- Header row -->
+        <!-- Header -->
         <div class="matrix-corner">Row / Event</div>
         <div class="matrix-col-head featured">
-          <div class="col-event">DataDog <em>Dash</em> — Rooftop</div>
-          <div class="col-date">Jun 9 · New York, NY</div>
+          <div class="col-event">DataDog <em>Dash</em></div>
+          <div class="col-date">Jun 9 · New York</div>
         </div>
         <div class="matrix-col-head">
-          <div class="col-event">AWS Summit <em>Los Angeles</em></div>
-          <div class="col-date">Jun 10 · Los Angeles, CA</div>
+          <div class="col-event">AWS Summit <em>LA</em></div>
+          <div class="col-date">Jun 10 · Los Angeles</div>
         </div>
         <div class="matrix-col-head">
-          <div class="col-event">AWS Summit <em>New York</em></div>
-          <div class="col-date">Jun 17 · New York, NY</div>
+          <div class="col-event">AWS Summit <em>NY</em></div>
+          <div class="col-date">Jun 17 · New York</div>
         </div>
         <div class="matrix-col-head">
           <div class="col-event">AWS GameDay <em>NYC</em></div>
-          <div class="col-date">Jun 23 · New York, NY</div>
+          <div class="col-date">Jun 23 · New York</div>
         </div>
 
-        <!-- Row: Target ICP -->
+        <!-- Target ICP -->
         <div class="matrix-row-label">Target ICP</div>
         <div class="matrix-cell">
           <ul>
             <li>SRE, Platform Eng, DevOps leads</li>
-            <li>Mid-market to enterprise AWS-native</li>
+            <li>Mid-market to enterprise, AWS-native</li>
             <li><span class="chip chip-orange">30 invites → 15 attendees</span></li>
           </ul>
         </div>
@@ -529,132 +521,336 @@
         <div class="matrix-cell">
           <ul>
             <li>Hands-on engineers, SRE, platform teams</li>
-            <li>High-intent: learn by doing audience</li>
-            <li><span class="chip chip-navy">Overlap with AWS Summit NY list</span></li>
+            <li>High-intent: learn-by-doing audience</li>
+            <li><span class="chip chip-navy">Overlap with Summit NY list</span></li>
           </ul>
         </div>
 
-        <!-- Row: Pre-Event -->
-        <div class="matrix-row-label">Pre-Event Outreach</div>
+        <!-- CRM Workflow -->
+        <div class="matrix-row-label">CRM Workflow</div>
         <div class="matrix-cell">
           <ul>
-            <li>Invite list: Datadog attendee lists + LinkedIn</li>
-            <li>Personalized outreach 3 weeks out</li>
-            <li>2 reminder touches — 1 week + 2 days prior</li>
+            <li>Create event campaign in CRM pre-event</li>
+            <li>iPad capture form → auto-create contacts</li>
+            <li>Tag: source=datadog-dash, tier=warm</li>
           </ul>
         </div>
         <div class="matrix-cell">
           <ul>
-            <li>Coordinate pre-set meetings via AWS ISV</li>
-            <li>Target 20 pre-set 15-min slots</li>
-            <li>LinkedIn + email sequence 2 weeks prior</li>
+            <li>Pre-set meetings logged as activities</li>
+            <li>Badge scan → CRM import within 24 hrs</li>
+            <li>Tag: source=aws-summit-la, isp=aws</li>
           </ul>
         </div>
         <div class="matrix-cell">
           <ul>
-            <li>Pre-set meeting campaign 3 weeks out</li>
-            <li>Executive invites via personal outreach</li>
-            <li>Segment exec vs. practitioner lists early</li>
+            <li>Segment contacts on persona at capture</li>
+            <li>Exec contacts → AE-owned sequences</li>
+            <li>Tag: source=aws-summit-ny, persona=exec|practitioner</li>
           </ul>
         </div>
         <div class="matrix-cell">
           <ul>
-            <li>Coordinate with AWS team on facilitator role</li>
-            <li>Brief NeuBird team on GameDay format</li>
-            <li>Leverage Summit NY attendee list (Jun 17)</li>
-          </ul>
-        </div>
-
-        <!-- Row: At Event -->
-        <div class="matrix-row-label">At-Event Actions</div>
-        <div class="matrix-cell">
-          <ul>
-            <li>2-min live RCA demo — no slides</li>
-            <li>Capture contact + use case on iPad form</li>
-            <li>NeuBird team: 1 host, 2 in conversation</li>
-          </ul>
-        </div>
-        <div class="matrix-cell">
-          <ul>
-            <li>Booth + ISV lounge pre-set meetings</li>
-            <li>Position as native Prod Ops Agent for AWS</li>
-            <li>Engage AWS field sellers for co-sell motion</li>
-          </ul>
-        </div>
-        <div class="matrix-cell">
-          <ul>
-            <li>Practitioner demo track + exec meetings</li>
-            <li>FinServ angle: reliability as revenue risk</li>
-            <li>Every conversation seeds re:Invent pipeline</li>
-          </ul>
-        </div>
-        <div class="matrix-cell">
-          <ul>
-            <li>Be part of the challenge — show agent live</li>
-            <li>"This is what it feels like when AI is in the room"</li>
-            <li>Capture warm intros from AWS co-facilitators</li>
+            <li>Cross-reference with Summit NY contacts</li>
+            <li>Flag repeat touches for AE follow-up</li>
+            <li>Tag: source=aws-gameday-nyc, intent=high</li>
           </ul>
         </div>
 
-        <!-- Row: Post-Event Sequence -->
-        <div class="matrix-row-label">Post-Event Sequence</div>
-        <div class="matrix-cell">
-          <ul>
-            <li>Day 0: Same-day personal follow-up email</li>
-            <li>Day 3: RCA demo recording + 1-pager</li>
-            <li>Day 7: Discovery call ask or trial CTA</li>
-            <li>Day 10: SDR phone + final touch</li>
-          </ul>
-        </div>
-        <div class="matrix-cell">
-          <ul>
-            <li>Day 1: Thank you + AWS-specific use case</li>
-            <li>Day 3: "How we work with AWS" case study</li>
-            <li>Day 7: Demo invite for west coast team</li>
-          </ul>
-        </div>
-        <div class="matrix-cell">
-          <ul>
-            <li>Segment: practitioner → trial; exec → disco call</li>
-            <li>Day 1: Persona-specific follow-up email</li>
-            <li>Day 5: FinServ proof point or case study</li>
-            <li>Day 10: Meeting ask or re:Invent preview</li>
-          </ul>
-        </div>
-        <div class="matrix-cell">
-          <ul>
-            <li>Day 0: "You saw it work — want it in prod?" email</li>
-            <li>Day 3: Technical 1-pager + trial CTA</li>
-            <li>Day 7: SDR outreach to non-responders</li>
-          </ul>
-        </div>
+        <!-- Pipeline Target -->
+        <div class="matrix-row-label highlight">Pipeline Target</div>
+        <div class="matrix-cell highlight"><span class="tbd">TBD — align with sales</span></div>
+        <div class="matrix-cell highlight"><span class="tbd">TBD — align with sales</span></div>
+        <div class="matrix-cell highlight"><span class="tbd">TBD — align with sales</span></div>
+        <div class="matrix-cell highlight"><span class="tbd">TBD — align with sales</span></div>
 
-        <!-- Row: Pipeline Target -->
-        <div class="matrix-row-label pipeline">Pipeline Target</div>
-        <div class="matrix-cell pipeline"><span class="pipeline-tbd">TBD — align with sales</span></div>
-        <div class="matrix-cell pipeline"><span class="pipeline-tbd">TBD — align with sales</span></div>
-        <div class="matrix-cell pipeline"><span class="pipeline-tbd">TBD — align with sales</span></div>
-        <div class="matrix-cell pipeline"><span class="pipeline-tbd">TBD — align with sales</span></div>
-
+        <!-- Conversion Goal -->
+        <div class="matrix-row-label">Conversion Goal</div>
+        <div class="matrix-cell">
+          <ul>
+            <li>15 contacts → 5 discovery calls</li>
+            <li>Target: 2 qualified opps in 30 days</li>
+          </ul>
+        </div>
+        <div class="matrix-cell">
+          <ul>
+            <li>20 pre-set meetings → 8 qualified</li>
+            <li>Target: 3 qualified opps in 30 days</li>
+          </ul>
+        </div>
+        <div class="matrix-cell">
+          <ul>
+            <li>30 contacts → 10 discovery calls</li>
+            <li>Target: 4 qualified opps in 30 days</li>
+          </ul>
+        </div>
+        <div class="matrix-cell">
+          <ul>
+            <li>20 contacts → 6 discovery calls</li>
+            <li>Target: 2 qualified opps in 30 days</li>
+          </ul>
+        </div>
       </div>
+
     </div>
-  </div><!-- /tab-revops -->
+  </div><!-- /revops -->
 
-  <!-- FOOTER -->
-  <div class="slide-footer">
-    <span>NeuBird AI · June 2026 Events · Internal</span>
-    <span style="color:var(--ink-light);">All events: New York & Los Angeles · Primary mode: Dark Mode (practitioner ICP)</span>
-    <a href="index.html">← Full H2 Plan</a>
-  </div>
+  <!-- ── SDR ── -->
+  <div id="section-sdr" class="section">
+    <div class="main-header">
+      <div class="main-eyebrow">June 2026</div>
+      <div class="main-title">Sales <em>Development</em></div>
+      <div class="main-desc">Pre-event outreach, at-event capture, and post-event sequence playbook for each June event.</div>
+    </div>
+    <div class="main-body">
 
-</div>
+      <!-- SDR stats -->
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-num">3<span style="font-size:1.1rem;color:var(--ink-light);">wk</span></div>
+          <div class="stat-lbl">Pre-Event Outreach Window</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">10<span style="font-size:1.1rem;color:var(--ink-light);">day</span></div>
+          <div class="stat-lbl">Post-Event Sequence</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">4</div>
+          <div class="stat-lbl">Touch Cadence</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">75+</div>
+          <div class="stat-lbl">Target Contacts</div>
+        </div>
+      </div>
+
+      <!-- Event cards -->
+      <div class="section-heading">Per-Event <em>Outreach Playbook</em></div>
+
+      <div class="sdr-grid">
+
+        <!-- DataDog Dash -->
+        <div class="sdr-card featured">
+          <div class="sdr-card-header">
+            <div>
+              <div class="sdr-card-name">DataDog <em>Dash</em> — NeuBird Rooftop</div>
+              <div class="sdr-card-meta">New York, NY · NeuBird-hosted · 30 target invites</div>
+            </div>
+            <div class="sdr-card-date">Jun 9</div>
+          </div>
+          <div class="sdr-card-body">
+            <div>
+              <div class="sdr-row-label">Target Personas</div>
+              <div class="sdr-personas">
+                <span class="chip chip-orange">SRE Lead</span>
+                <span class="chip chip-navy">Platform Engineer</span>
+                <span class="chip chip-navy">DevOps Manager</span>
+                <span class="chip chip-forest">VP Engineering</span>
+              </div>
+            </div>
+            <div>
+              <div class="sdr-row-label">Pre-Event Sequence (T-3 weeks)</div>
+              <div class="sequence-steps">
+                <div class="seq-step"><span class="seq-day">T−21</span><span class="seq-action">Invite email: "You're invited to NeuBird's rooftop during Dash" — personal from AE or SDR</span></div>
+                <div class="seq-step"><span class="seq-day">T−14</span><span class="seq-action">LinkedIn touch: connect + event reminder message</span></div>
+                <div class="seq-step"><span class="seq-day">T−7</span><span class="seq-action">Reminder email: logistics, what to expect, 2-min RCA demo teaser</span></div>
+                <div class="seq-step"><span class="seq-day">T−2</span><span class="seq-action">Final reminder: "We'll be on the rooftop — see you tomorrow"</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="sdr-row-label">Post-Event Sequence</div>
+              <div class="sequence-steps">
+                <div class="seq-step"><span class="seq-day">Day 0</span><span class="seq-action">Same-day personal note: "Great to meet you — here's what we demoed"</span></div>
+                <div class="seq-step"><span class="seq-day">Day 3</span><span class="seq-action">RCA demo recording + 1-pager: "See the full 10-min walkthrough"</span></div>
+                <div class="seq-step"><span class="seq-day">Day 7</span><span class="seq-action">Discovery call ask: "30 min to explore your incident workflows?"</span></div>
+                <div class="seq-step"><span class="seq-day">Day 10</span><span class="seq-action">SDR phone + final email: last touch before exiting sequence</span></div>
+              </div>
+            </div>
+            <div class="sdr-goal"><strong>Goal:</strong> 30 invites → 15 attendees → 5 discovery calls booked within 2 weeks of event</div>
+          </div>
+        </div>
+
+        <!-- AWS Summit LA -->
+        <div class="sdr-card">
+          <div class="sdr-card-header">
+            <div>
+              <div class="sdr-card-name">AWS Summit <em>Los Angeles</em></div>
+              <div class="sdr-card-meta">Los Angeles, CA · AWS regional · 20 pre-set meetings</div>
+            </div>
+            <div class="sdr-card-date">Jun 10</div>
+          </div>
+          <div class="sdr-card-body">
+            <div>
+              <div class="sdr-row-label">Target Personas</div>
+              <div class="sdr-personas">
+                <span class="chip chip-navy">Cloud Engineer</span>
+                <span class="chip chip-navy">AWS Architect</span>
+                <span class="chip chip-forest">Engineering Manager</span>
+              </div>
+            </div>
+            <div>
+              <div class="sdr-row-label">Pre-Event Sequence (T-2 weeks)</div>
+              <div class="sequence-steps">
+                <div class="seq-step"><span class="seq-day">T−14</span><span class="seq-action">Coordinate pre-set meeting list with AWS ISV field team</span></div>
+                <div class="seq-step"><span class="seq-day">T−10</span><span class="seq-action">Outreach to ISV-sourced contacts: meeting ask + agenda</span></div>
+                <div class="seq-step"><span class="seq-day">T−5</span><span class="seq-action">Meeting confirmation + logistics. LinkedIn connection request</span></div>
+                <div class="seq-step"><span class="seq-day">T−1</span><span class="seq-action">Day-before reminder with booth location and meeting slot</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="sdr-row-label">Post-Event Sequence</div>
+              <div class="sequence-steps">
+                <div class="seq-step"><span class="seq-day">Day 1</span><span class="seq-action">Thank you + AWS-specific use case: "How NeuBird works natively in your stack"</span></div>
+                <div class="seq-step"><span class="seq-day">Day 3</span><span class="seq-action">AWS case study or proof point — west coast ICP preferred</span></div>
+                <div class="seq-step"><span class="seq-day">Day 7</span><span class="seq-action">Demo invite: "See it live — 30 min for your team"</span></div>
+              </div>
+            </div>
+            <div class="sdr-goal"><strong>Goal:</strong> 20 pre-set meetings → 8 qualified → 3 opps within 30 days</div>
+          </div>
+        </div>
+
+        <!-- AWS Summit NY -->
+        <div class="sdr-card">
+          <div class="sdr-card-header">
+            <div>
+              <div class="sdr-card-name">AWS Summit <em>New York</em></div>
+              <div class="sdr-card-meta">New York, NY · Largest US Summit · Dual-mode</div>
+            </div>
+            <div class="sdr-card-date">Jun 17</div>
+          </div>
+          <div class="sdr-card-body">
+            <div>
+              <div class="sdr-row-label">Target Personas</div>
+              <div class="sdr-personas">
+                <span class="chip chip-navy">SRE / Platform Eng</span>
+                <span class="chip chip-orange">VP Engineering</span>
+                <span class="chip chip-orange">CTO</span>
+                <span class="chip chip-forest">FinServ IT Leaders</span>
+              </div>
+            </div>
+            <div>
+              <div class="sdr-row-label">Pre-Event Sequence (T-3 weeks)</div>
+              <div class="sequence-steps">
+                <div class="seq-step"><span class="seq-day">T−21</span><span class="seq-action">Meeting ask: practitioners via SDR, execs via AE personal outreach</span></div>
+                <div class="seq-step"><span class="seq-day">T−14</span><span class="seq-action">LinkedIn + email follow-up. Surface FinServ reliability angle for NYC execs</span></div>
+                <div class="seq-step"><span class="seq-day">T−7</span><span class="seq-action">Meeting confirmation + pre-read (1-pager segmented by persona)</span></div>
+                <div class="seq-step"><span class="seq-day">T−1</span><span class="seq-action">Logistics reminder. Flag any exec meetings to AE for prep</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="sdr-row-label">Post-Event Sequence (segmented)</div>
+              <div class="sequence-steps">
+                <div class="seq-step"><span class="seq-day">Day 1</span><span class="seq-action">Persona-split email: practitioner → trial CTA; exec → discovery call ask</span></div>
+                <div class="seq-step"><span class="seq-day">Day 5</span><span class="seq-action">FinServ proof point or reliability case study for exec track</span></div>
+                <div class="seq-step"><span class="seq-day">Day 10</span><span class="seq-action">Final touch: re:Invent preview + meeting ask for non-responders</span></div>
+              </div>
+            </div>
+            <div class="sdr-goal"><strong>Goal:</strong> 30 contacts → 10 discovery calls → 4 qualified opps. Every exec conversation seeds re:Invent pipeline.</div>
+          </div>
+        </div>
+
+        <!-- AWS GameDay -->
+        <div class="sdr-card">
+          <div class="sdr-card-header">
+            <div>
+              <div class="sdr-card-name">AWS GameDay <em>New York</em></div>
+              <div class="sdr-card-meta">New York, NY · Hands-on technical event</div>
+            </div>
+            <div class="sdr-card-date">Jun 23</div>
+          </div>
+          <div class="sdr-card-body">
+            <div>
+              <div class="sdr-row-label">Target Personas</div>
+              <div class="sdr-personas">
+                <span class="chip chip-navy">SRE</span>
+                <span class="chip chip-navy">Platform Engineer</span>
+                <span class="chip chip-forest">DevOps Lead</span>
+              </div>
+            </div>
+            <div>
+              <div class="sdr-row-label">Pre-Event Sequence (T-2 weeks)</div>
+              <div class="sequence-steps">
+                <div class="seq-step"><span class="seq-day">T−14</span><span class="seq-action">Coordinate facilitator role with AWS team. Brief NeuBird reps on GameDay format</span></div>
+                <div class="seq-step"><span class="seq-day">T−7</span><span class="seq-action">Cross-reference AWS Summit NY attendee list — warm outreach to repeat audience</span></div>
+                <div class="seq-step"><span class="seq-day">T−3</span><span class="seq-action">"See you at GameDay" note to confirmed participants from Summit NY</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="sdr-row-label">Post-Event Sequence</div>
+              <div class="sequence-steps">
+                <div class="seq-step"><span class="seq-day">Day 0</span><span class="seq-action">"You saw it work — want it in production?" — same-day email with trial CTA</span></div>
+                <div class="seq-step"><span class="seq-day">Day 3</span><span class="seq-action">Technical 1-pager + sandbox trial invite: "Run your own scenario"</span></div>
+                <div class="seq-step"><span class="seq-day">Day 7</span><span class="seq-action">SDR outreach to non-responders. Offer architecture call for high-intent contacts</span></div>
+              </div>
+            </div>
+            <div class="sdr-goal"><strong>Goal:</strong> 20 contacts → 6 discovery calls. Highest-intent audience of the month — close June strong.</div>
+          </div>
+        </div>
+
+      </div><!-- /sdr-grid -->
+
+      <!-- Messaging guide -->
+      <div class="section-heading" style="margin-top:0.5rem;">SDR <em>Messaging Guide</em></div>
+      <table class="playbook-table">
+        <thead>
+          <tr>
+            <th>Touch</th>
+            <th>Channel</th>
+            <th>Core Message</th>
+            <th>CTA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>T−21 / T−14</td>
+            <td>Email + LinkedIn</td>
+            <td>You're invited / Let's connect at [event] — brief, personal, no product pitch</td>
+            <td>Accept invite / Book meeting slot</td>
+          </tr>
+          <tr>
+            <td>T−7 / T−1</td>
+            <td>Email</td>
+            <td>Logistics + teaser: "We'll show a 2-min live RCA. No slides." (for hosted) or meeting confirmation</td>
+            <td>Confirm attendance</td>
+          </tr>
+          <tr>
+            <td>Day 0</td>
+            <td>Email (personal)</td>
+            <td>"Great to meet you at [event]" — reference specific conversation point</td>
+            <td>Reply to continue conversation</td>
+          </tr>
+          <tr>
+            <td>Day 3</td>
+            <td>Email</td>
+            <td>Demo asset or case study relevant to their stack / persona</td>
+            <td>Watch demo / Read case study</td>
+          </tr>
+          <tr>
+            <td>Day 7</td>
+            <td>Email</td>
+            <td>"30 minutes to see it in your environment" — direct discovery ask</td>
+            <td>Book discovery call</td>
+          </tr>
+          <tr>
+            <td>Day 10</td>
+            <td>Email + Phone</td>
+            <td>Final touch — last attempt before exiting sequence. Keep it short.</td>
+            <td>Reply or book call</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div><!-- /sdr -->
+
+</div><!-- /main -->
 
 <script>
-  function switchTab(id) {
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('tab-' + id).classList.add('active');
-    event.currentTarget.classList.add('active');
+  function show(id, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('active'));
+    document.getElementById('section-' + id).classList.add('active');
+    btn.classList.add('active');
   }
 </script>
 </body>
