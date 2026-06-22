@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuBird AI — Revenue Operations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange:    #FA551E;
+    --navy:      #003A51;
+    --forest:    #008C61;
+    --ink:       #242321;
+    --ink-mid:   #4A4845;
+    --ink-light: #7A7875;
+    --cream:     #F7F5F2;
+    --panel:     #F4F4F2;
+    --rule:      #E2E2DE;
+    --white:     #FFFFFF;
+    --serif:     'Fraunces', Georgia, serif;
+    --sans:      'IBM Plex Sans', system-ui, sans-serif;
+    --mono:      'IBM Plex Mono', 'Courier New', monospace;
+    --nav-w:     230px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 15px;
+    color: var(--ink);
+    background: var(--white);
+    display: flex;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* ── LEFT NAV ── */
+  .sidenav {
+    width: var(--nav-w);
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    overflow-y: auto;
+  }
+  .nav-logo-area {
+    padding: 1.75rem 1.5rem 1.25rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 300;
+    color: #fff;
+  }
+  .nav-logo em { color: var(--orange); font-style: italic; }
+  .nav-context {
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.3);
+    margin-top: 0.3rem;
+  }
+
+  .nav-section { padding: 1.25rem 1.25rem 0.5rem; }
+  .nav-section-label {
+    font-family: var(--mono);
+    font-size: 0.52rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.28);
+    margin-bottom: 0.5rem;
+    padding-left: 0.5rem;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding: 0.55rem 0.75rem;
+    border-radius: 4px;
+    font-family: var(--sans);
+    font-size: 13.5px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.6);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    margin-bottom: 0.1rem;
+    transition: background 0.12s, color 0.12s;
+  }
+  .nav-item:hover { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.9); }
+  .nav-item.active { background: rgba(250,85,30,0.18); color: #fff; }
+  .nav-item.active .nav-dot { background: var(--orange); }
+  .nav-dot {
+    width: 6px; height: 6px; border-radius: 1px;
+    background: rgba(255,255,255,0.2);
+    flex-shrink: 0;
+    transition: background 0.12s;
+  }
+
+  .nav-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 0.75rem 1.25rem; }
+
+  .nav-footer { margin-top: auto; padding: 1.25rem 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); }
+  .nav-footer-links { display: flex; flex-direction: column; gap: 0.5rem; }
+  .nav-footer a {
+    font-family: var(--mono);
+    font-size: 0.57rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.3);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: color 0.12s;
+  }
+  .nav-footer a:hover { color: rgba(255,255,255,0.65); }
+
+  /* ── MAIN ── */
+  .main {
+    margin-left: var(--nav-w);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Page header */
+  .page-header {
+    padding: 2.5rem 3rem 2rem;
+    border-bottom: 1px solid var(--rule);
+    background: var(--white);
+  }
+  .page-eyebrow {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--orange);
+    margin-bottom: 0.5rem;
+  }
+  .page-title {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .page-title em { font-style: italic; color: var(--orange); }
+  .page-desc {
+    font-size: 13.5px;
+    font-weight: 300;
+    color: var(--ink-light);
+    margin-top: 0.5rem;
+    max-width: 640px;
+    line-height: 1.6;
+  }
+
+  /* Content panels */
+  .content-panel { display: none; padding: 2.5rem 3rem; max-width: 960px; }
+  .content-panel.active { display: block; }
+
+  /* Section sub-heading */
+  .sub-overline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    margin-top: 2.5rem;
+  }
+  .sub-overline:first-child { margin-top: 0; }
+  .sub-overline-rule { width: 24px; height: 2px; background: var(--orange); flex-shrink: 0; }
+  .sub-overline-text {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 10.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+  h2 {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    line-height: 1.25;
+  }
+  h2 em { font-style: italic; color: var(--orange); }
+  h3 {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+  }
+  h3 em { font-style: italic; color: var(--orange); }
+  .body-text {
+    font-size: 13.5px;
+    font-weight: 300;
+    color: var(--ink-mid);
+    line-height: 1.7;
+    margin-bottom: 1.75rem;
+    max-width: 680px;
+  }
+
+  /* Stat row */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+  .stat-card { background: var(--white); padding: 1.25rem 1.5rem; }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .stat-num em { color: var(--orange); font-style: italic; }
+  .stat-lbl {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-light);
+    margin-top: 0.3rem;
+  }
+
+  /* Info cards grid */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+  .info-card { background: var(--white); padding: 1.5rem; transition: background 0.12s; }
+  .info-card:hover { background: var(--cream); }
+  .info-card h3 { margin-bottom: 0.5rem; }
+  .info-card p { font-size: 13px; font-weight: 300; color: var(--ink-mid); line-height: 1.65; }
+
+  /* Lifecycle flow */
+  .lifecycle-flow {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin-bottom: 2rem;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .lc-stage {
+    flex: 1;
+    background: var(--white);
+    padding: 1.25rem 1rem;
+    border-right: 1px solid var(--rule);
+    position: relative;
+    transition: background 0.12s;
+  }
+  .lc-stage:last-child { border-right: none; }
+  .lc-stage:hover { background: var(--panel); }
+  .lc-stage-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    color: rgba(250,85,30,0.5);
+    margin-bottom: 0.35rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .lc-stage-name {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  .lc-stage-name em { color: var(--orange); font-style: italic; }
+  .lc-criteria { display: flex; flex-direction: column; gap: 0.3rem; }
+  .lc-criteria li {
+    font-size: 11.5px;
+    font-weight: 300;
+    color: var(--ink-mid);
+    line-height: 1.5;
+    list-style: none;
+    display: flex;
+    gap: 0.3rem;
+  }
+  .lc-criteria li::before { content: '—'; color: var(--orange); flex-shrink: 0; font-size: 10px; }
+  .lc-sla {
+    margin-top: 0.75rem;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--forest);
+    background: rgba(0,140,97,0.08);
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    display: inline-block;
+  }
+
+  /* Handoff table */
+  table.ops-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    font-size: 13px;
+  }
+  table.ops-table thead th {
+    background: var(--navy);
+    color: rgba(255,255,255,0.75);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  table.ops-table tbody tr { border-top: 1px solid var(--rule); }
+  table.ops-table tbody tr:nth-child(even) { background: var(--panel); }
+  table.ops-table tbody td {
+    padding: 0.75rem 1rem;
+    font-weight: 300;
+    color: var(--ink-mid);
+    vertical-align: top;
+    line-height: 1.55;
+    border-right: 1px solid var(--rule);
+    font-size: 13px;
+  }
+  table.ops-table tbody td:first-child {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    padding: 0.1rem 0.45rem;
+    border-radius: 2px;
+  }
+  .tag-o { background: rgba(250,85,30,0.1); color: var(--orange); }
+  .tag-n { background: rgba(0,58,81,0.08); color: var(--navy); }
+  .tag-f { background: rgba(0,140,97,0.08); color: var(--forest); }
+
+  /* MEDDPIC framework */
+  .meddpic-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+  .meddpic-card { background: var(--white); padding: 1.5rem; transition: background 0.12s; }
+  .meddpic-card:hover { background: var(--cream); }
+  .meddpic-letter {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--orange);
+    font-style: italic;
+    line-height: 1;
+    margin-bottom: 0.2rem;
+  }
+  .meddpic-word {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-mid);
+    margin-bottom: 0.6rem;
+  }
+  .meddpic-def { font-size: 12.5px; font-weight: 300; color: var(--ink-mid); line-height: 1.6; }
+  .meddpic-neubird { font-size: 12px; color: var(--navy); font-style: italic; margin-top: 0.5rem; border-left: 2px solid var(--navy); padding-left: 0.5rem; }
+
+  /* Reporting cadence timeline */
+  .cadence-list { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; margin-bottom: 2rem; }
+  .cadence-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 0;
+    border-top: 1px solid var(--rule);
+    background: var(--white);
+    transition: background 0.12s;
+  }
+  .cadence-row:first-child { border-top: none; }
+  .cadence-row:hover { background: var(--panel); }
+  .cadence-freq {
+    padding: 1rem 1.25rem;
+    border-right: 1px solid var(--rule);
+    background: var(--panel);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--orange);
+    display: flex;
+    align-items: center;
+  }
+  .cadence-detail { padding: 1rem 1.5rem; }
+  .cadence-title { font-size: 13.5px; font-weight: 500; color: var(--ink); margin-bottom: 0.3rem; }
+  .cadence-items { display: flex; flex-direction: column; gap: 0.2rem; }
+  .cadence-items li {
+    font-size: 12.5px;
+    font-weight: 300;
+    color: var(--ink-mid);
+    list-style: none;
+    display: flex;
+    gap: 0.35rem;
+    line-height: 1.5;
+  }
+  .cadence-items li::before { content: '—'; color: var(--orange); flex-shrink: 0; font-size: 11px; }
+
+  /* Rollout timeline */
+  .rollout-phases {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+  .phase-card { background: var(--white); padding: 1.5rem; transition: background 0.12s; }
+  .phase-card:hover { background: var(--cream); }
+  .phase-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--orange);
+    margin-bottom: 0.3rem;
+  }
+  .phase-name {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+  .phase-name em { font-style: italic; color: var(--orange); }
+  .phase-items { display: flex; flex-direction: column; gap: 0.3rem; }
+  .phase-items li {
+    font-size: 12.5px;
+    font-weight: 300;
+    color: var(--ink-mid);
+    list-style: none;
+    display: flex;
+    gap: 0.35rem;
+    line-height: 1.5;
+  }
+  .phase-items li::before { content: '—'; color: var(--orange); flex-shrink: 0; font-size: 11px; }
+</style>
+</head>
+<body>
+
+<!-- LEFT NAV -->
+<nav class="sidenav">
+  <div class="nav-logo-area">
+    <div class="nav-logo">NeuBird <em>AI</em></div>
+    <div class="nav-context">Revenue Operations · H2 2026</div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-label">This Section</div>
+    <button class="nav-item active" onclick="show('lifecycle', this)">
+      <span class="nav-dot"></span> Lead Lifecycle
+    </button>
+    <button class="nav-item" onclick="show('handoff', this)">
+      <span class="nav-dot"></span> Handoff
+    </button>
+    <button class="nav-item" onclick="show('meddpic', this)">
+      <span class="nav-dot"></span> MEDDPIC Rollout
+    </button>
+    <button class="nav-item" onclick="show('reporting', this)">
+      <span class="nav-dot"></span> Reporting
+    </button>
+  </div>
+
+  <div class="nav-divider"></div>
+
+  <div class="nav-section">
+    <div class="nav-section-label">Also</div>
+    <a class="nav-item" href="sdr.html">
+      <span class="nav-dot"></span> Sales Development
+    </a>
+  </div>
+
+  <div class="nav-footer">
+    <div class="nav-footer-links">
+      <a href="index.html">← Full H2 Plan</a>
+      <a href="events-june.html">June Field Plan →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- ── LEAD LIFECYCLE ── -->
+  <div id="panel-lifecycle" class="content-panel active">
+    <div class="page-header" style="margin: -2.5rem -3rem 2.5rem; padding: 2.5rem 3rem 2rem;">
+      <div class="page-eyebrow">Revenue Operations</div>
+      <div class="page-title">Lead <em>Lifecycle.</em></div>
+      <div class="page-desc">How a lead moves from first touch to closed-won at NeuBird AI. Definitions, criteria, and SLAs for every stage so marketing, SDR, and sales are operating off the same map.</div>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-card"><div class="stat-num"><em>5</em></div><div class="stat-lbl">Lifecycle Stages</div></div>
+      <div class="stat-card"><div class="stat-num">4</div><div class="stat-lbl">Lead Sources</div></div>
+      <div class="stat-card"><div class="stat-num">4hr</div><div class="stat-lbl">MQL Response SLA</div></div>
+      <div class="stat-card"><div class="stat-num">30d</div><div class="stat-lbl">Event → Opp Window</div></div>
+    </div>
+
+    <div class="sub-overline"><div class="sub-overline-rule"></div><div class="sub-overline-text">Stage Definitions</div></div>
+
+    <div class="lifecycle-flow">
+      <div class="lc-stage">
+        <div class="lc-stage-num">01</div>
+        <div class="lc-stage-name">Raw <em>Lead</em></div>
+        <ul class="lc-criteria">
+          <li>First contact — event badge scan, form fill, inbound inquiry, or SDR prospected</li>
+          <li>No qualification yet</li>
+          <li>Routed to SDR queue within 2 hrs</li>
+        </ul>
+        <span class="lc-sla">SDR assigns: &lt; 2 hrs</span>
+      </div>
+      <div class="lc-stage">
+        <div class="lc-stage-num">02</div>
+        <div class="lc-stage-name">MQL</div>
+        <ul class="lc-criteria">
+          <li>Fits ICP: company size, industry, stack</li>
+          <li>Engagement signal: attended event, opened 2+ emails, visited pricing page, or requested demo</li>
+          <li>BANT partially met</li>
+        </ul>
+        <span class="lc-sla">SDR outreach: &lt; 4 hrs</span>
+      </div>
+      <div class="lc-stage">
+        <div class="lc-stage-num">03</div>
+        <div class="lc-stage-name">SQL</div>
+        <ul class="lc-criteria">
+          <li>Discovery call completed</li>
+          <li>Pain confirmed and documented</li>
+          <li>Economic buyer identified</li>
+          <li>Timeline in H2 2026</li>
+        </ul>
+        <span class="lc-sla">AE accepts: &lt; 24 hrs</span>
+      </div>
+      <div class="lc-stage">
+        <div class="lc-stage-num">04</div>
+        <div class="lc-stage-name"><em>Opportunity</em></div>
+        <ul class="lc-criteria">
+          <li>AE-owned, stage 1+ in CRM</li>
+          <li>MEDDPIC fields populated</li>
+          <li>Champion identified</li>
+          <li>Next step date set</li>
+        </ul>
+        <span class="lc-sla">Stage update: weekly</span>
+      </div>
+      <div class="lc-stage">
+        <div class="lc-stage-num">05</div>
+        <div class="lc-stage-name">Closed <em>Won</em></div>
+        <ul class="lc-criteria">
+          <li>Contract signed</li>
+          <li>Source attribution recorded</li>
+          <li>CS handoff completed</li>
+        </ul>
+        <span class="lc-sla">CS intro: &lt; 48 hrs</span>
+      </div>
+    </div>
+
+    <div class="sub-overline"><div class="sub-overline-rule"></div><div class="sub-overline-text">Lead Sources & Routing</div></div>
+
+    <table class="ops-table">
+      <thead>
+        <tr>
+          <th>Source</th>
+          <th>How It Enters</th>
+          <th>Initial Owner</th>
+          <th>SLA to First Touch</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Events</td>
+          <td>Badge scan or hosted event capture — imported to CRM within 24 hrs, tagged by event</td>
+          <td>SDR queue</td>
+          <td>4 hrs post-import</td>
+          <td>Persona tag (exec vs. practitioner) set at capture determines sequence</td>
+        </tr>
+        <tr>
+          <td>Inbound</td>
+          <td>Website demo request, contact form, or content download with ICP match</td>
+          <td>SDR (round-robin)</td>
+          <td>15 min during business hours</td>
+          <td>Highest intent — treat as hot. Demo requests go directly to AE calendar link</td>
+        </tr>
+        <tr>
+          <td>SDR Outbound</td>
+          <td>SDR-prospected from target account list, LinkedIn, or event pre-work</td>
+          <td>Originating SDR</td>
+          <td>SDR owns sequence timing</td>
+          <td>Must be on approved target account list. New accounts require RevOps approval</td>
+        </tr>
+        <tr>
+          <td>Partner Referral</td>
+          <td>AWS co-sell referral, ISV partner intro, or Red Hat field referral</td>
+          <td>AE (partner-aligned)</td>
+          <td>Same day as referral</td>
+          <td>Partner must be cc'd on intro email. Log in CRM as partner-sourced for attribution</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card-grid">
+      <div class="info-card">
+        <h3>ICP <em>definition.</em></h3>
+        <p>Companies running production workloads on AWS, Azure, or OpenShift. 200–5,000 employees. Engineering-led buying motion. Primary pain: incident resolution time, MTTR, and on-call burden. Industries: FinServ, SaaS, infrastructure, and cloud-native.</p>
+      </div>
+      <div class="info-card">
+        <h3>Scoring <em>criteria.</em></h3>
+        <p>Firmographic fit (industry, size, stack) + engagement signal (event attendance, email engagement, site behavior) + timing signal (budget cycle, initiative trigger). Formal scoring model to be configured in CRM by end of July. Until then: SDR judgment + RevOps spot-check.</p>
+      </div>
+      <div class="info-card">
+        <h3>Disqualification <em>criteria.</em></h3>
+        <p>No production cloud workloads. Fewer than 50 engineers. Competitor employee. Timeline beyond 12 months with no urgency driver. SDRs should recycle, not delete — timing changes. Recycled leads re-enter nurture sequence.</p>
+      </div>
+      <div class="info-card">
+        <h3>Attribution <em>model.</em></h3>
+        <p>First-touch and last-touch attribution tracked. Marketing credited for first-touch source (event, inbound, content). SDR credited for SQL creation. AE credited for closed-won. Multi-touch attribution report runs monthly — RevOps owns.</p>
+      </div>
+    </div>
+  </div><!-- /lifecycle -->
+
+  <!-- ── HANDOFF ── -->
+  <div id="panel-handoff" class="content-panel">
+    <div class="page-header" style="margin: -2.5rem -3rem 2.5rem; padding: 2.5rem 3rem 2rem;">
+      <div class="page-eyebrow">Revenue Operations</div>
+      <div class="page-title">Handoff <em>Protocol.</em></div>
+      <div class="page-desc">The rules of engagement at every transition point. Who owns the lead, what must be documented before it moves, and how both sides confirm the handoff is complete.</div>
+    </div>
+
+    <div class="sub-overline"><div class="sub-overline-rule"></div><div class="sub-overline-text">MQL → SDR Handoff</div></div>
+    <p class="body-text">Marketing hands off an MQL to the SDR queue when the lead hits the MQL threshold. SDR accepts ownership by logging a first activity within the SLA window. An MQL with no SDR activity within 4 hours is escalated to the SDR manager.</p>
+
+    <table class="ops-table">
+      <thead>
+        <tr>
+          <th>Checkpoint</th>
+          <th>Owner</th>
+          <th>Required Action</th>
+          <th>SLA</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>MQL threshold hit</td>
+          <td>Marketing / CRM automation</td>
+          <td>Lead status updated to MQL. SDR queue notified via CRM alert and Slack #sdr-queue</td>
+          <td>Automated, instant</td>
+        </tr>
+        <tr>
+          <td>SDR first touch</td>
+          <td>SDR (assigned by round-robin)</td>
+          <td>Log first activity in CRM. Initial outreach sent (email or call). Add to active sequence</td>
+          <td>4 hrs from MQL status</td>
+        </tr>
+        <tr>
+          <td>SDR qualification</td>
+          <td>SDR</td>
+          <td>Discovery questions asked and documented in CRM contact notes. ICP confirmed or disqualified</td>
+          <td>Within 5 business days of first touch</td>
+        </tr>
+        <tr>
+          <td>MQL → SQL conversion</td>
+          <td>SDR</td>
+          <td>Status updated to SQL. Required fields populated (pain, EB, timeline). Discovery call completed</td>
+          <td>Before AE intro scheduled</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="sub-overline"><div class="sub-overline-rule"></div><div class="sub-overline-text">SDR → AE Handoff</div></div>
+    <p class="body-text">An SQL becomes an AE-owned opportunity when the discovery call is complete and the required MEDDPIC fields are populated. The SDR sends a warm intro email — no cold transfers. AE must accept the opportunity within 24 hours.</p>
+
+    <table class="ops-table">
+      <thead>
+        <tr>
+          <th>Required Field</th>
+          <th>What to Document</th>
+          <th>Where</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Pain Summary</td>
+          <td>1–3 sentences: what is the prospect's stated pain? What's the business impact? Did they quantify it?</td>
+          <td>CRM Opportunity — Pain field</td>
+        </tr>
+        <tr>
+          <td>Economic Buyer</td>
+          <td>Name and title of the person who controls the budget. Do they know NeuBird AI exists?</td>
+          <td>CRM Opportunity — Economic Buyer field</td>
+        </tr>
+        <tr>
+          <td>Decision Timeline</td>
+          <td>When are they looking to make a decision? Is there a budget cycle or event driving it?</td>
+          <td>CRM Opportunity — Close Date + Notes</td>
+        </tr>
+        <tr>
+          <td>Champion</td>
+          <td>Who is your internal champion? Are they willing to give you access to the EB?</td>
+          <td>CRM Opportunity — Champion field</td>
+        </tr>
+        <tr>
+          <td>Next Step</td>
+          <td>What is the specific next action with a named date? AE must confirm before accepting</td>
+          <td>CRM Opportunity — Next Step + Next Step Date</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="sub-overline"><div class="sub-overline-rule"></div><div class="sub-overline-text">AE → CS Handoff (Closed-Won)</div></div>
+    <p class="body-text">When a deal closes, the AE initiates a CS handoff within 48 hours. The handoff document is created in Notion (template linked in CRM) and the CS intro call is scheduled before the AE exits the relationship.</p>
+
+    <div class="card-grid">
+      <div class="info-card">
+        <h3>Handoff <em>document.</em></h3>
+        <p>AE completes the CS handoff doc: company context, key contacts, pain statement, what was sold, success criteria agreed in the deal, and any commitments made. No verbal handoffs — everything in writing before the intro call.</p>
+      </div>
+      <div class="info-card">
+        <h3>Intro <em>call.</em></h3>
+        <p>AE, CS, and champion on a 30-minute intro call. AE introduces CS, recaps the pain and what was bought, confirms success criteria, and then steps back. CS owns the relationship from day one of the call.</p>
+      </div>
+      <div class="info-card">
+        <h3>What a good <em>handoff looks like.</em></h3>
+        <p>Champion knows CS's name before the intro call. Every required CRM field is populated. Success criteria are written down and agreed by the customer. CS can run the relationship without calling the AE for context in week one.</p>
+      </div>
+      <div class="info-card">
+        <h3>What a bad <em>handoff looks like.</em></h3>
+        <p>AE sends a single Slack message. CS discovers commitments that weren't in the contract. The champion gets a surprise email from someone they've never heard of. RevOps reviews handoff quality monthly — AEs are accountable.</p>
+      </div>
+    </div>
+  </div><!-- /handoff -->
+
+  <!-- ── MEDDPIC ── -->
+  <div id="panel-meddpic" class="content-panel">
+    <div class="page-header" style="margin: -2.5rem -3rem 2.5rem; padding: 2.5rem 3rem 2rem;">
+      <div class="page-eyebrow">Revenue Operations</div>
+      <div class="page-title">MEDDPIC <em>Rollout.</em></div>
+      <div class="page-desc">NeuBird AI's qualification and deal inspection framework for H2 2026. MEDDPIC fields live in the CRM, inspection happens in the weekly deal review, and adoption is tracked by RevOps.</div>
+    </div>
+
+    <div class="sub-overline"><div class="sub-overline-rule"></div><div class="sub-overline-text">The Framework</div></div>
+    <p class="body-text">MEDDPIC is a qualification framework that ensures every deal in the pipeline has the information needed to forecast accurately and close. At NeuBird AI, MEDDPIC is required on all opportunities at Stage 2 and above.</p>
+
+    <div class="meddpic-grid">
+      <div class="meddpic-card">
+        <div class="meddpic-letter">M</div>
+        <div class="meddpic-word">Metrics</div>
+        <div class="meddpic-def">What is the quantified business impact? Time saved, incidents resolved, MTTR reduced. The prospect's number, not ours.</div>
+        <div class="meddpic-neubird">At NeuBird AI: "How many engineer-hours per week does your team spend on incident response? What would a 50% reduction mean for your roadmap?"</div>
+      </div>
+      <div class="meddpic-card">
+        <div class="meddpic-letter">E</div>
+        <div class="meddpic-word">Economic Buyer</div>
+        <div class="meddpic-def">Who controls the budget? Have we met them? Do they see the value? The champion is not always the EB.</div>
+        <div class="meddpic-neubird">At NeuBird AI: typically VP Engineering or CTO. FinServ deals may involve CIO. Must be named in CRM before Stage 2.</div>
+      </div>
+      <div class="meddpic-card">
+        <div class="meddpic-letter">D</div>
+        <div class="meddpic-word">Decision Criteria</div>
+        <div class="meddpic-def">What does the prospect use to evaluate vendors? Technical criteria, security requirements, integration needs, pricing model.</div>
+        <div class="meddpic-neubird">At NeuBird AI: AWS-native integration, RBAC + audit trail, MTTR reduction benchmark, trial results. Document what they weight most heavily.</div>
+      </div>
+      <div class="meddpic-card">
+        <div class="meddpic-letter">D</div>
+        <div class="meddpic-word">Decision Process</div>
+        <div class="meddpic-def">How do they make the decision? Who is involved, in what order, and what are the approval steps and legal/procurement gates?</div>
+        <div class="meddpic-neubird">At NeuBird AI: map the process before Stage 3. Procurement timelines often slip. Know the legal review cycle early and factor into close date.</div>
+      </div>
+      <div class="meddpic-card">
+        <div class="meddpic-letter">P</div>
+        <div class="meddpic-word">Identify Pain</div>
+        <div class="meddpic-def">What is the specific, named pain? Is it felt by the EB? Is there urgency? Pain without urgency doesn't close.</div>
+        <div class="meddpic-neubird">At NeuBird AI: "on-call fatigue", "incident RCA takes 4 hours", "same incidents keep recurring". The champion must feel it personally.</div>
+      </div>
+      <div class="meddpic-card">
+        <div class="meddpic-letter">C</div>
+        <div class="meddpic-word">Champion</div>
+        <div class="meddpic-def">Who inside the account is selling for us when we're not in the room? Do they have power, credibility, and access to the EB?</div>
+        <div class="meddpic-neubird">At NeuBird AI: usually a senior SRE or Platform Engineering lead. Test the champion: "Can you get us 30 minutes with your VP?" If no, they're a coach, not a champion.</div>
+      </div>
+    </div>
+
+    <div class="sub-overline"><div class="sub-overline-rule"></div><div class="sub-overline-text">Rollout Plan</div></div>
+    <p class="body-text">MEDDPIC launches in August. RevOps configures CRM fields in July. Full adoption required by September 1 — any opportunity at Stage 2+ without MEDDPIC fields populated will be flagged in the weekly deal review.</p>
+
+    <div class="rollout-phases">
+      <div class="phase-card">
+        <div class="phase-label">Phase 1 · July</div>
+        <div class="phase-name">CRM <em>Configuration</em></div>
+        <ul class="phase-items">
+          <li>RevOps configures MEDDPIC fields in CRM</li>
+          <li>Field definitions documented in Notion</li>
+          <li>Stage gates updated to require fields at Stage 2</li>
+          <li>Deal review template updated</li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <div class="phase-label">Phase 2 · August</div>
+        <div class="phase-name"><em>Training</em> & Launch</div>
+        <ul class="phase-items">
+          <li>2-hour MEDDPIC training session (all AEs + SDRs)</li>
+          <li>NeuBird-specific playbook distributed</li>
+          <li>First inspection in weekly deal review</li>
+          <li>RevOps coaching 1:1s for AEs with existing pipeline</li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <div class="phase-label">Phase 3 · September+</div>
+        <div class="phase-name"><em>Inspection</em> Cadence</div>
+        <ul class="phase-items">
+          <li>Weekly deal review: MEDDPIC fields inspected for all Stage 2+ deals</li>
+          <li>Monthly: adoption rate reported to leadership</li>
+          <li>Incomplete fields flagged — AE accountable</li>
+          <li>Win/loss analysis includes MEDDPIC quality score</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub-overline"><div class="sub-overline-rule"></div><div class="sub-overline-text">Deal Review Framework</div></div>
+
+    <table class="ops-table">
+      <thead>
+        <tr>
+          <th>Question</th>
+          <th>What We're Testing</th>
+          <th>Red Flag</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>"What's the business impact if they don't solve this?"</td>
+          <td>Is the pain real and quantified? Is there urgency?</td>
+          <td>AE says "they want to improve efficiency" — no number, no urgency</td>
+        </tr>
+        <tr>
+          <td>"Who controls the budget and have you met them?"</td>
+          <td>Is the EB identified and engaged?</td>
+          <td>AE hasn't met the EB. Champion says "I'll handle it"</td>
+        </tr>
+        <tr>
+          <td>"What does winning look like for your champion?"</td>
+          <td>Does the champion have personal skin in the game?</td>
+          <td>Champion's success isn't tied to solving the problem</td>
+        </tr>
+        <tr>
+          <td>"What happens between now and close?"</td>
+          <td>Is the decision process mapped? Are there hidden gates?</td>
+          <td>AE says "we just need to do a POC" — legal, security, procurement not scoped</td>
+        </tr>
+        <tr>
+          <td>"Why would they choose someone else?"</td>
+          <td>Is competition identified and a response prepared?</td>
+          <td>AE says "there's no real competition" — almost never true</td>
+        </tr>
+      </tbody>
+    </table>
+  </div><!-- /meddpic -->
+
+  <!-- ── REPORTING ── -->
+  <div id="panel-reporting" class="content-panel">
+    <div class="page-header" style="margin: -2.5rem -3rem 2.5rem; padding: 2.5rem 3rem 2rem;">
+      <div class="page-eyebrow">Revenue Operations</div>
+      <div class="page-title">Reporting <em>Framework.</em></div>
+      <div class="page-desc">What we measure, how often, who owns each report, and what we do with the output. Reporting without action is just data theater.</div>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-card"><div class="stat-num"><em>4</em></div><div class="stat-lbl">Reporting Cadences</div></div>
+      <div class="stat-card"><div class="stat-num">3</div><div class="stat-lbl">Core Funnels Tracked</div></div>
+      <div class="stat-card"><div class="stat-num">1</div><div class="stat-lbl">Source of Truth (CRM)</div></div>
+      <div class="stat-card"><div class="stat-num">Mon</div><div class="stat-lbl">Weekly Report Day</div></div>
+    </div>
+
+    <div class="sub-overline"><div class="sub-overline-rule"></div><div class="sub-overline-text">Reporting Cadence</div></div>
+
+    <div class="cadence-list">
+      <div class="cadence-row">
+        <div class="cadence-freq">Daily</div>
+        <div class="cadence-detail">
+          <div class="cadence-title">SDR Activity Dashboard</div>
+          <ul class="cadence-items">
+            <li>MQLs created vs. SLA compliance (4-hr first touch)</li>
+            <li>Open sequences and reply rates</li>
+            <li>Inbound leads with no SDR activity — flagged daily at 9am</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cadence-row">
+        <div class="cadence-freq">Weekly</div>
+        <div class="cadence-detail">
+          <div class="cadence-title">Pipeline & Deal Review (Monday)</div>
+          <ul class="cadence-items">
+            <li>New pipeline created: source, stage, AE</li>
+            <li>Stage movement: deals advanced vs. stalled vs. slipped</li>
+            <li>MEDDPIC completeness: % of Stage 2+ deals with full fields</li>
+            <li>Forecast call: AE commits vs. upside vs. pipeline</li>
+            <li>SDR → SQL conversion rate vs. target</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cadence-row">
+        <div class="cadence-freq">Monthly</div>
+        <div class="cadence-detail">
+          <div class="cadence-title">Revenue & Funnel Report (First Monday)</div>
+          <ul class="cadence-items">
+            <li>MQL → SQL → Opp → Closed-Won conversion rates by source</li>
+            <li>Pipeline by source: event vs. inbound vs. outbound vs. partner</li>
+            <li>MEDDPIC adoption rate: % of opps with complete fields</li>
+            <li>Marketing attribution: first-touch and last-touch by channel</li>
+            <li>ACV and deal cycle time by segment</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cadence-row">
+        <div class="cadence-freq">Quarterly</div>
+        <div class="cadence-detail">
+          <div class="cadence-title">QBR & Attribution Review</div>
+          <ul class="cadence-items">
+            <li>Pipeline coverage ratio vs. quota (target: 3x)</li>
+            <li>Win/loss analysis: why we won, why we lost, competitive patterns</li>
+            <li>Event ROI: pipeline generated per event vs. investment</li>
+            <li>Forecast accuracy: committed vs. actual for the quarter</li>
+            <li>H2 vs. H1 comparison once data is available</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-overline"><div class="sub-overline-rule"></div><div class="sub-overline-text">Key Metrics by Owner</div></div>
+
+    <table class="ops-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Definition</th>
+          <th>Owner</th>
+          <th>Target</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>MQL Volume</td>
+          <td>Leads reaching MQL threshold per month, by source</td>
+          <td>Marketing</td>
+          <td><span class="tag tag-o">TBD</span></td>
+        </tr>
+        <tr>
+          <td>MQL → SQL Rate</td>
+          <td>% of MQLs converted to SQL by SDR</td>
+          <td>SDR Manager</td>
+          <td><span class="tag tag-o">TBD</span></td>
+        </tr>
+        <tr>
+          <td>SDR Response SLA</td>
+          <td>% of MQLs with first SDR touch within 4 hours</td>
+          <td>SDR Manager</td>
+          <td><span class="tag tag-f">&gt; 90%</span></td>
+        </tr>
+        <tr>
+          <td>SQL → Opportunity Rate</td>
+          <td>% of SQLs that become AE-owned opportunities</td>
+          <td>Sales</td>
+          <td><span class="tag tag-o">TBD</span></td>
+        </tr>
+        <tr>
+          <td>Pipeline Coverage</td>
+          <td>Total open pipeline ÷ remaining quota</td>
+          <td>RevOps</td>
+          <td><span class="tag tag-f">3× coverage</span></td>
+        </tr>
+        <tr>
+          <td>MEDDPIC Completeness</td>
+          <td>% of Stage 2+ opps with all required MEDDPIC fields populated</td>
+          <td>RevOps</td>
+          <td><span class="tag tag-f">&gt; 85%</span></td>
+        </tr>
+        <tr>
+          <td>Event Pipeline ROI</td>
+          <td>Pipeline generated per event ÷ event cost</td>
+          <td>Marketing + RevOps</td>
+          <td><span class="tag tag-o">TBD after targets set</span></td>
+        </tr>
+        <tr>
+          <td>Forecast Accuracy</td>
+          <td>Committed forecast vs. actual closed-won at quarter end</td>
+          <td>Sales + RevOps</td>
+          <td><span class="tag tag-f">±10% of commit</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card-grid">
+      <div class="info-card">
+        <h3>Source of <em>truth.</em></h3>
+        <p>The CRM is the single source of truth for pipeline and revenue data. If it's not in the CRM, it doesn't exist for reporting purposes. RevOps enforces data hygiene — missing fields are flagged weekly, not quarterly.</p>
+      </div>
+      <div class="info-card">
+        <h3>Reporting <em>outputs.</em></h3>
+        <p>Weekly: Slack digest in #revenue-ops by 9am Monday. Monthly: shared Google Doc report to Marketing, Sales, and Leadership. Quarterly: slides in the QBR deck. Dashboards: TBD pending CRM configuration.</p>
+      </div>
+    </div>
+  </div><!-- /reporting -->
+
+</div><!-- /main -->
+
+<script>
+  function show(id, btn) {
+    document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+</script>
+</body>
+</html>
