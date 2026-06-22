@@ -435,107 +435,179 @@
     <div class="page-header" style="margin:-2.5rem -3rem 2.5rem; padding:2.5rem 3rem 2rem;">
       <div class="page-eyebrow">Revenue Operations</div>
       <div class="page-title">Lead <em>Lifecycle.</em></div>
-      <div class="page-desc">Stage definitions, lead status values, sources, conversion points, and account taxonomy — the shared vocabulary for marketing, SDR, and sales to operate off the same map.</div>
+      <div class="page-desc">We're replacing the old account-level lifecycle stages with a proper contact-level model. This page is the working spec for the CRM migration — new stage definitions, the Lead Status mapping, sources, and account taxonomy.</div>
     </div>
 
-    <!-- Lifecycle Stages Flow -->
-    <div class="sub-overline"><div class="sub-overline-rule"></div><div class="sub-overline-text">Lifecycle Stages</div></div>
-    <p class="body-text">Eight stages from first contact to closed. Stages drive CRM automation, sequence enrollment, and handoff triggers. Every contact must have a current lifecycle stage — blanks are data quality failures.</p>
+    <!-- Model Change -->
+    <div class="sub-overline"><div class="sub-overline-rule"></div><div class="sub-overline-text">What's Changing</div></div>
+    <p class="body-text">The old model had eight account-level lifecycle stages (Identified, Prospect, Pipeline, Customer, Churned, Partner, Competitor, Vendor) that were being used as a second lead status field — creating nonsensical mappings like "Meeting Set → Churned" and "Working → Customer." We're collapsing those to a single account stage of <strong>Lead</strong> and introducing a proper contact-level lifecycle model to track the buyer journey.</p>
 
-    <div class="lc-flow">
-      <div class="lc-stage">
+    <div style="display:grid;grid-template-columns:1fr 40px 1fr;gap:0;align-items:center;margin-bottom:2rem;border:1px solid var(--rule);border-radius:6px;overflow:hidden;">
+      <div style="padding:1.25rem 1.5rem;background:var(--panel);">
+        <div style="font-family:var(--mono);font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-light);margin-bottom:.65rem;">Old Account Stages <span style="color:var(--orange)">(deprecated)</span></div>
+        <div style="display:flex;flex-wrap:wrap;gap:.3rem;">
+          <span class="tag tag-g" style="text-decoration:line-through;opacity:.55">Identified</span>
+          <span class="tag tag-g" style="text-decoration:line-through;opacity:.55">Prospect</span>
+          <span class="tag tag-g" style="text-decoration:line-through;opacity:.55">Pipeline</span>
+          <span class="tag tag-g" style="text-decoration:line-through;opacity:.55">Customer</span>
+          <span class="tag tag-g" style="text-decoration:line-through;opacity:.55">Churned</span>
+          <span class="tag tag-g" style="text-decoration:line-through;opacity:.55">Partner</span>
+          <span class="tag tag-g" style="text-decoration:line-through;opacity:.55">Competitor</span>
+          <span class="tag tag-g" style="text-decoration:line-through;opacity:.55">Vendor</span>
+        </div>
+        <div style="font-size:11.5px;color:var(--ink-light);margin-top:.75rem;line-height:1.5;">Old HubSpot IDs: Subscriber, Lead, MQL, SQL, opportunity, Customer, Evanglist, other — inconsistent, unmaintained.</div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--orange);background:var(--white);height:100%;">→</div>
+      <div style="padding:1.25rem 1.5rem;background:var(--white);">
+        <div style="font-family:var(--mono);font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--orange);margin-bottom:.65rem;">New Account Stage <span style="color:var(--forest)">(single value)</span></div>
+        <div style="display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.75rem;">
+          <span class="tag tag-f" style="font-size:12px;padding:.2rem .7rem;">Lead</span>
+        </div>
+        <div style="font-size:11.5px;color:var(--ink-mid);line-height:1.5;">All prospect accounts set to <em>Lead</em>. The contact-level lifecycle stages below carry the funnel tracking logic. Account stage reflects relationship type (Prospect, Customer, Partner, Competitor).</div>
+      </div>
+    </div>
+
+    <!-- New Contact Lifecycle Stages -->
+    <div class="sub-overline"><div class="sub-overline-rule"></div><div class="sub-overline-text">New Contact Lifecycle Stages</div></div>
+    <p class="body-text">Nine stages on the contact record track every buyer from first touch to close. These replace the old account-level stages as the primary CRM funnel field. Every contact must have a current lifecycle stage — blanks are data quality failures.</p>
+
+    <div class="lc-flow" style="flex-wrap:wrap;">
+      <div class="lc-stage" style="min-width:120px;">
         <div class="lc-stage-num">01</div>
         <div class="lc-stage-name"><em>Contact</em></div>
-        <div class="lc-note">First touch. No engagement signal yet. Created by event import, form fill, or SDR prospecting.</div>
+        <div class="lc-status"><span class="tag tag-g">Cold</span></div>
+        <div class="lc-note">First touch. No engagement. Created by import, form fill, or SDR prospecting.</div>
       </div>
-      <div class="lc-stage">
+      <div class="lc-stage" style="min-width:120px;">
         <div class="lc-stage-num">02</div>
         <div class="lc-stage-name">Engaged <em>Contact</em></div>
-        <div class="lc-note">Has interacted: email open, webinar attend, site visit, or content download. Not yet sales-ready.</div>
+        <div class="lc-status"><span class="tag tag-g">Warm</span></div>
+        <div class="lc-note">Has an engagement signal: email, webinar, site visit, content download.</div>
       </div>
-      <div class="lc-stage">
+      <div class="lc-stage" style="min-width:120px;">
         <div class="lc-stage-num">03</div>
         <div class="lc-stage-name">Sales <em>Ready</em></div>
-        <div class="lc-note">Fits ICP and has an engagement signal strong enough to warrant SDR outreach. MQL threshold met.</div>
+        <div class="lc-status"><span class="tag tag-o">MQL</span></div>
+        <div class="lc-note">ICP fit confirmed + engagement threshold met. SDR outreach warranted.</div>
       </div>
-      <div class="lc-stage">
+      <div class="lc-stage" style="min-width:120px;">
         <div class="lc-stage-num">04</div>
         <div class="lc-stage-name"><em>Working</em></div>
-        <div class="lc-note">SDR is actively reaching out. In sequence. No meeting confirmed yet.</div>
+        <div class="lc-status"><span class="tag tag-g">Working</span></div>
+        <div class="lc-note">Active SDR outreach. In sequence. Awaiting response or meeting.</div>
       </div>
-      <div class="lc-stage">
+      <div class="lc-stage" style="min-width:120px;">
         <div class="lc-stage-num">05</div>
         <div class="lc-stage-name">Meeting <em>Booked</em></div>
-        <div class="lc-note">Discovery call scheduled. SDR → AE handoff in progress. Pre-meeting MEDDPIC notes required.</div>
+        <div class="lc-status"><span class="tag tag-g">Meeting Set</span></div>
+        <div class="lc-note">Discovery call on calendar. SDR → AE handoff in motion.</div>
       </div>
-      <div class="lc-stage">
+      <div class="lc-stage" style="min-width:120px;border-top:2px solid #e8d5c0;">
+        <div class="lc-stage-num" style="color:var(--ink-light);">06x</div>
+        <div class="lc-stage-name">Dis<em>qualified</em></div>
+        <div class="lc-status"><span class="tag tag-g">Disqualified</span></div>
+        <div class="lc-note">No ICP fit or no pain. Reason required. Exits all active sequences.</div>
+      </div>
+      <div class="lc-stage" style="min-width:120px;">
         <div class="lc-stage-num">06</div>
         <div class="lc-stage-name"><em>Pipeline</em></div>
-        <div class="lc-note">AE-owned opportunity created in CRM. Active deal. MEDDPIC gates apply by stage.</div>
+        <div class="lc-status"><span class="tag tag-g">In Pipeline</span></div>
+        <div class="lc-note">AE-owned opportunity created. MEDDPIC gates apply by deal stage.</div>
       </div>
-      <div class="lc-stage">
-        <div class="lc-stage-num">07a</div>
+      <div class="lc-stage" style="min-width:120px;background:rgba(0,140,97,0.04);">
+        <div class="lc-stage-num" style="color:var(--forest);">07a</div>
         <div class="lc-stage-name">Closed <em>Won</em></div>
-        <div class="lc-note">Contract signed. Source attributed. CS handoff initiated within 48 hrs.</div>
+        <div class="lc-status"><span class="tag tag-f">Customer</span></div>
+        <div class="lc-note">Contract signed. CS handoff within 48 hrs. Source attributed.</div>
       </div>
-      <div class="lc-stage">
+      <div class="lc-stage" style="min-width:120px;">
         <div class="lc-stage-num">07b</div>
         <div class="lc-stage-name">Closed <em>Lost</em></div>
-        <div class="lc-note">Deal lost. Loss reason required in CRM. Contact enters long-term nurture.</div>
+        <div class="lc-status"><span class="tag tag-g">—</span></div>
+        <div class="lc-note">Loss reason required. Contact enters long-term nurture sequence.</div>
       </div>
     </div>
 
-    <!-- Lead Status -->
-    <div class="sub-overline"><div class="sub-overline-rule"></div><div class="sub-overline-text">Lead Status Values</div></div>
-    <p class="body-text">Lead status is the SDR's working view — it sits inside the broader lifecycle stage and drives queue prioritization and sequence enrollment.</p>
+    <!-- Lead Status → Lifecycle Stage Mapping -->
+    <div class="sub-overline"><div class="sub-overline-rule"></div><div class="sub-overline-text">Lead Status → Lifecycle Stage Mapping</div></div>
+    <p class="body-text">Lead Status is the SDR's operational queue field. Lifecycle Stage is the CRM's funnel record. This table is the source of truth for how they map — replacing the old broken mapping (where Working→Customer, Meeting Set→Churned, etc.).</p>
 
-    <div class="status-grid">
-      <div class="status-card">
-        <div class="status-name">Cold</div>
-        <div class="status-desc">No engagement signal. Fits ICP profile. Available for SDR prospecting sequences.</div>
-        <div class="status-owner">Owner: SDR</div>
-      </div>
-      <div class="status-card">
-        <div class="status-name">Warm</div>
-        <div class="status-desc">Has an engagement signal (event attend, content, site visit). Priority outreach queue.</div>
-        <div class="status-owner">Owner: SDR</div>
-      </div>
-      <div class="status-card">
-        <div class="status-name">MQL</div>
-        <div class="status-desc">Marketing-qualified. Engagement threshold met. SDR must make first touch within 4 hours.</div>
-        <div class="status-owner">Owner: SDR (4hr SLA)</div>
-      </div>
-      <div class="status-card">
-        <div class="status-name">Working</div>
-        <div class="status-desc">Active SDR outreach in progress. In a sequence. Awaiting response or meeting.</div>
-        <div class="status-owner">Owner: SDR</div>
-      </div>
-      <div class="status-card">
-        <div class="status-name">Meeting Set</div>
-        <div class="status-desc">Discovery call booked. SDR logs notes and begins AE handoff doc. MEDDPIC pre-fill required.</div>
-        <div class="status-owner">Owner: SDR → AE</div>
-      </div>
-      <div class="status-card">
-        <div class="status-name">In Pipeline</div>
-        <div class="status-desc">AE has accepted and created an opportunity. Contact is now linked to an active deal stage.</div>
-        <div class="status-owner">Owner: AE</div>
-      </div>
-      <div class="status-card">
-        <div class="status-name">Recycled</div>
-        <div class="status-desc">Timing wasn't right. Returns to nurture. SDR re-engages on a future trigger or date.</div>
-        <div class="status-owner">Owner: Marketing nurture</div>
-      </div>
-      <div class="status-card">
-        <div class="status-name">Disqualified</div>
-        <div class="status-desc">Does not fit ICP or has no pain. Removed from active sequences. Reason required in CRM.</div>
-        <div class="status-owner">Owner: RevOps (audit)</div>
-      </div>
-      <div class="status-card">
-        <div class="status-name">Customer</div>
-        <div class="status-desc">Closed-won. Owned by CS. May re-enter sales motion for expansion.</div>
-        <div class="status-owner">Owner: CS</div>
-      </div>
-    </div>
+    <table class="ops-table" style="margin-bottom:2rem;">
+      <thead>
+        <tr>
+          <th>Lead Status</th>
+          <th>New Lifecycle Stage</th>
+          <th>Old Stage (deprecated)</th>
+          <th>Owner</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="tag tag-g">Cold</span></td>
+          <td>Contact</td>
+          <td style="text-decoration:line-through;color:var(--ink-light);">Identified</td>
+          <td>SDR (prospecting)</td>
+          <td>No engagement yet. Available for outbound sequences.</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-g">Warm</span></td>
+          <td>Engaged Contact</td>
+          <td style="text-decoration:line-through;color:var(--ink-light);">Prospect</td>
+          <td>SDR (priority)</td>
+          <td>Has an inbound signal. First touch within 24 hrs.</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-o">MQL</span></td>
+          <td>Sales Ready</td>
+          <td style="text-decoration:line-through;color:var(--ink-light);">Pipeline</td>
+          <td>SDR (4hr SLA)</td>
+          <td>ICP + engagement threshold met. SLA clock starts at MQL stamp.</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-g">Working</span></td>
+          <td>Working</td>
+          <td style="text-decoration:line-through;color:var(--ink-light);">Customer <span style="font-size:10px;">(!)</span></td>
+          <td>SDR (active)</td>
+          <td>In sequence. Awaiting reply or meeting.</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-g">Meeting Set</span></td>
+          <td>Meeting Booked</td>
+          <td style="text-decoration:line-through;color:var(--ink-light);">Churned <span style="font-size:10px;">(!)</span></td>
+          <td>SDR → AE</td>
+          <td>Call on calendar. Handoff doc + MEDDPIC pre-fill required before the meeting.</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-g">In Pipeline</span></td>
+          <td>Pipeline</td>
+          <td style="text-decoration:line-through;color:var(--ink-light);">Competitor <span style="font-size:10px;">(!)</span></td>
+          <td>AE</td>
+          <td>Opportunity created. Contact linked to deal. SDR's role ends here.</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-g">Recycled</span></td>
+          <td>Engaged Contact</td>
+          <td style="text-decoration:line-through;color:var(--ink-light);">Partner <span style="font-size:10px;">(!)</span></td>
+          <td>Marketing nurture</td>
+          <td>Bad timing. Re-enters nurture. SDR re-engages on a future signal or set date.</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-g">Disqualified</span></td>
+          <td>Disqualified</td>
+          <td style="text-decoration:line-through;color:var(--ink-light);">Vendor <span style="font-size:10px;">(!)</span></td>
+          <td>RevOps (audit)</td>
+          <td>No ICP fit or no pain. Reason field required. Exits all active sequences.</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-f">Customer</span></td>
+          <td>Closed Won</td>
+          <td style="color:var(--ink-light);">— (unmapped)</td>
+          <td>CS</td>
+          <td>Contract signed. CS owns relationship. May re-enter for expansion.</td>
+        </tr>
+      </tbody>
+    </table>
 
     <!-- Lead Sources + Conversion Points -->
     <div class="sub-overline"><div class="sub-overline-rule"></div><div class="sub-overline-text">Lead Sources & Conversion Points</div></div>
@@ -560,19 +632,20 @@
       <div class="list-card">
         <div class="list-card-label">Conversion Points</div>
         <div class="list-card-items">
-          <span class="tag tag-o">Demo Request</span>
-          <span class="tag tag-o">Pricing Page</span>
+          <span class="tag tag-o">Demo</span>
+          <span class="tag tag-o">Pricing</span>
           <span class="tag tag-n">Webinar</span>
           <span class="tag tag-n">Product Tour</span>
-          <span class="tag tag-n">Content Download</span>
+          <span class="tag tag-n">Content</span>
           <span class="tag tag-f">3rd Party</span>
           <span class="tag tag-g">Chatbot</span>
         </div>
       </div>
     </div>
 
-    <!-- Account Types + Stages -->
+    <!-- Account Taxonomy -->
     <div class="sub-overline"><div class="sub-overline-rule"></div><div class="sub-overline-text">Account Taxonomy</div></div>
+    <p class="body-text">Account Type and Account Stage are set at the company record level. Account Stage reflects where the relationship is — distinct from the contact-level lifecycle stages above.</p>
 
     <div class="two-col-grid">
       <div class="list-card">
@@ -591,7 +664,7 @@
           <span class="tag tag-n">Engaged</span>
           <span class="tag tag-o">Active Opportunity</span>
           <span class="tag tag-f">Customer</span>
-          <span class="tag tag-g">At Risk</span>
+          <span class="tag tag-g" style="background:rgba(250,85,30,0.06);color:#c44;">At Risk</span>
           <span class="tag tag-g">Churned</span>
         </div>
       </div>
